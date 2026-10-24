@@ -1,0 +1,30 @@
+**Optics script — FreshCart Core Regression Journey**
+
+```yaml
+app_id: com.fromprompt.freshcart
+Modules:
+  Authentication:
+  - launch_app com.fromprompt.freshcart
+  - assert_presence Welcome to FreshCart
+  - type_text Email demo@freshcart.app
+  - assert_presence demo@freshcart.app
+  - type_text Password Demo@123
+  - assert_presence ••••••••
+  - press_element Log in
+  - assert_presence Hi, Demo User!
+  Cart Operations:
+  - press_element ADD
+  - assert_presence VIEW CART
+  - press_element VIEW CART
+  - assert_presence PROCEED TO CHECKOUT
+  Checkout Lifecycle:
+  - press_element PROCEED TO CHECKOUT
+  - assert_presence Delivery Address
+  - press_element PLACE ORDER
+  - assert_presence Order Placed Successfully
+Test Cases:
+  FreshCart Core Regression Journey:
+  - Authentication
+  - Cart Operations
+  - Checkout Lifecycle
+```
