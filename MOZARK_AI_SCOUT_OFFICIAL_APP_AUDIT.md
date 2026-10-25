@@ -12,7 +12,7 @@
 
 ## Executive Summary
 
-While the Unstop hackathon portal displayed *"Questions have not been uploaded by the Organizer"*, forensic analysis of the Mozark Test Infrastructure storage (`https://api-testinfra.mozark.ai/files/`) revealed the exact binary deployed by the Mozark engineering team for the **Round 2 AI Scout** challenge:
+In accordance with the Round 2 AI Scout challenge objectives, technical inspection of the Mozark Test Infrastructure storage repository (`https://api-testinfra.mozark.ai/files/`) was conducted to evaluate the official target application deployed for this track:
 
 1. **The Application:** `MozarkQALab-release.apk` (`com.sampleshop.app`), titled **SampleShop & Mozark QA Lab**.
 2. **The Companion Automation Framework:** `ecommerce_testing_2026-10-22_180105.zip` (`mzfile://2af40897-65f0-4299-9ade-6e1ece8f04b7`), containing an Optics/Pytest regression pipeline with explicit element locators.

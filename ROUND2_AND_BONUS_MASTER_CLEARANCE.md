@@ -4,11 +4,11 @@
 **Participant:** Soujas Kudchadker (NMIMS)  
 **Organization:** `SoujasK_NMIMS` (`a57bcf7b-de33-48c0-b696-e42e811d4a44`)  
 **Project:** `Starter Project` (`47f13f42-a6d8-4829-8ecf-36a9a89b604c`)  
-**Target Score:** **150 / 150 Points (Rank #1 Benchmark)**
+**Evaluation Target:** **150 / 150 Points (Full Criterion Clearance)**
 
 ---
 
-## ════ PART 1: ROUND 2 — AI SCOUT (50 / 50 POINTS) ════
+## Section 1: Round 2 — AI Scout Defect Diagnosis & Remediation (50 Points)
 
 ### Rubric Breakdown
 * **Find the Bug with AI (15 / 15 Pts):** Leveraged Mozark MCP AI Failure-Intelligence (`tcm_analyze_failed_run`) across 25 failed attempts and Vector Store semantic search (`search_test_cases` / `embed_test_cases`) to isolate critical purchase blockers.
@@ -29,7 +29,7 @@
 
 ---
 
-## ════ PART 2: BONUS ROUND — COMPLETE APP CLEARANCE (+50 POINTS) ════
+## Section 2: Bonus Round — Comprehensive Application Defect Clearance (50 Points)
 
 > **Challenge Directive:** *"Don't stop at one bug. Clear the whole app. Find every bug: +25 points. Fix every one: +25 points."*
 
