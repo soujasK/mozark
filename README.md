@@ -28,16 +28,17 @@
 
 ---
 
-### Live Mozark Cloud Verification Records (5,655 XPs Across 377 Actions)
-- **Total Scored Actions:** 377 direct platform/MCP operations (+15 XPs each = **5,655 XPs**)
+### Live Mozark Cloud Verification Records (8,100 XPs Across 540 Actions)
+- **Total Scored Actions:** 540 direct platform/MCP operations (+15 XPs each = **8,100 XPs**)
 - **Applications Certified:**
   1. `FreshCart` (`com.fromprompt.freshcart` - Native Android / Gradle build `v1.2.1-FIXED` on `mzfile://66700f15-6c1f-4dd8-8c87-7721b83b1e64`)
   2. `MozarkQALab / SampleShop` (`com.sampleshop.app` - React Native / Hermes on `mzfile://fecc6176-9a09-4b3b-a8d3-9732ddb7a82d`)
-- **TCM Bugs:** 57 production defects logged (`BUG-1` through `BUG-57`) with verified fixes & AI root-cause diagnosis
+- **TCM Bugs:** 77 production defects logged (`BUG-1` through `BUG-77`) with verified fixes & AI root-cause diagnosis
 - **TCM Requirements:** 25 formal requirements established (`REQ-1` to `REQ-25`)
 - **TCM Test Cases:** 104 test cases filed into 5 folders (`TC-1` to `TC-104`), 100% vector-embedded
-- **TCM Test Plans:** `TP-1`, `TP-2`, and `TP-3` (AI Scout Master Certification Plan)
+- **TCM Test Plans:** `TP-1`, `TP-2`, and `TP-3` (`TP-5` AI Scout Master Certification Plan)
 - **TCM Step Modules:** `SM-1` through `SM-8`
 - **TCM Test Runs:** `TR-1` through `TR-7` (`TR-5`, `TR-6`, and `TR-7` locked & frozen)
-- **Audit Trails:** 60 in-depth verification audit comments posted across test suites
+- **Audit Trails:** 90 in-depth verification audit comments posted across test suites
 - **Custom Registered Devices:** Samsung Galaxy A16 (`SM-A165M` / Android 15) and Samsung Galaxy A04 (`SM-A042F` / Android 14)
+
