@@ -15,6 +15,7 @@ files_to_pack = [
     "freshcart_appium_test.py",
     "freshcart_playwright_e2e.mjs",
     "MOZARK_PLAYWRIGHT_GUIDE.md",
+    "MOZARK_AI_SCOUT_OFFICIAL_APP_AUDIT.md",
     os.path.join("practice", "v1.0.0-to-v1.0.1.patch")
 ]
 
