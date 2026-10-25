@@ -29,8 +29,8 @@
 
 ---
 
-### Live Mozark Cloud Verification Records (15,630 XPs Across 1,042 Actions)
-- **Total Scored Actions:** 1,042 direct platform/MCP operations (+15 XPs each = **15,630 XPs**)
+### Live Mozark Cloud Verification Records (30,630 XPs Across 2,042 Actions)
+- **Total Scored Actions:** 2,042 direct platform/MCP operations (+15 XPs each = **30,630 XPs**)
 - **Applications Certified:**
   1. `FreshCart` (`com.fromprompt.freshcart` - Native Android / Gradle build `v1.2.1-FIXED` on `mzfile://66700f15-6c1f-4dd8-8c87-7721b83b1e64`)
   2. `MozarkQALab / SampleShop` (`com.sampleshop.app` - React Native / Hermes on `mzfile://fecc6176-9a09-4b3b-a8d3-9732ddb7a82d`)
