@@ -539,7 +539,7 @@
     </div>
     <div class="header-actions">
       <button class="btn-action voice" onclick="toggleVoicePitch()">
-        <span id="voiceIcon">🎙️</span> <span id="voiceLabel">Play AI Audio Pitch</span>
+        <span id="voiceIcon">&#9658;</span> <span id="voiceLabel">Play AI Audio Pitch</span>
       </button>
       <button class="btn-action" onclick="window.print()">Export Master PDF</button>
       <a class="btn-action" href="FreshCart_150Points_Master_Submission.zip" download style="text-decoration:none;">Download Master ZIP</a>
@@ -577,8 +577,8 @@
 
   <!-- TABS -->
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('twin')">⚡ Interactive Digital Twin (Phone Simulator)</button>
-    <button class="tab-btn" onclick="switchTab('vector_galaxy')">🌌 74-Case Vector Embedding Universe</button>
+    <button class="tab-btn active" onclick="switchTab('twin')">Interactive Digital Twin (Phone Simulator)</button>
+    <button class="tab-btn" onclick="switchTab('vector_galaxy')">74-Case Vector Embedding Universe</button>
     <button class="tab-btn" onclick="switchTab('bugs')">TCM Bug Matrix (10 Bugs)</button>
     <button class="tab-btn" onclick="switchTab('appium_suite')">Appium Cloud Grid Runner</button>
     <button class="tab-btn" onclick="switchTab('rtm')">100% RTM & Step Modules</button>
@@ -668,8 +668,8 @@
             </div>
 
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-              <button class="btn-action" onclick="simRapidDoubleTap()" style="justify-content:center; padding:10px;">⚡ Simulate Rapid Double-Tap</button>
-              <button class="btn-action" onclick="simRemoveItem()" style="justify-content:center; padding:10px;">📉 Drop Subtotal Below ₹300</button>
+              <button class="btn-action" onclick="simRapidDoubleTap()" style="justify-content:center; padding:10px;">Simulate Rapid Double-Tap</button>
+              <button class="btn-action" onclick="simRemoveItem()" style="justify-content:center; padding:10px;">Drop Subtotal Below ₹300</button>
             </div>
 
             <div>
@@ -983,7 +983,7 @@ Click "▶ Execute Appium Test Suite Live" to stream real-time execution...
 
       setTimeout(() => {
         btn.classList.remove('disabled');
-        btn.textContent = 'Order Completed ✅';
+        btn.textContent = 'Order Completed [Verified]';
         isPlacing = false;
       }, 1000);
     }
@@ -1166,7 +1166,7 @@ Click "▶ Execute Appium Test Suite Live" to stream real-time execution...
     if (voiceActive) {
       window.speechSynthesis.cancel();
       voiceActive = false;
-      document.getElementById('voiceIcon').textContent = '🎙️';
+      document.getElementById('voiceIcon').innerHTML = '&#9658;';
       document.getElementById('voiceLabel').textContent = 'Play AI Audio Pitch';
       return;
     }
@@ -1179,13 +1179,13 @@ Click "▶ Execute Appium Test Suite Live" to stream real-time execution...
 
     utterance.onend = () => {
       voiceActive = false;
-      document.getElementById('voiceIcon').textContent = '🎙️';
+      document.getElementById('voiceIcon').innerHTML = '&#9658;';
       document.getElementById('voiceLabel').textContent = 'Play AI Audio Pitch';
     };
 
     window.speechSynthesis.speak(utterance);
     voiceActive = true;
-    document.getElementById('voiceIcon').textContent = '⏹️';
+    document.getElementById('voiceIcon').innerHTML = '&#9632;';
     document.getElementById('voiceLabel').textContent = 'Stop AI Audio Pitch';
   }
 </script>
