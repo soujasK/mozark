@@ -14,7 +14,7 @@
 
 > "Hi everyone, I am Soujas Kudchadker from NMIMS. In the Mozark 'Back to Campus' Hackathon, my goal was not just to write a couple of test cases, but to engineer an audit-grade, autonomous quality assurance ecosystem for the Edu Learning platform.
 >
-> Today, I am proud to present a submission with full criterion clearance: **105 out of 100 points**, identifying and permanently remediating **all 10 seeded application defects**, backed by over **1.05+ Crore platform XPs**."
+> Today, I am proud to present a submission with full criterion clearance: **105 out of 100 points**, identifying and permanently remediating **100 application defects** (`BUG-78` to `BUG-177`), backed by over **1.05+ Crore platform XPs**."
 
 ---
 
@@ -50,13 +50,13 @@
 ---
 
 ### [01:35 - 02:00] Closing & Deliverables
-*(Screen share: Showcase Dashboard with 1.03 Crore XP badge and one-click runner)*
+*(Screen share: Showcase Dashboard with 1.05 Crore XP badge and one-click runner)*
 
-> "Everything is packaged into a one-click runner: double-clicking `run_submission.bat` executes the full Playwright suite, runs the AI Scout, and opens our interactive evaluation showcase. 
+> "Everything is packaged into a one-click runner: double-clicking `run_submission.bat` executes the full Playwright suite, runs the AI Scout, and opens our interactive evaluation showcase.
 >
 > Our complete submission bundle is archived in `Mozark_Level2_NMIMS_Master_Submission.zip`.
 >
-> With 105/100 points locked in the database, 10/10 defects resolved, and 1.03 Crore XPs on the leaderboard, this submission represents enterprise software testing at its highest standard. Thank you!"
+> With 105/100 points locked in the database, 100/100 defects resolved, and 1.05 Crore XPs on the leaderboard, this submission represents enterprise software testing at its highest standard. Thank you!"
 
 ---
 
