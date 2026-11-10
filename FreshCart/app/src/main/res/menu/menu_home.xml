@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_cart"
+        android:title="Cart"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/action_orders"
+        android:title="My Orders"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_wishlist"
+        android:title="My Wishlist"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_profile"
+        android:title="Profile"
+        app:showAsAction="never" />
+</menu>

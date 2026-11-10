@@ -1,0 +1,55 @@
+name: Mozark Level 2 & Bonus — Autonomous Quality Engineering Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test-and-verify:
+    name: Playwright Dual-Stage Regression & AI Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright requests urllib3
+          playwright install --with-deps chromium
+
+      - name: Stage 1: Execute Defect Reproduction Suite
+        run: |
+          python playwright_suite/tests/test_defect_reproduction.py
+
+      - name: Stage 2: Execute In-Browser Route Interception Verification
+        run: |
+          python playwright_suite/tests/test_verified_fixes.py
+
+      - name: Stage 3: Run Autonomous AI Scout Crawler
+        run: |
+          python ai_scout/ai_scout_edu.py
+
+      - name: Stage 4: Run Master Evaluator Test Engine
+        run: |
+          python run_evaluation.py
+
+      - name: Upload Quality Engineering Artifacts & Evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: mozark-level2-evaluation-reports
+          path: |
+            playwright_suite/reports/
+            ai_scout/reports/
+            LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md
+            LEVEL2_SUBMISSION_SHOWCASE.html
+

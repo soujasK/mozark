@@ -1,0 +1,39 @@
+Title,Description,Type,Priority,Labels,Preconditions,Steps,Expected Result
+"TC-13 Sign up with a strong password containing @","Verify sign-up accepts any special character","Manual","High","signup","App installed, logged out","1. On Login, tap 'New here? Create account'
+2. Enter name Riya Shah
+3. Enter email riya@test.com
+4. Enter password Fresh@2026 and confirm Fresh@2026
+5. Tap Create account","The account is created and Home opens with 'Hi, Riya Shah!'"
+"TC-14 Sign up with an already registered email","Verify duplicate accounts are blocked","Manual","Critical","signup;security","Demo account exists","1. Open Create account
+2. Enter name Attacker
+3. Enter email demo@freshcart.app
+4. Enter password Hack#2026 and confirm
+5. Tap Create account
+6. Log out, then log in with demo@freshcart.app / Demo@123","Step 5 shows 'An account with this email already exists'. Step 6 logs in as Demo User"
+"TC-15 Login with different email capitalization","Verify email login is case-insensitive","Manual","Medium","login","Logged out","1. Enter email Demo@FreshCart.app
+2. Enter password Demo@123
+3. Tap Log in","The user is logged in and Home opens"
+"TC-16 Search is case-insensitive","Verify lowercase search finds products","Manual","High","search","Logged in on a device where the search box is visible","1. Tap Search products
+2. Type mango","'Alphonso Mango' is listed"
+"TC-17 Add multiple quantity from product page","Verify the chosen quantity is added","Manual","Critical","cart;product","Logged in, cart empty","1. Tap the Apple Shimla row
+2. Tap + twice (quantity 3)
+3. Tap Add to cart
+4. Tap Go to cart","The cart shows Apple Shimla × 3 = ₹540"
+"TC-18 Decrease quantity to zero removes the item","Verify − at quantity 1 removes the line","Manual","High","cart","Cart has Banana × 1 and Tomato × 1","1. Open the cart
+2. Tap − on Tomato","Tomato is removed from the cart; the subtotal is ₹60"
+"TC-19 FRESH10 coupon calculation","Verify FRESH10 gives 10% off, capped at ₹100","Manual","Critical","coupon;cart","Cart has Banana × 1 and Tomato × 1 (subtotal ₹100)","1. Open the cart
+2. Enter FRESH10 and tap Apply","Discount is -₹10; with ₹40 delivery the total is ₹130"
+"TC-20 Stock limit from the Home Add button","Verify a product can't be added beyond its stock","Manual","High","cart;stock","Logged in, cart empty","1. On Home, tap ADD next to Spinach (stock 3) 5 times
+2. Open the cart","'Only 3 in stock' message appears; the cart has Spinach × 3"
+"TC-21 Delivery slot is saved on the order","Verify the chosen slot is shown on the confirmation","Manual","Critical","checkout","Cart not empty","1. Go to Checkout and fill valid details
+2. Select 'Tomorrow 8 AM - 10 AM'
+3. Tap Place order","The success screen shows 'Delivery: Tomorrow 8 AM - 10 AM'"
+"TC-22 Pay with a numeric UPI ID","Verify UPI IDs with digits are accepted","Manual","High","checkout;payment","Cart not empty","1. Go to Checkout and fill valid details
+2. Select UPI
+3. Enter 9876543210@ybl
+4. Tap Place order","The order is placed with payment 'UPI (9876543210@ybl)'"
+"TC-23 Order history shows the amount paid","Verify My Orders shows the final total","Manual","High","orders","An order is placed with the FRESH10 coupon","1. Note 'Total paid' on the success screen
+2. Tap View my orders","The order total in My Orders equals the Total paid amount"
+"TC-24 Logout clears the session and the cart","Verify no data leaks after logout","Manual","Critical","profile;security","Logged in, cart has items","1. ⋮ → Profile → Log out
+2. Press the device Back button
+3. Log in again","Step 2 does not return to Home (the app exits or stays on Login). Step 3 shows an empty cart"

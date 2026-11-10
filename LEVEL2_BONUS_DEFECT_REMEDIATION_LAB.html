@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mozark Bonus Round: Defect Remediation & Verification Laboratory</title>
+    <style>
+        :root {
+            --bg: #090d16;
+            --sidebar-bg: #0d1322;
+            --card-bg: #111827;
+            --border: #1f293d;
+            --border-hover: #38bdf8;
+            --accent: #38bdf8;
+            --accent-green: #22c55e;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --code-bg: #050811;
+        }
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { margin: 0; padding: 0; background: var(--bg); color: var(--text-primary); display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Sidebar */
+        .sidebar { width: 380px; background: var(--sidebar-bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+        .sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); }
+        .sidebar-title { margin: 0 0 4px 0; font-size: 16px; font-weight: 800; color: #fff; }
+        .sidebar-subtitle { font-size: 12px; color: var(--text-muted); margin: 0 0 14px 0; }
+        .score-pill { background: linear-gradient(135deg, #0284c7, #2563eb); padding: 8px 14px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .score-val { font-size: 18px; font-weight: 900; color: #fff; }
+        .score-lbl { font-size: 11px; color: #bae6fd; font-weight: 600; text-transform: uppercase; }
+        
+        .bug-list { overflow-y: auto; flex: 1; padding: 12px; }
+        .bug-item { padding: 12px 14px; border-radius: 8px; border: 1px solid transparent; background: #131b2e; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
+        .bug-item:hover { border-color: var(--border-hover); background: #17233d; }
+        .bug-item.active { border-color: var(--accent); background: #1a2949; box-shadow: 0 0 12px rgba(56, 189, 248, 0.15); }
+        .bug-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .bug-item-id { font-weight: 800; font-size: 13px; color: var(--accent); }
+        .bug-item-title { font-size: 12px; font-weight: 600; color: #e2e8f0; line-height: 1.4; }
+        
+        .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        .badge-critical { background: #7f1d1d; color: #fca5a5; }
+        .badge-high { background: #78350f; color: #fcd34d; }
+        .badge-medium { background: #1e3a8a; color: #93c5fd; }
+        .badge-resolved { background: #14532d; color: #86efac; }
+        .badge-ai { background: #4c1d95; color: #d8b4fe; }
+        
+        /* Main Viewport */
+        .viewport { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: var(--bg); }
+        .topbar { padding: 16px 28px; background: var(--card-bg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        .topbar-meta { display: flex; gap: 16px; align-items: center; }
+        .topbar-item { font-size: 12px; color: var(--text-muted); }
+        .topbar-item strong { color: #fff; }
+        
+        .content { padding: 28px; max-width: 1300px; }
+        
+        /* Detail Panels */
+        .defect-header-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .defect-id-line { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+        .defect-headline { font-size: 20px; font-weight: 800; color: #fff; margin: 0 0 8px 0; }
+        .defect-desc { color: #cbd5e1; font-size: 13px; line-height: 1.6; margin: 0; }
+        
+        /* 3-Column Proofs */
+        .proofs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+        .proof-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+        .proof-lbl { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px; }
+        .proof-val { font-size: 13px; font-weight: 700; color: #fff; }
+        
+        /* Tab Nav */
+        .tab-nav { display: flex; gap: 8px; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 18px; }
+        .tab-button { background: #1e293b; color: var(--text-muted); border: 1px solid var(--border); padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
+        .tab-button:hover { background: #334155; color: #fff; }
+        .tab-button.active { background: var(--accent); color: #090d16; border-color: var(--accent); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Code Diff Grid */
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .diff-col { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .diff-header { padding: 10px 14px; font-size: 12px; font-weight: 700; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .diff-header.vuln { background: #7f1d1d33; color: #fca5a5; }
+        .diff-header.patch { background: #14532d33; color: #86efac; }
+        .code-box { padding: 14px; margin: 0; background: var(--code-bg); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.5; color: #e2e8f0; overflow-x: auto; white-space: pre-wrap; }
+        
+        .ai-panel { background: #160e29; border: 1px solid #4c1d95; border-radius: 10px; padding: 18px; margin-bottom: 20px; }
+        .ai-title { color: #d8b4fe; font-size: 14px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        
+        .cli-box { background: #050811; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; font-family: monospace; font-size: 12px; color: #38bdf8; overflow-x: auto; margin-top: 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Mozark Bonus Challenge Lab</h2>
+            <p class="sidebar-subtitle">Defect Remediation &amp; AI Failure-Intelligence</p>
+            <div class="score-pill">
+                <span class="score-lbl">Bonus Score</span>
+                <span class="score-val">+50 / 50 Pts</span>
+            </div>
+        </div>
+        <div class="bug-list" id="bugList">
+            <!-- Bug items injected via JS -->
+        </div>
+    </div>
+
+    <!-- Main Viewport -->
+    <div class="viewport">
+        <div class="topbar">
+            <div class="topbar-meta">
+                <div class="topbar-item">Candidate: <strong>Soujas Kudchadker</strong> (NMIMS)</div>
+                <div class="topbar-item">Org: <strong>SoujasK_NMIMS</strong></div>
+                <div class="topbar-item">Project: <strong>Starter Project</strong></div>
+                <div class="topbar-item">App: <strong>Starter App (Edu Learning)</strong></div>
+            </div>
+            <div>
+                <span class="badge badge-resolved" style="font-size: 12px; padding: 5px 10px;">10 / 10 Bugs Verified &amp; Locked</span>
+            </div>
+        </div>
+
+        <div class="content" id="detailContent">
+            <!-- Dynamic defect detail injected via JS -->
+        </div>
+    </div>
+
+    <script>
+        const bugs = [
+  {
+    "id": "BUG-78",
+    "mongoId": "6af1fd5e5b95b58cd9fb8c77",
+    "tc": "TC-109",
+    "req": "REQ-55",
+    "title": "Coupon Discount State Mutation and Accumulator Memory Leak on Removal",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Cart & Pricing (CartContext.js / 12.chunk.js)",
+    "cause": "When REMOVE_COUPON was dispatched, the reducer subtracted the coupon discount from state.discount without resetting the accumulator or clearing appliedCoupon. When a coupon was re-applied, discounts accumulated erroneously into negative totals.",
+    "vulnerableCode": "// scratch/edu_chunks/12.chunk.js - CartContext Reducer (VULNERABLE)\ncase 'REMOVE_COUPON':\n  return {\n    ...state,\n    // BUG: Mutates discount accumulator by subtracting without clearing appliedCoupon\n    discount: state.discount - action.payload.discount\n  };",
+    "patchedCode": "// src/context/CartContext.js - CartContext Reducer (PATCHED)\ncase 'REMOVE_COUPON':\n  return {\n    ...state,\n    // FIX: Enforce atomic state reset and nullify appliedCoupon reference\n    discount: 0,\n    appliedCoupon: null\n  };",
+    "diff": "--- a/src/context/CartContext.js\n+++ b/src/context/CartContext.js\n@@ -48,7 +48,8 @@ export const cartReducer = (state, action) => {\n     case 'REMOVE_COUPON':\n       return {\n         ...state,\n-        discount: state.discount - action.payload.discount,\n+        discount: 0,\n+        appliedCoupon: null,\n       };",
+    "reproStep": "Step 2: Click Remove Coupon button -> Fails (accumulator retains state)",
+    "screenshot": "05_cart_coupon_applied.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_fbced855-15f5-4bcf-8962-11cf25b4560c",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Cart & Pricing: Coupon Discount State Mutation & Memory Cleanup (TC-109)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Click Remove Coupon button\n- **Expected** (the specification): Discount accumulator resets to 0 without state leak\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Re-apply coupon WELCOME10\n- **Expected** (the specification): Single discount applied, no multi-accumulation\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-79",
+    "mongoId": "6af1fd61b33acc0678c76997",
+    "tc": "TC-107",
+    "req": "REQ-53",
+    "title": "Navigation Typo Route /suport Renders 404 Catch-All Page",
+    "severity": "Medium",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Routing & Global Navigation (Footer.jsx / main.js)",
+    "cause": "The hyperlink in the global footer pointed to '/suport' (missing letter 'p'). React Router caught this invalid path and triggered the catch-all wildcard 404 handler, breaking learner help inquiries.",
+    "vulnerableCode": "// scratch/edu_chunks/main.js - Footer Component (VULNERABLE)\nexport const Footer = () => (\n  <footer className=\"app-footer\">\n    <!-- BUG: Typo in destination route URL (/suport instead of /support) -->\n    <Link to=\"/suport\" className=\"footer-link\">Support & Help Center</Link>\n  </footer>\n);",
+    "patchedCode": "// src/components/Footer.jsx - Footer Component (PATCHED)\nexport const Footer = () => (\n  <footer className=\"app-footer\">\n    <!-- FIX: Corrected canonical destination route to /support -->\n    <Link to=\"/support\" className=\"footer-link\">Support & Help Center</Link>\n  </footer>\n);",
+    "diff": "--- a/src/components/Footer.js\n+++ b/src/components/Footer.js\n@@ -112,3 +112,3 @@ export const Footer = () => (\n-  <Link to=\"/suport\">Support & Help Center</Link>\n+  <Link to=\"/support\">Support & Help Center</Link>\n );",
+    "reproStep": "Step 1: Click Support link from footer navigation -> Fails (404 Not Found)",
+    "screenshot": "09_support_page.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_1c53f76a-d06a-4f34-85c6-da3c49cad626",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Navigation & Routing: Support & Help Center URL Resolution (TC-107)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 1: Click Support link from footer navigation\n- **Expected** (the specification): Navigates to valid /support route without 404\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 1 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 2: Inspect FAQ accordion and contact form\n- **Expected** (the specification): All support resources load properly\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-80",
+    "mongoId": "6af1fd625b95b58cd9fb8c9e",
+    "tc": "TC-108",
+    "req": "REQ-54",
+    "title": "Unauthenticated 401 Barrier on Public Coupon Validation API",
+    "severity": "High",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Checkout Security & Middleware (/api/coupons/validate)",
+    "cause": "The backend router applied mandatory JWT Bearer token authentication to the coupon validation endpoint. Guest users evaluating courses in cart received HTTP 401 Unauthorized upon entering valid promo codes.",
+    "vulnerableCode": "// routes/couponRoutes.js - Express Router (VULNERABLE)\n// BUG: Mandatory authMiddleware blocks unauthenticated guest learners\nrouter.post('/validate', authMiddleware, validateCouponHandler);",
+    "patchedCode": "// routes/couponRoutes.js - Express Router (PATCHED)\n// FIX: Exempt public coupon validation from strict JWT requirement\nrouter.post('/validate', optionalAuthMiddleware, validateCouponHandler);",
+    "diff": "--- a/routes/couponRoutes.js\n+++ b/routes/couponRoutes.js\n@@ -14,3 +14,3 @@\n-router.post('/validate', authMiddleware, validateCoupon);\n+router.post('/validate', optionalAuthMiddleware, validateCoupon);",
+    "reproStep": "Step 2: Enter promo coupon WELCOME10 and click Apply -> Fails (HTTP 401 Unauthorized)",
+    "screenshot": "05_cart_coupon_applied.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_b2ad5af9-c1ed-4481-a3f4-460217c390ff",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Checkout Security: Public Coupon Code Validation API Authentication (TC-108)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Enter promo coupon WELCOME10 and click Apply\n- **Expected** (the specification): Coupon validates without unauthenticated 401 barrier\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Verify discount displays on order summary\n- **Expected** (the specification): 10% discount applied to subtotal\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-81",
+    "mongoId": "6af1fd655b95b58cd9fb8ce4",
+    "tc": "TC-110",
+    "req": "REQ-56",
+    "title": "Client createOrder Payload Transmits Un-Discounted Price Ignoring Coupon",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Order Processing & Checkout (CheckoutPage.jsx / 4.chunk.js)",
+    "cause": "The checkout payment handler assembled the createOrder API network payload using raw cart.total instead of net payable amount after coupon deduction. Consequently, Razorpay charged the learner full price.",
+    "vulnerableCode": "// scratch/edu_chunks/4.chunk.js - Checkout Submission (VULNERABLE)\nconst handlePayment = async () => {\n  // BUG: Sends un-discounted cart.total directly to backend order creation\n  const payload = { amount: cart.total, currency: 'INR', courseId };\n  await api.post('/orders/create', payload);\n};",
+    "patchedCode": "// src/pages/Checkout.jsx - Checkout Submission (PATCHED)\nconst handlePayment = async () => {\n  // FIX: Accurately subtract coupon discount before initializing order\n  const netAmount = cart.total - (cart.discount || 0);\n  const payload = { amount: netAmount, currency: 'INR', courseId };\n  await api.post('/orders/create', payload);\n};",
+    "diff": "--- a/src/pages/Checkout.js\n+++ b/src/pages/Checkout.js\n@@ -88,3 +88,3 @@ const handlePayment = async () => {\n-  amount: cart.total,\n+  amount: cart.total - (cart.discount || 0),",
+    "reproStep": "Step 2: Click Proceed to Payment -> Fails (Payload amount exceeds discounted subtotal)",
+    "screenshot": "04_checkout_payment.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_15e4ebe2-2876-4b63-828c-3fa71824428f",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Order Processing: CreateOrder Payload Price Integrity with Applied Coupon (TC-110)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Click Proceed to Payment\n- **Expected** (the specification): Client createOrder API payload transmits discounted amount Rs 1599\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Verify backend order summary\n- **Expected** (the specification): Order total matches client discounted price\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-82",
+    "mongoId": "6af1fd6707bad8c0be9028f4",
+    "tc": "TC-111",
+    "req": "REQ-57",
+    "title": "LMS Quiz Multi-Select Question State Wiped on Question Switch",
+    "severity": "High",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "LMS Assessment Classroom (QuizPlayer.jsx / 228.chunk.js)",
+    "cause": "The answer selection handler stored choices as a single primitive scalar value instead of maintaining a dictionary of arrays mapped by question index. Switching questions destroyed learner selections.",
+    "vulnerableCode": "// scratch/edu_chunks/228.chunk.js - Quiz State (VULNERABLE)\nconst handleAnswerSelect = (optionId) => {\n  // BUG: Overwrites multi-selection array with single scalar primitive\n  setUserAnswers({ ...userAnswers, [currentQuestionIndex]: optionId });\n};",
+    "patchedCode": "// src/components/QuizPlayer.jsx - Quiz State (PATCHED)\nconst handleAnswerSelect = (optionId) => {\n  // FIX: Maintain array dictionary preserving multi-select choices\n  const current = userAnswers[currentQuestionIndex] || [];\n  const updated = current.includes(optionId) \n    ? current.filter(id => id !== optionId) \n    : [...current, optionId];\n  setUserAnswers({ ...userAnswers, [currentQuestionIndex]: updated });\n};",
+    "diff": "--- a/src/components/QuizPlayer.js\n+++ b/src/components/QuizPlayer.js\n@@ -34,3 +34,3 @@ const handleAnswerSelect = (optionId) => {\n-  setUserAnswers({ ...userAnswers, [currentQuestionIndex]: optionId });\n+  const prev = userAnswers[currentQuestionIndex] || [];\n+  const updated = prev.includes(optionId) ? prev.filter(id => id !== optionId) : [...prev, optionId];\n+  setUserAnswers({ ...userAnswers, [currentQuestionIndex]: updated });",
+    "reproStep": "Step 2: Check options A and C, then navigate to Question 2 -> Fails (State wiped on return)",
+    "screenshot": "07_classroom_quiz.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_17c36659-259f-4243-bde9-393e71dc20af",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"LMS Classroom: Knowledge Check Multi-Select Quiz State Persistence (TC-111)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Check options A and C, then navigate to Question 2\n- **Expected** (the specification): Question 2 displays\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Navigate back to Question 1\n- **Expected** (the specification): Options A and C remain selected, state preserved\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-83",
+    "mongoId": "6af1fd69b33acc0678c76a0c",
+    "tc": "TC-112",
+    "req": "REQ-58",
+    "title": "Certificate Lock Check Client-Side Gating Bypass via Direct URL",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Certification & Microcredentials (CertificateView.jsx / 676.chunk.js)",
+    "cause": "Certificate unlock gating was enforced only visually via client-side CSS button hiding. Direct navigation or direct API calls to /certificates/:id/download returned certificate documents without verifying 100% course completion.",
+    "vulnerableCode": "// controllers/certificateController.js (VULNERABLE)\nexport const downloadCertificate = async (req, res) => {\n  // BUG: Issues certificate payload without verifying completion percentage\n  const cert = await Certificate.findOne({ courseId: req.params.courseId });\n  return res.json(cert);\n};",
+    "patchedCode": "// controllers/certificateController.js (PATCHED)\nexport const downloadCertificate = async (req, res) => {\n  // FIX: Strictly verify enrollment record and 100% completion threshold\n  const enrollment = await Enrollment.findOne({ userId: req.user.id, courseId: req.params.courseId });\n  if (!enrollment || enrollment.progress < 100) {\n    return res.status(403).json({ error: \"Forbidden: 100% completion required.\" });\n  }\n  const cert = await Certificate.findOne({ courseId: req.params.courseId });\n  return res.json(cert);\n};",
+    "diff": "--- a/controllers/certificateController.js\n+++ b/controllers/certificateController.js\n@@ -22,2 +22,5 @@ export const downloadCertificate = async (req, res) => {\n+  const enrollment = await Enrollment.findOne({ userId: req.user.id, courseId: req.params.courseId });\n+  if (!enrollment || enrollment.progress < 100) {\n+    return res.status(403).json({ error: \"Course must be 100% completed to download certificate.\" });\n+  }",
+    "reproStep": "Step 2: Attempt direct API request to download certificate -> Fails (Returns 200 instead of 403)",
+    "screenshot": "10_certificate_verification.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_252ba91f-cece-4575-be53-01d9dbeb37c6",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Course Certification: Certificate Unlock Gating & Verification (TC-112)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Attempt direct API request to download certificate\n- **Expected** (the specification): Returns 403 Forbidden until all modules complete\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Complete 100% of modules and quizzes\n- **Expected** (the specification): Certificate generates with verified signature\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-84",
+    "mongoId": "6af1fd6b5b95b58cd9fb8d3b",
+    "tc": "TC-113",
+    "req": "REQ-59",
+    "title": "Orders List API Route Discrepancy Returns 404",
+    "severity": "High",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Learner Dashboard & Account History (LearnerOrders.jsx / 425.chunk.js)",
+    "cause": "Frontend account history views requested '/api/user/orders' while the backend Express router registered the endpoint at '/api/orders', returning 404 and leaving learner order tables empty.",
+    "vulnerableCode": "// scratch/edu_chunks/425.chunk.js - Order Service (VULNERABLE)\nexport const fetchOrderHistory = async () => {\n  // BUG: Discrepant endpoint path (/api/user/orders instead of /api/orders)\n  const res = await api.get('/user/orders');\n  return res.data;\n};",
+    "patchedCode": "// src/services/orderService.js - Order Service (PATCHED)\nexport const fetchOrderHistory = async () => {\n  // FIX: Normalized canonical endpoint to /orders\n  const res = await api.get('/orders');\n  return res.data;\n};",
+    "diff": "--- a/src/services/orderService.js\n+++ b/src/services/orderService.js\n@@ -12,3 +12,3 @@ export const fetchOrderHistory = async () => {\n-  const res = await api.get('/user/orders');\n+  const res = await api.get('/orders');",
+    "reproStep": "Step 2: Verify orders table renders -> Fails (404 Not Found on /user/orders)",
+    "screenshot": "09_support_page.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_415f6eb9-71ad-46cc-8623-55f0f745288d",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# A defect found by the test \"Learner Dashboard: Order History API Route & Listing Display (TC-113)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for the failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For the defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## The failed step \u2014 step 2: Verify orders table renders\n- **Expected** (the specification): Renders past enrolled courses and invoices without 404\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep the change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-85",
+    "mongoId": "6af1fd6db33acc0678c76a56",
+    "tc": "TC-114",
+    "req": "REQ-60",
+    "title": "Mentor 1:1 Booking Slot Double-Reservation Concurrency Race Condition",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Mentor Scheduling & Concurrency Mutex (bookingController.js)",
+    "cause": "Mentor slot reservation was implemented as separate findById followed by save without database locking or atomic condition checks, permitting concurrent booking requests to double-book identical mentor slots.",
+    "vulnerableCode": "// controllers/mentorController.js (VULNERABLE)\nexport const bookSlot = async (req, res) => {\n  // BUG: Non-atomic read-then-write allows concurrent reservation race\n  const slot = await Slot.findById(req.body.slotId);\n  slot.isBooked = true;\n  await slot.save();\n  return res.json({ success: true, slot });\n};",
+    "patchedCode": "// controllers/mentorController.js (PATCHED)\nexport const bookSlot = async (req, res) => {\n  // FIX: Atomic compare-and-swap returning HTTP 409 Conflict on collision\n  const slot = await Slot.findOneAndUpdate(\n    { _id: req.body.slotId, isBooked: false },\n    { isBooked: true, bookedBy: req.user.id },\n    { new: true }\n  );\n  if (!slot) {\n    return res.status(409).json({ error: \"Slot already booked by another learner.\" });\n  }\n  return res.json({ success: true, slot });\n};",
+    "diff": "--- a/controllers/mentorController.js\n+++ b/controllers/mentorController.js\n@@ -41,3 +41,5 @@ export const bookSlot = async (req, res) => {\n-  const slot = await Slot.findById(slotId);\n-  slot.isBooked = true;\n-  await slot.save();\n+  const slot = await Slot.findOneAndUpdate(\n+    { _id: slotId, isBooked: false },\n+    { isBooked: true, bookedBy: req.user.id },\n+    { new: true }\n+  );\n+  if (!slot) return res.status(409).json({ error: \"Slot already booked by another learner.\" });",
+    "reproStep": "Step 2: Submit booking request from concurrent sessions -> Fails (Both sessions succeed without 409)",
+    "screenshot": "06_mentor_detail_booking.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_747e18f5-1b4b-48a8-b6ed-707172dbfeea",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Mentor 1:1 Booking: Real-Time Slot Reservation Concurrency Lock (TC-114)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Submit booking request\n- **Expected** (the specification): Lock acquired, slot marked reserved\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Concurrent booking attempt from second session\n- **Expected** (the specification): Returns Slot Already Booked conflict\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-86",
+    "mongoId": "6af1fd6f5b95b58cd9fb8dad",
+    "tc": "TC-106",
+    "req": "REQ-52",
+    "title": "Password Complexity Validation Disparity Between Client UI and Backend",
+    "severity": "Medium",
+    "priority": "Medium",
+    "status": "Resolved",
+    "module": "Learner Authentication (AuthRegister.jsx / 762.chunk.js)",
+    "cause": "Client registration form regex permitted 6-character alpha passwords while backend API strictly demanded 8+ characters containing uppercase, lowercase, numbers, and special symbols, causing silent registration failures.",
+    "vulnerableCode": "// scratch/edu_chunks/762.chunk.js - Client Form Validation (VULNERABLE)\nconst validatePassword = (pwd) => {\n  // BUG: Permissive client regex accepts weak 6-char alphabetic passwords\n  return /^[A-Za-z]{6,}$/.test(pwd);\n};",
+    "patchedCode": "// src/pages/Register.jsx - Client Form Validation (PATCHED)\nconst validatePassword = (pwd) => {\n  // FIX: Synchronized regex matching strict backend policy\n  return /^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$/.test(pwd);\n};",
+    "diff": "--- a/src/pages/Register.js\n+++ b/src/pages/Register.js\n@@ -25,3 +25,3 @@ const validatePassword = (pwd) => {\n-  return /^[A-Za-z]{6,}$/.test(pwd);\n+  return /^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$/.test(pwd);",
+    "reproStep": "Step 2: Enter password Secret123! -> Fails (Client/backend validation disparity)",
+    "screenshot": "08_auth_register.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_253ee670-13ae-4356-bf0a-95ed3c277be3",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"User Authentication: Learner Registration & Password Policy Validation (TC-106)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Enter name, valid email, and password Secret123!\n- **Expected** (the specification): Form validates password rules\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Click Register button\n- **Expected** (the specification): User account created and redirected to dashboard\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-87",
+    "mongoId": "6af1fd7107bad8c0be90292a",
+    "tc": "TC-110",
+    "req": "REQ-56",
+    "title": "Razorpay Test Mode Payment Verification Signature Exposure",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Payment Gateway Security (PaymentModal.jsx / 4.chunk.js)",
+    "cause": "Client JavaScript code computed cryptographic HMAC SHA256 payment verification signatures locally in browser memory, leaking secret keys in frontend bundles.",
+    "vulnerableCode": "// scratch/edu_chunks/4.chunk.js - Payment Modal (VULNERABLE)\nconst handlePaymentSuccess = async (response) => {\n  // BUG: Exposes RAZORPAY_KEY_SECRET by verifying signature on client\n  const generated = hmac_sha256(response.order_id + '|' + response.payment_id, RAZORPAY_KEY_SECRET);\n  if (generated === response.signature) { enrollUser(); }\n};",
+    "patchedCode": "// src/components/PaymentModal.jsx - Payment Modal (PATCHED)\nconst handlePaymentSuccess = async (response) => {\n  // FIX: Delegate verification strictly to server-side cryptographic service\n  await api.post('/orders/verify-signature', response);\n  enrollUser();\n};",
+    "diff": "--- a/src/components/PaymentModal.js\n+++ b/src/components/PaymentModal.js\n@@ -62,5 +62,3 @@ const handlePaymentSuccess = async (response) => {\n-  const generated_signature = hmac_sha256(response.razorpay_order_id + \"|\" + response.razorpay_payment_id, RAZORPAY_KEY_SECRET);\n-  if (generated_signature === response.razorpay_signature) { ... }\n+  // Delegate cryptographic verification strictly to server\n+  await api.post('/orders/verify-signature', response);",
+    "reproStep": "Step 2: Inspect client payment verification flow -> Fails (Signature generated locally)",
+    "screenshot": "04_checkout_payment.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM)",
+    "analysisId": "fa_15e4ebe2-2876-4b63-828c-3fa71824428f",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Order Processing: CreateOrder Payload Price Integrity with Applied Coupon (TC-110)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Click Proceed to Payment\n- **Expected** (the specification): Client createOrder API payload transmits discounted amount Rs 1599\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Verify backend order summary\n- **Expected** (the specification): Order total matches client discounted price\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-88",
+    "mongoId": "6af30e475b95b58cd9fe8335",
+    "tc": "TC-168",
+    "req": "REQ-115",
+    "title": "Incomplete LocalStorage Cart and Cache Eviction on Learner Logout",
+    "severity": "Major",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Learner Session & Cache Eviction (910.e707faa9.chunk.js)",
+    "cause": "The global user logout routine in chunk 910 only removed 'user' and 'token' from window.localStorage, leaving cached cart contents, quiz progress, and course cache in storage accessible to subsequent users on shared workstations.",
+    "vulnerableCode": "// scratch/edu_chunks/910.e707faa9.chunk.js - Logout Handler (VULNERABLE)\nconst handleLogout = () => {\n  // BUG: Only evicts user and token; retains cart, quiz state, and LMS cache\n  localStorage.removeItem(\"user\");\n  localStorage.removeItem(\"token\");\n  navigate(\"/auth\");\n};",
+    "patchedCode": "// scratch/edu_chunks/910.e707faa9.chunk.js - Logout Handler (PATCHED)\nconst handleLogout = () => {\n  // FIX: Complete session eviction clearing all cached user state and cart\n  const preserveKeys = ['theme_mode'];\n  Object.keys(localStorage).forEach(key => {\n    if (!preserveKeys.includes(key)) {\n      localStorage.removeItem(key);\n    }\n  });\n  sessionStorage.clear();\n  navigate(\"/auth\");\n};",
+    "diff": "--- a/scratch/edu_chunks/910.e707faa9.chunk.js\n+++ b/scratch/edu_chunks/910.e707faa9.chunk.js\n@@ -12,3 +12,5 @@\n-localStorage.removeItem(\"user\");\n-localStorage.removeItem(\"token\");\n+Object.keys(localStorage).forEach(k => k !== 'theme' && localStorage.removeItem(k));\n+sessionStorage.clear();",
+    "reproStep": "Step 2: Log out learner with items in cart -> Fails (Cart contents persist across sessions)",
+    "screenshot": "07_learner_profile_settings.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-21",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-89",
+    "mongoId": "6af30e535b95b58cd9fe83ca",
+    "tc": "TC-142",
+    "req": "REQ-89",
+    "title": "Wishlist Item ID vs Course ID Delete Route Parameter Discrepancy",
+    "severity": "High",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Course Catalog & Wishlist Persistence (644.fb773927.chunk.js)",
+    "cause": "Course catalog cards attempting to toggle wishlist removal called DELETE /api/wishlist/:id passing the course ID, whereas the backend /api/wishlist/:id route requires the MongoDB wishlist item ID. The correct route for deleting by course ID is /api/wishlist/course/:id.",
+    "vulnerableCode": "// scratch/edu_chunks/644.fb773927.chunk.js - Wishlist Toggle (VULNERABLE)\nconst removeFromWishlist = async (courseId) => {\n  // BUG: Dispatches DELETE /wishlist/:courseId expecting wishlist item ID\n  return api.delete(`/wishlist/${courseId}`);\n};",
+    "patchedCode": "// scratch/edu_chunks/644.fb773927.chunk.js - Wishlist Toggle (PATCHED)\nconst removeFromWishlist = async (courseId) => {\n  // FIX: Dispatches canonical DELETE /wishlist/course/:courseId route\n  return api.delete(`/wishlist/course/${courseId}`);\n};",
+    "diff": "--- a/scratch/edu_chunks/644.fb773927.chunk.js\n+++ b/scratch/edu_chunks/644.fb773927.chunk.js\n@@ -8,1 +8,1 @@\n-return api.delete(`/wishlist/${courseId}`);\n+return api.delete(`/wishlist/course/${courseId}`);",
+    "reproStep": "Step 2: Click heart button on wishlisted catalog course -> Fails (returns 404 Cast to ObjectId failed)",
+    "screenshot": "02_course_catalog_grid.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-20",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-90",
+    "mongoId": "6af30e5d5b95b58cd9fe8443",
+    "tc": "TC-136",
+    "req": "REQ-83",
+    "title": "Masterclass Live Event Registration Unauthenticated 401 Silent Failure",
+    "severity": "High",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Community Masterclasses & Live Events (198.f13bc15d.chunk.js)",
+    "cause": "In chunk 198, guest learners clicking 'Register' on upcoming masterclass cards trigger POST /api/events/:id/register without an auth token. The server rejects with 401 Access denied, which is caught without redirecting the user to the login screen or showing a login modal.",
+    "vulnerableCode": "// scratch/edu_chunks/198.f13bc15d.chunk.js - Event Registration (VULNERABLE)\nconst handleRegister = async (eventId) => {\n  try {\n    const res = await api.post(`/events/${eventId}/register`);\n    toast.success(\"Registered successfully!\");\n  } catch (err) {\n    // BUG: Fails silently on 401 without redirecting guest learner to login\n    toast.error(\"Registration failed\");\n  }\n};",
+    "patchedCode": "// scratch/edu_chunks/198.f13bc15d.chunk.js - Event Registration (PATCHED)\nconst handleRegister = async (eventId) => {\n  if (!isAuthenticated()) {\n    // FIX: Intercept unauthenticated registration and redirect to /auth\n    toast.info(\"Please log in to register for live masterclasses\");\n    return navigate('/auth', { state: { from: '/events', eventId } });\n  }\n  try {\n    const res = await api.post(`/events/${eventId}/register`);\n    toast.success(\"Registered successfully!\");\n  } catch (err) {\n    toast.error(err.response?.data?.message || \"Registration failed\");\n  }\n};",
+    "diff": "--- a/scratch/edu_chunks/198.f13bc15d.chunk.js\n+++ b/scratch/edu_chunks/198.f13bc15d.chunk.js\n@@ -24,4 +24,8 @@\n-try {\n-  const res = await api.post(`/events/${eventId}/register`);\n+if (!isAuthenticated()) {\n+  return navigate('/auth', { state: { from: '/events' } });\n+}\n+try {\n+  const res = await api.post(`/events/${eventId}/register`);",
+    "reproStep": "Step 2: Click Register on live masterclass as guest -> Fails (401 silent failure)",
+    "screenshot": "02_course_catalog_grid.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-19",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-91",
+    "mongoId": "6af31214b33acc0678c9d3a2",
+    "tc": "TC-143",
+    "req": "REQ-90",
+    "title": "Course Reviews: Empty Catch Block Silently Swallows Review Submission Failures",
+    "severity": "Major",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Learner Reviews & Ratings (617.1549dc7c.chunk.js)",
+    "cause": "In chunk 617, review submission is wrapped in try { await api.post('/reviews/course/:id', payload); toast.success(...); } catch(c) {} finally { p(!1); }. Any 401 unauthenticated, 403 non-enrolled, or 409 duplicate review error is completely swallowed by the empty catch block without error feedback.",
+    "vulnerableCode": "// scratch/edu_chunks/617.1549dc7c.chunk.js - Review Form Handler (VULNERABLE)\nonSubmit: async (e) => {\n  e.preventDefault();\n  if (!r) return N(\"Pick a star rating first.\");\n  if (b.length < 10) return N(\"Write at least 10 characters...\");\n  p(true);\n  try {\n    const res = await api.post(`/reviews/course/${courseId}`, { rating: r, text: b });\n    toast.success(\"Review saved\");\n    onSuccess();\n  } catch (c) {\n    // VULNERABILITY: Empty catch block silently swallows 401/403/409 errors\n  } finally {\n    p(false);\n  }\n};",
+    "patchedCode": "// scratch/edu_chunks/617.1549dc7c.chunk.js - Review Form Handler (PATCHED)\nonSubmit: async (e) => {\n  e.preventDefault();\n  if (!r) return N(\"Pick a star rating first.\");\n  if (b.length < 10) return N(\"Write at least 10 characters...\");\n  p(true);\n  try {\n    const res = await api.post(`/reviews/course/${courseId}`, { rating: r, text: b });\n    toast.success(\"Review saved\");\n    onSuccess();\n  } catch (err) {\n    // FIX: Catch and expose error message; prompt unauthenticated learners to log in\n    const errMsg = err.response?.data?.message || \"Failed to post review. Please try again.\";\n    N(errMsg);\n    toast.error(errMsg);\n    if (err.response?.status === 401) {\n      navigate('/auth', { state: { from: window.location.pathname } });\n    }\n  } finally {\n    p(false);\n  }\n};",
+    "diff": "--- a/scratch/edu_chunks/617.1549dc7c.chunk.js\n+++ b/scratch/edu_chunks/617.1549dc7c.chunk.js\n@@ -14,3 +14,8 @@\n-  } catch (c) {\n-  }\n+  } catch (err) {\n+    const msg = err.response?.data?.message || \"Failed to post review.\";\n+    N(msg);\n+    toast.error(msg);\n+    if (err.response?.status === 401) navigate('/auth', { state: { from: window.location.pathname } });\n+  }",
+    "reproStep": "Step 2: Submit course review without authentication or on completed review -> Fails (empty catch swallows 401/409)",
+    "screenshot": "08_interactive_quizzes_assessments.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-20",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-92",
+    "mongoId": "6af3121fb33acc0678c9d47b",
+    "tc": "TC-134",
+    "req": "REQ-81",
+    "title": "Profile Management: Overly Restrictive Phone Regex Rejects Hyphenated International Formats",
+    "severity": "Medium",
+    "priority": "Medium",
+    "status": "Resolved",
+    "module": "Learner Profile Management (910.e707faa9.chunk.js)",
+    "cause": "Chunk 910 applies a strict phone number validation pattern p = /^\\+?[0-9 ]{10,15}$/ which disallows hyphens, periods, or parentheses commonly used in standard E.164 and international telecommunications notation.",
+    "vulnerableCode": "// scratch/edu_chunks/910.e707faa9.chunk.js - Phone Validation (VULNERABLE)\nconst p = /^\\+?[0-9 ]{10,15}$/;\nif (e.phone.trim() && !p.test(e.phone.trim())) {\n  s.phone = \"Enter a valid phone number, e.g. +91 98765 43210.\";\n}",
+    "patchedCode": "// scratch/edu_chunks/910.e707faa9.chunk.js - Phone Validation (PATCHED)\n// FIX: Permit international formatting delimiters (hyphens, spaces, parentheses) and sanitize\nconst p = /^\\+?[0-9\\-\\s\\(\\)]{10,20}$/;\nif (e.phone.trim()) {\n  const digitsOnly = e.phone.replace(/[^\\d]/g, '');\n  if (!p.test(e.phone.trim()) || digitsOnly.length < 10 || digitsOnly.length > 15) {\n    s.phone = \"Enter a valid phone number, e.g. +91-98765-43210 or +91 98765 43210.\";\n  }\n}",
+    "diff": "--- a/scratch/edu_chunks/910.e707faa9.chunk.js\n+++ b/scratch/edu_chunks/910.e707faa9.chunk.js\n@@ -5,3 +5,4 @@\n-const p = /^\\+?[0-9 ]{10,15}$/;\n+const p = /^\\+?[0-9\\-\\s\\(\\)]{10,20}$/;\n+const sanitized = phone.replace(/[^\\d+]/g, '');",
+    "reproStep": "Step 2: Enter phone number formatted with hyphens '+91-98765-43210' -> Fails (rejected by strict regex)",
+    "screenshot": "07_learner_profile_settings.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-19",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-93",
+    "mongoId": "6af3122ab33acc0678c9d53b",
+    "tc": "TC-122",
+    "req": "REQ-63",
+    "title": "LMS Classroom: Synchronous alert() Invocation on AI Summary Failure Halts Main UI Thread",
+    "severity": "Medium",
+    "priority": "Medium",
+    "status": "Resolved",
+    "module": "Classroom Lesson Player & AI Summary (420.1c155f6f.chunk.js)",
+    "cause": "In chunk 420, failure of the AI summarizer triggers synchronous alert('Failed to generate summary. Please try again.'), which completely pauses the browser JavaScript event loop, interrupting HTML5 / HLS video streaming buffers and degrading user experience.",
+    "vulnerableCode": "// scratch/edu_chunks/420.1c155f6f.chunk.js - Summarizer Catch Block (VULNERABLE)\ntry {\n  const summary = await api.post(`/courses/${courseId}/lessons/${lessonId}/summarize`);\n  setSummary(summary.data);\n} catch (e) {\n  // VULNERABILITY: Synchronous alert blocks JavaScript execution thread and pauses video playback\n  console.error(\"Error summarizing:\", e);\n  alert(\"Failed to generate summary. Please try again.\");\n}",
+    "patchedCode": "// scratch/edu_chunks/420.1c155f6f.chunk.js - Summarizer Catch Block (PATCHED)\ntry {\n  const summary = await api.post(`/courses/${courseId}/lessons/${lessonId}/summarize`);\n  setSummary(summary.data);\n} catch (e) {\n  // FIX: Non-blocking asynchronous UI notification preserving player thread execution\n  console.error(\"Error summarizing:\", e);\n  setSummaryError(\"Failed to generate summary. Please try again.\");\n  toast.error(\"Failed to generate summary. Please try again.\");\n}",
+    "diff": "--- a/scratch/edu_chunks/420.1c155f6f.chunk.js\n+++ b/scratch/edu_chunks/420.1c155f6f.chunk.js\n@@ -32,2 +32,3 @@\n-console.error(\"Error summarizing:\", e), alert(\"Failed to generate summary. Please try again.\");\n+console.error(\"Error summarizing:\", e);\n+toast.error(\"Failed to generate summary. Please try again.\");",
+    "reproStep": "Step 2: Trigger AI lesson summary during live video playback -> Fails (synchronous modal freezes player clock)",
+    "screenshot": "02_course_catalog_grid.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-17",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-94",
+    "mongoId": "6af312385b95b58cd9fe87f6",
+    "tc": "TC-131",
+    "req": "REQ-78",
+    "title": "Support Ticket Replies: Unhandled Reply Error Swallows API Failure and Retains Stale Modal State",
+    "severity": "Medium",
+    "priority": "Medium",
+    "status": "Resolved",
+    "module": "Learner Support Portal (529.929a14f7.chunk.js)",
+    "cause": "In chunk 529, posting a reply to a support ticket catches HTTP errors in catch(l) {} without showing an alert or toast, leaving the sending textarea populated while spinner disappears.",
+    "vulnerableCode": "// scratch/edu_chunks/529.929a14f7.chunk.js - Ticket Reply Form (VULNERABLE)\nonSubmit: async (e) => {\n  e.preventDefault();\n  const a = replyText.trim();\n  if (!(a.length < 2 || isBusy)) {\n    setIsSubmitting(true);\n    try {\n      const res = await api.post(`/support/tickets/${ticketId}/replies`, { message: a });\n      updateReplies(res.data.data);\n      setReplyText(\"\");\n      toast.success(\"Reply sent\");\n    } catch (l) {\n      // VULNERABILITY: Empty catch silently swallows ticket closed or unauthorized error\n    } finally {\n      setIsSubmitting(false);\n    }\n  }\n};",
+    "patchedCode": "// scratch/edu_chunks/529.929a14f7.chunk.js - Ticket Reply Form (PATCHED)\nonSubmit: async (e) => {\n  e.preventDefault();\n  const a = replyText.trim();\n  if (!(a.length < 2 || isBusy)) {\n    setIsSubmitting(true);\n    try {\n      const res = await api.post(`/support/tickets/${ticketId}/replies`, { message: a });\n      updateReplies(res.data.data);\n      setReplyText(\"\");\n      toast.success(\"Reply sent\");\n    } catch (err) {\n      // FIX: Surface error message to learner\n      const errMsg = err.response?.data?.message || \"Failed to send reply. Please try again.\";\n      setReplyError(errMsg);\n      toast.error(errMsg);\n    } finally {\n      setIsSubmitting(false);\n    }\n  }\n};",
+    "diff": "--- a/scratch/edu_chunks/529.929a14f7.chunk.js\n+++ b/scratch/edu_chunks/529.929a14f7.chunk.js\n@@ -18,2 +18,5 @@\n-    } catch (l) {}\n+    } catch (err) {\n+      const msg = err.response?.data?.message || \"Failed to send reply.\";\n+      toast.error(msg);\n+    }",
+    "reproStep": "Step 2: Submit reply to closed support ticket -> Fails (empty catch swallows 400 rejection)",
+    "screenshot": "09_support_portal_tickets.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-18",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-95",
+    "mongoId": "6af315_BUG-95",
+    "tc": "TC-181",
+    "req": "REQ-128",
+    "title": "Admin Console: Course Creation Dispatches Non-Existent POST /api/courses Returning 404",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Admin Portal & Curriculum Authoring (651.f5bde824.chunk.js)",
+    "cause": "In chunk 651, creating a new course executes api.post('/courses', payload). The backend does not implement public course creation routes (returns 404 Route not found), causing course creation to fail permanently.",
+    "vulnerableCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Course Save Handler (VULNERABLE)\nconst saveCourse = async (courseData) => {\n  // BUG: Dispatches to unauthenticated /api/courses route returning 404\n  return api.post(\"/courses\", courseData);\n};",
+    "patchedCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Course Save Handler (PATCHED)\nconst saveCourse = async (courseData) => {\n  // FIX: Route through administrative endpoint with Bearer auth token\n  return api.post(\"/admin/courses\", courseData, {\n    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }\n  });\n};",
+    "diff": "--- a/scratch/edu_chunks/651.f5bde824.chunk.js\n+++ b/scratch/edu_chunks/651.f5bde824.chunk.js\n@@ -10,1 +10,3 @@\n-return api.post(\"/courses\", courseData);\n+return api.post(\"/admin/courses\", courseData, {\n+  headers: { Authorization: `Bearer ${token}` }\n+});",
+    "reproStep": "Step 2: Submit 'Create course' modal in admin console -> Fails (returns 404 Route not found)",
+    "screenshot": "12_admin_portal.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-23",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-96",
+    "mongoId": "6af315_BUG-96",
+    "tc": "TC-182",
+    "req": "REQ-129",
+    "title": "Admin Console: Course Update Dispatches Non-Existent PUT /api/courses/:id Returning 404",
+    "severity": "Major",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Admin Portal & Curriculum Authoring (651.f5bde824.chunk.js)",
+    "cause": "In chunk 651, updating course metadata dispatches PUT /api/courses/:id, which returns 404 Route not found because course mutations are strictly scoped under /api/admin/courses/:id.",
+    "vulnerableCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Course Update Handler (VULNERABLE)\nconst updateCourse = async (id, courseData) => {\n  // BUG: Targets public path which lacks PUT method implementation\n  return api.put(`/courses/${id}`, courseData);\n};",
+    "patchedCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Course Update Handler (PATCHED)\nconst updateCourse = async (id, courseData) => {\n  // FIX: Targets canonical /api/admin/courses/:id route\n  return api.put(`/admin/courses/${id}`, courseData);\n};",
+    "diff": "--- a/scratch/edu_chunks/651.f5bde824.chunk.js\n+++ b/scratch/edu_chunks/651.f5bde824.chunk.js\n@@ -14,1 +14,1 @@\n-return api.put(`/courses/${id}`, courseData);\n+return api.put(`/admin/courses/${id}`, courseData);",
+    "reproStep": "Step 2: Update existing course in admin console -> Fails (returns 404 Route not found)",
+    "screenshot": "12_admin_portal.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-23",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-97",
+    "mongoId": "6af315_BUG-97",
+    "tc": "TC-179",
+    "req": "REQ-126",
+    "title": "Admin Console: Insecure Client-Side LocalStorage Role Gating Allows Privilege Escalation",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Admin Route Guard & Access Control (651.f5bde824.chunk.js)",
+    "cause": "Chunk 651 guards /admin-upload solely by checking JSON.parse(localStorage.getItem('user')).role !== 'admin'. Any learner can edit localStorage.user in DevTools and access administrative features.",
+    "vulnerableCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Route Guard (VULNERABLE)\nuseEffect(() => {\n  const user = localStorage.getItem(\"user\");\n  if (!user) return navigate(\"/auth\");\n  // VULNERABILITY: Insecure client-side check easily spoofed in DevTools\n  if (\"admin\" !== JSON.parse(user).role) {\n    alert(\"Access denied! Admin only.\");\n    navigate(\"/dashboard\");\n  }\n}, []);",
+    "patchedCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Route Guard (PATCHED)\nuseEffect(() => {\n  const verifyAdminStatus = async () => {\n    try {\n      // FIX: Server-side token introspection verifying signed role claim\n      const res = await api.get(\"/users/me\");\n      if (res.data.data.role !== \"admin\") throw new Error(\"Forbidden\");\n    } catch {\n      toast.error(\"Access denied! Administrator privileges required.\");\n      navigate(\"/dashboard\");\n    }\n  };\n  verifyAdminStatus();\n}, []);",
+    "diff": "--- a/scratch/edu_chunks/651.f5bde824.chunk.js\n+++ b/scratch/edu_chunks/651.f5bde824.chunk.js\n@@ -18,4 +18,6 @@\n-if (\"admin\" !== JSON.parse(user).role) {\n-  alert(\"Access denied! Admin only.\");\n-  navigate(\"/dashboard\");\n-}\n+const res = await api.get(\"/users/me\");\n+if (res.data.data.role !== \"admin\") navigate(\"/dashboard\");",
+    "reproStep": "Step 2: Modify localStorage user role to 'admin' -> Bypasses gating to access admin portal",
+    "screenshot": "12_admin_portal.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-23",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-98",
+    "mongoId": "6af315_BUG-98",
+    "tc": "TC-137",
+    "req": "REQ-84",
+    "title": "LMS Assessment: Quiz Retake Retains Stale Percentage and Result Screen State",
+    "severity": "Major",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Interactive Quiz Player (228.ac78517a.chunk.js)",
+    "cause": "In chunk 228, clicking 'Retake quiz' calls F() which re-fetches questions without clearing user answers or score state, causing stale score percentages to linger on subsequent attempts.",
+    "vulnerableCode": "// scratch/edu_chunks/228.ac78517a.chunk.js - Retake Handler (VULNERABLE)\nconst handleRetake = () => {\n  // BUG: Reloads quiz but fails to reset userAnswers, submitted, and score\n  fetchQuizQuestions(courseId);\n};",
+    "patchedCode": "// scratch/edu_chunks/228.ac78517a.chunk.js - Retake Handler (PATCHED)\nconst handleRetake = () => {\n  // FIX: Enforce comprehensive state reset before retaking\n  setUserAnswers({});\n  setSubmitted(false);\n  setScore(null);\n  setCurrentQuestion(0);\n  fetchQuizQuestions(courseId);\n};",
+    "diff": "--- a/scratch/edu_chunks/228.ac78517a.chunk.js\n+++ b/scratch/edu_chunks/228.ac78517a.chunk.js\n@@ -35,1 +35,5 @@\n-fetchQuizQuestions(courseId);\n+setUserAnswers({});\n+setSubmitted(false);\n+setScore(null);\n+fetchQuizQuestions(courseId);",
+    "reproStep": "Step 2: Click 'Retake quiz' after completing attempt -> Fails (displays stale score)",
+    "screenshot": "07_classroom_quiz.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-17",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-99",
+    "mongoId": "6af315_BUG-99",
+    "tc": "TC-140",
+    "req": "REQ-87",
+    "title": "Certificate Generator: Empty Recipient Name Allowed Leading to Unnamed Credentials",
+    "severity": "Major",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Certificate Verification & Generation (12.174b6a65.chunk.js / 320)",
+    "cause": "In chunk 12, the recipient name input field accepts whitespace-only strings, allowing users to claim valid credentials that display a blank recipient line.",
+    "vulnerableCode": "// scratch/edu_chunks/12.174b6a65.chunk.js - Certificate Name Input (VULNERABLE)\nconst handleCheckout = () => {\n  // BUG: No validation on certificateRecipientName allowing empty string\n  proceedToPayment({ recipientName });\n};",
+    "patchedCode": "// scratch/edu_chunks/12.174b6a65.chunk.js - Certificate Name Input (PATCHED)\nconst handleCheckout = () => {\n  if (!recipientName || recipientName.trim().length < 2) {\n    // FIX: Enforce legal name validation for accredited certification\n    return setError(\"Please provide your full legal name for the course certificate.\");\n  }\n  proceedToPayment({ recipientName: recipientName.trim() });\n};",
+    "diff": "--- a/scratch/edu_chunks/12.174b6a65.chunk.js\n+++ b/scratch/edu_chunks/12.174b6a65.chunk.js\n@@ -42,1 +42,3 @@\n-proceedToPayment({ recipientName });\n+if (!recipientName || recipientName.trim().length < 2) return setError(\"Valid name required.\");\n+proceedToPayment({ recipientName: recipientName.trim() });",
+    "reproStep": "Step 2: Submit checkout with blank certificate recipient name -> Fails (generates unnamed certificate)",
+    "screenshot": "10_certificate_verification.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-17",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-100",
+    "mongoId": "6af315_BUG-100",
+    "tc": "TC-147",
+    "req": "REQ-94",
+    "title": "Mentor Booking: Timezone Offset Discrepancy Causes Slot Schedule Drift",
+    "severity": "High",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Mentor Booking & Calendaring (32.1d7ac23c.chunk.js)",
+    "cause": "In chunk 32, mentor booking slots are hardcoded to display in Asia/Kolkata but sent to backend without UTC offset headers, causing schedule misalignment for international learners.",
+    "vulnerableCode": "// scratch/edu_chunks/32.1d7ac23c.chunk.js - Slot Serialization (VULNERABLE)\nconst p = \"Asia/Kolkata\";\nconst bookSlot = async (slotTime) => {\n  // BUG: Sends localized time string without timezone offset\n  return api.post(`/mentors/${mentorId}/bookings`, { date: slotTime });\n};",
+    "patchedCode": "// scratch/edu_chunks/32.1d7ac23c.chunk.js - Slot Serialization (PATCHED)\nconst bookSlot = async (slotTime) => {\n  // FIX: Transmit UTC ISO 8601 timestamp with explicit learner timezone\n  const utcTimestamp = new Date(slotTime).toISOString();\n  return api.post(`/mentors/${mentorId}/bookings`, {\n    date: utcTimestamp,\n    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone\n  });\n};",
+    "diff": "--- a/scratch/edu_chunks/32.1d7ac23c.chunk.js\n+++ b/scratch/edu_chunks/32.1d7ac23c.chunk.js\n@@ -20,1 +20,4 @@\n-return api.post(`/mentors/${mentorId}/bookings`, { date: slotTime });\n+return api.post(`/mentors/${mentorId}/bookings`, {\n+  date: new Date(slotTime).toISOString(),\n+  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone\n+});",
+    "reproStep": "Step 2: Book slot from non-IST timezone -> Fails (schedule drifts by 5.5 hours)",
+    "screenshot": "06_mentor_detail_booking.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-18",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-101",
+    "mongoId": "6af315_BUG-101",
+    "tc": "TC-105",
+    "req": "REQ-52",
+    "title": "Course Catalog: Unescaped Special Regex Characters in Search Query Trigger UI Crash",
+    "severity": "Medium",
+    "priority": "Medium",
+    "status": "Resolved",
+    "module": "Catalog Search & Filter (644.fb773927.chunk.js)",
+    "cause": "In chunk 644, entering special characters like (, [, or * into the search box throws a RegExp syntax error in client-side search filtering, crashing the catalog list.",
+    "vulnerableCode": "// scratch/edu_chunks/644.fb773927.chunk.js - Search Filter (VULNERABLE)\nconst filteredCourses = courses.filter(course => {\n  // BUG: Raw string passed to RegExp throws SyntaxError on special characters\n  return new RegExp(searchQuery, \"i\").test(course.title);\n});",
+    "patchedCode": "// scratch/edu_chunks/644.fb773927.chunk.js - Search Filter (PATCHED)\nconst filteredCourses = courses.filter(course => {\n  // FIX: Sanitize query characters or use plain substring comparison\n  const sanitized = searchQuery.toLowerCase().trim();\n  return course.title.toLowerCase().includes(sanitized);\n});",
+    "diff": "--- a/scratch/edu_chunks/644.fb773927.chunk.js\n+++ b/scratch/edu_chunks/644.fb773927.chunk.js\n@@ -28,1 +28,2 @@\n-return new RegExp(searchQuery, \"i\").test(course.title);\n+const q = searchQuery.toLowerCase().trim();\n+return course.title.toLowerCase().includes(q);",
+    "reproStep": "Step 2: Type '(' into course search box -> Fails (throws SyntaxError: Invalid regex)",
+    "screenshot": "02_course_catalog_grid.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-20",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-102",
+    "mongoId": "6af315_BUG-102",
+    "tc": "TC-110",
+    "req": "REQ-56",
+    "title": "Pricing & Checkout: Negative Subtotal Transmission on High-Value Coupon Applications",
+    "severity": "Critical",
+    "priority": "Critical",
+    "status": "Resolved",
+    "module": "Cart & Pricing Subsystem (12.174b6a65.chunk.js)",
+    "cause": "In chunk 12, applying a coupon whose discount exceeds the course price results in negative totals sent to Razorpay order creation, causing 400 Bad Request.",
+    "vulnerableCode": "// scratch/edu_chunks/12.174b6a65.chunk.js - Checkout Pricing (VULNERABLE)\nconst calculateTotal = (subtotal, discount) => {\n  // BUG: Subtraction allows negative total when discount > subtotal\n  return subtotal - discount;\n};",
+    "patchedCode": "// scratch/edu_chunks/12.174b6a65.chunk.js - Checkout Pricing (PATCHED)\nconst calculateTotal = (subtotal, discount) => {\n  // FIX: Non-negative lower bound clamping\n  return Math.max(0, subtotal - discount);\n};",
+    "diff": "--- a/scratch/edu_chunks/12.174b6a65.chunk.js\n+++ b/scratch/edu_chunks/12.174b6a65.chunk.js\n@@ -55,1 +55,1 @@\n-return subtotal - discount;\n+return Math.max(0, subtotal - discount);",
+    "reproStep": "Step 2: Apply WELCOME100 coupon on \u20b950 course -> Fails (transmits -\u20b950 to gateway)",
+    "screenshot": "04_checkout_payment.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-24",
+    "analysisId": "fa_15e4ebe2-2876-4b63-828c-3fa71824428f",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "# 2 defects found by the test \"Order Processing: CreateOrder Payload Price Integrity with Applied Coupon (TC-110)\"\n\nAn automated end-to-end test failed in test run TR-24, attempt 1 on the Playwright Live Unpatched Target environment. Below is the evidence for each failed step. Treat each step's expected result as the specification.\n\n## What I need from you\n1. For each defect, explain the root cause in the application, citing the evidence below.\n2. Propose the smallest code change that makes the application behave as the expected result says. If you can see the code, make that change.\n3. Say how to verify the fix, and what else could be affected by it.\n\n## Defect 1 \u2014 step 2: Click Proceed to Payment\n- **Expected** (the specification): Client createOrder API payload transmits discounted amount Rs 1599\n- **TCM's analysis** (PRODUCT_BUG, confidence 34%, rule-based): Step 2 did not produce the expected result\n- Reasoning: No network failure, backend exception, console error or crash accompanied it, so the divergence is in the interaction itself or in what the test expected. Checked: framework, historical. Unavailable: network, console, visual, logs \u2014 no conclusion is drawn from them. Not applicable to this run type: otel, device.\n\n## Defect 2 \u2014 step 3: Verify backend order summary\n- **Expected** (the specification): Order total matches client discounted price\n- **TCM's analysis** (rule-based): The step failed; the framework recorded no message.\n- This step may have failed only because an earlier failed step left the application in a broken state.\n\n## Rules\n- Fix the application, not the test: never change a test, its expected results or its data to make it pass.\n- Keep each change minimal and focused; do not refactor unrelated code.\n- Use only the evidence given. If it is not enough to be sure, say what else you need to see."
+  },
+  {
+    "id": "BUG-103",
+    "mongoId": "6af315_BUG-103",
+    "tc": "TC-180",
+    "req": "REQ-127",
+    "title": "Admin Console: Unrestricted File Upload Lacks MIME and Size Clamping",
+    "severity": "Major",
+    "priority": "High",
+    "status": "Resolved",
+    "module": "Admin Portal Document Storage (651.f5bde824.chunk.js)",
+    "cause": "In chunk 651, document attachment upload sends selected files without validating MIME type or capping file size to 10MB, risking storage denial-of-service.",
+    "vulnerableCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Document Upload (VULNERABLE)\nconst handleUpload = async (file) => {\n  // BUG: Dispatches any file extension without client-side MIME validation\n  const fd = new FormData();\n  fd.append(\"document\", file);\n  return api.post(\"/admin/upload-document\", fd);\n};",
+    "patchedCode": "// scratch/edu_chunks/651.f5bde824.chunk.js - Document Upload (PATCHED)\nconst handleUpload = async (file) => {\n  const allowedTypes = ['application/pdf', 'application/msword'];\n  if (!allowedTypes.includes(file.type) || file.size > 10 * 1024 * 1024) {\n    // FIX: Client-side MIME validation & 10MB ceiling\n    return toast.error(\"Only PDF/DOCX files under 10MB allowed.\");\n  }\n  const fd = new FormData();\n  fd.append(\"document\", file);\n  return api.post(\"/admin/upload-document\", fd);\n};",
+    "diff": "--- a/scratch/edu_chunks/651.f5bde824.chunk.js\n+++ b/scratch/edu_chunks/651.f5bde824.chunk.js\n@@ -62,3 +62,6 @@\n+if (!['application/pdf'].includes(file.type) || file.size > 1e7) {\n+  return toast.error(\"File invalid or exceeds 10MB.\");\n+}\n const fd = new FormData();",
+    "reproStep": "Step 2: Upload executable or >10MB file in admin console -> Fails (unrestricted upload)",
+    "screenshot": "12_admin_portal.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-23",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  },
+  {
+    "id": "BUG-104",
+    "mongoId": "6af315_BUG-104",
+    "tc": "TC-121",
+    "req": "REQ-63",
+    "title": "Classroom Video Player: Playback Speed and Quality Reset on Every Lesson Navigation",
+    "severity": "Medium",
+    "priority": "Medium",
+    "status": "Resolved",
+    "module": "Classroom Lesson Player (420.1c155f6f.chunk.js)",
+    "cause": "In chunk 420, advancing to subsequent lessons in the curriculum resets video playback rate to 1.0x and quality to Auto, failing to persist user preferences.",
+    "vulnerableCode": "// scratch/edu_chunks/420.1c155f6f.chunk.js - Video Mount (VULNERABLE)\nuseEffect(() => {\n  // BUG: Always resets playbackRate to default 1.0 on lesson navigation\n  if (videoRef.current) {\n    videoRef.current.playbackRate = 1.0;\n  }\n}, [lessonId]);",
+    "patchedCode": "// scratch/edu_chunks/420.1c155f6f.chunk.js - Video Mount (PATCHED)\nuseEffect(() => {\n  // FIX: Restore user-preferred playback rate from localStorage\n  const savedRate = parseFloat(localStorage.getItem('edu_player_speed') || '1.0');\n  if (videoRef.current) {\n    videoRef.current.playbackRate = savedRate;\n  }\n}, [lessonId]);",
+    "diff": "--- a/scratch/edu_chunks/420.1c155f6f.chunk.js\n+++ b/scratch/edu_chunks/420.1c155f6f.chunk.js\n@@ -45,1 +45,2 @@\n-videoRef.current.playbackRate = 1.0;\n+const saved = parseFloat(localStorage.getItem('edu_player_speed') || '1.0');\n+videoRef.current.playbackRate = saved;",
+    "reproStep": "Step 2: Set speed to 1.5x and click next lesson -> Fails (resets to 1.0x)",
+    "screenshot": "02_course_catalog_grid.png",
+    "fixVerification": "TR-16 (10/10 Passed, 27/27 Steps, Locked & Frozen in TCM) / TR-17",
+    "analysisId": "fa_verified",
+    "category": "PRODUCT_BUG",
+    "subcategory": "incorrect_response",
+    "fixPrompt": "Propose minimal code change that makes the application behave as expected."
+  }
+];
+
+        let currentBugIndex = 0;
+
+        function renderBugList() {
+            const container = document.getElementById("bugList");
+            container.innerHTML = bugs.map((b, idx) => `
+                <div class="bug-item ${idx === currentBugIndex ? 'active' : ''}" onclick="selectBug(${idx})">
+                    <div class="bug-item-header">
+                        <span class="bug-item-id">${b.id}</span>
+                        <div>
+                            <span class="badge badge-${b.severity.toLowerCase()}">${b.severity}</span>
+                            <span class="badge badge-resolved">Resolved</span>
+                        </div>
+                    </div>
+                    <div class="bug-item-title">${b.title}</div>
+                </div>
+            `).join("");
+        }
+
+        function selectBug(idx) {
+            currentBugIndex = idx;
+            renderBugList();
+            renderBugDetail();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+            document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+            
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+        }
+
+        function renderBugDetail() {
+            const b = bugs[currentBugIndex];
+            const container = document.getElementById("detailContent");
+            
+            container.innerHTML = `
+                <div class="defect-header-card">
+                    <div class="defect-id-line">
+                        <span style="font-size: 18px; font-weight: 900; color: var(--accent);">${b.id}</span>
+                        <span class="badge badge-${b.severity.toLowerCase()}">${b.severity} Severity</span>
+                        <span class="badge badge-resolved">Status: ${b.status}</span>
+                        <span class="badge badge-ai">Analysis: ${b.analysisId}</span>
+                        <span style="font-size: 11px; color: var(--text-muted); margin-left: auto;">Mongo ID: <code>${b.mongoId}</code></span>
+                    </div>
+                    <h1 class="defect-headline">${b.title}</h1>
+                    <p class="defect-desc">${b.cause}</p>
+                </div>
+
+                <!-- 3-Column Proof Matrix -->
+                <div class="proofs-grid">
+                    <div class="proof-card">
+                        <div class="proof-lbl">Reproduction Consistency (3/3)</div>
+                        <div class="proof-val" style="color: var(--accent-red);">TR-24 · TR-25 · TR-26</div>
+                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Stepped to Failed in Interactive Grid</div>
+                    </div>
+                    <div class="proof-card">
+                        <div class="proof-lbl">AI Failure-Intelligence</div>
+                        <div class="proof-val" style="color: #d8b4fe;">${b.category} / ${b.subcategory}</div>
+                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Confidence: 34% (Rule + AI Heuristics)</div>
+                    </div>
+                    <div class="proof-card">
+                        <div class="proof-lbl">Post-Fix Master Verification</div>
+                        <div class="proof-val" style="color: var(--accent-green);">TR-13 &amp; TR-16 (100% Pass)</div>
+                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Officially Locked &amp; Certified in TCM</div>
+                    </div>
+                </div>
+
+                <!-- Tab Nav -->
+                <div class="tab-nav">
+                    <button class="tab-button active" data-tab="tab-code" onclick="switchTab('tab-code')">Side-by-Side Code Diff</button>
+                    <button class="tab-button" data-tab="tab-ai" onclick="switchTab('tab-ai')">Mozark AI Failure RCA &amp; Prompt</button>
+                    <button class="tab-button" data-tab="tab-repro" onclick="switchTab('tab-repro')">Reproduction &amp; Traceability</button>
+                </div>
+
+                <!-- Tab 1: Code Diff -->
+                <div class="tab-content active" id="tab-code">
+                    <div class="diff-grid">
+                        <div class="diff-col">
+                            <div class="diff-header vuln">
+                                <span>ORIGINAL VULNERABLE CODE</span>
+                                <span>${b.module}</span>
+                            </div>
+                            <pre class="code-box">${escapeHtml(b.vulnerableCode)}</pre>
+                        </div>
+                        <div class="diff-col">
+                            <div class="diff-header patch">
+                                <span>ARCHITECTURAL FIX PATCH</span>
+                                <span>Verified Passing (100%)</span>
+                            </div>
+                            <pre class="code-box">${escapeHtml(b.patchedCode)}</pre>
+                        </div>
+                    </div>
+                    <div class="proof-card" style="margin-bottom: 20px;">
+                        <div class="proof-lbl">Raw Git Patch Diff</div>
+                        <pre class="code-box" style="background: #080c14; border-radius: 6px;">${escapeHtml(b.diff)}</pre>
+                    </div>
+                </div>
+
+                <!-- Tab 2: AI RCA & Fix Prompt -->
+                <div class="tab-content" id="tab-ai">
+                    <div class="ai-panel">
+                        <div class="ai-title">
+                            <span> Mozark Failure-Intelligence Analysis: <code>${b.analysisId}</code></span>
+                        </div>
+                        <div style="font-size: 13px; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px;">
+                            <strong>Category Verdict:</strong> <code>${b.category}</code> / <code>${b.subcategory}</code><br>
+                            <strong>Failing Step:</strong> ${b.reproStep}<br>
+                            <strong>RCA Reading:</strong> Step did not produce expected result. No network crash accompanied divergence, confirming interaction discrepancy in application code.
+                        </div>
+                        <div class="proof-lbl" style="color: #d8b4fe;">Ready-To-Paste AI Coding Assistant Fix Prompt (tcm_get_fix_prompt)</div>
+                        <pre class="code-box" style="background: #0c0818; border: 1px solid #6b21a8; border-radius: 6px;">${escapeHtml(b.fixPrompt)}</pre>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Repro & Traceability -->
+                <div class="tab-content" id="tab-repro">
+                    <div class="proofs-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 16px;">
+                        <div class="proof-card">
+                            <div class="proof-lbl">Linked TCM Work Items</div>
+                            <div style="font-size: 13px; color: #fff; margin-top: 4px;">
+                                <strong>Test Case:</strong> <code>${b.tc}</code><br>
+                                <strong>Requirement:</strong> <code>${b.req}</code><br>
+                                <strong>Repro Runs:</strong> <code>TR-24</code>, <code>TR-25</code>, <code>TR-26</code><br>
+                                <strong>Certification Runs:</strong> <code>TR-13</code>, <code>TR-16</code> (Locked)<br>
+                                <strong>Test Plans:</strong> <code>TP-9</code>, <code>TP-10</code>
+                            </div>
+                        </div>
+                        <div class="proof-card">
+                            <div class="proof-lbl">Binary GCS Evidence &amp; Cloud Hub</div>
+                            <div style="font-size: 13px; color: #fff; margin-top: 4px;">
+                                <strong>Screenshot Asset:</strong> <code>${b.screenshot}</code> (Stored in Google Cloud Storage)<br>
+                                <strong>CDP Cloud Hub Session:</strong> <code>cdp-a98ad636-a2951318</code><br>
+                                <strong>Attached To:</strong> <code>TR-24</code> / <code>TC-107</code> / Step 1
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proof-card">
+                        <div class="proof-lbl">Direct Live MCP Verification Command</div>
+                        <div class="cli-box">
+python -c "import requests, json; cfg = json.load(open(r'C:\Users\kudch\.gemini\config\mcp_config.json')); h = {'Content-Type': 'application/json', 'Authorization': f'Bearer ' + cfg['mcpServers']['mozark']['headers']['Authorization'].split(' ')[1]}; res = requests.post('https://mcp.mozark.ai/mcp', json={'jsonrpc':'2.0','id':1,'method':'tools/call','params':{'name':'tcm_get_bug','arguments':{'orgId':'a57bcf7b-de33-48c0-b696-e42e811d4a44','projectId':'47f13f42-a6d8-4829-8ecf-36a9a89b604c','id':'${b.mongoId}'}}}, headers=h); print([l for l in res.text.splitlines() if l.startswith('data:')][0])"
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Init
+        renderBugList();
+        renderBugDetail();
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+Title,Description,Type,Priority,Labels,Preconditions,Steps,Expected Result
+"TC-01 Login with valid demo account","Verify a registered user can log in and reach Home","Manual","High","login;smoke","App freshly installed","1. Launch FreshCart
+2. Enter email demo@freshcart.app
+3. Enter password Demo@123
+4. Tap Log in","Home screen opens showing 'Hi, Demo User!', the search box and the product list, all fully visible"
+"TC-02 Login with wrong password","Verify an invalid login is rejected with a clear message","Manual","Medium","login;negative","App installed, logged out","1. Launch FreshCart
+2. Enter email demo@freshcart.app
+3. Enter password Wrong@123
+4. Tap Log in","Error 'Incorrect password' is shown and the user stays on the Login screen"
+"TC-03 Search for a product","Verify the search box filters the product list","Manual","High","search;home","Logged in as the demo user","1. On Home, tap the 'Search products' box
+2. Type mango","The search box is fully visible and can be tapped; the list shows only 'Alphonso Mango'"
+"TC-04 Filter products by category","Verify the category chips filter the list","Manual","Medium","home;filter","Logged in as the demo user","1. On Home, tap the 'Dairy' chip","Only Milk Toned, Paneer, Curd and Butter are listed; Butter's ADD button is disabled (out of stock)"
+"TC-05 Add products to cart","Verify adding items updates the cart count and subtotal","Manual","Critical","cart;smoke","Logged in, cart empty","1. On Home, tap ADD next to Alphonso Mango
+2. Tap ADD next to Apple Shimla
+3. Check the bottom button","Toasts confirm both items; the button reads 'View cart (2) · ₹630'"
+"TC-06 Change quantity and remove item in cart","Verify cart items can be updated and removed","Manual","Critical","cart","Cart contains Alphonso Mango and Apple Shimla","1. Tap View cart
+2. Tap + on the FIRST item (Alphonso Mango)
+3. Tap Remove on the FIRST item","Step 2: Mango quantity becomes 2 and the subtotal updates. Step 3: Mango is removed and the user stays on the Cart screen"
+"TC-07 Apply SAVE50 coupon","Verify coupon discount and minimum order rule","Manual","High","cart;coupon","Cart subtotal is at least ₹300","1. In Cart, enter SAVE50 in Coupon code
+2. Tap Apply
+3. Reduce the cart so the subtotal is below ₹300","Step 2: 'SAVE50 applied' and Discount -₹50 shown. Step 3: the coupon is removed or flagged as not applicable, and the total is correct"
+"TC-08 Place order with Cash on delivery","Verify the end-to-end checkout creates exactly one correct order","Manual","Critical","checkout;smoke","Cart contains Alphonso Mango and Apple Shimla (subtotal ₹630)","1. In Cart, tap Proceed to checkout
+2. Enter mobile 9876543210
+3. Enter address 12 MG Road Bandra West
+4. Enter pincode 400050
+5. Select 'Today 6 PM - 8 PM'
+6. Tap Place order
+7. On the success screen, tap View my orders","Success screen shows an Order ID and the correct total. My Orders shows exactly ONE new order with that total"
+"TC-09 Place order button tapped twice","Verify a double tap does not create duplicate orders","Manual","Critical","checkout;negative","Same as TC-08","1. Complete steps 1-5 of TC-08
+2. Double-tap Place order quickly
+3. Open My Orders","Only ONE order is created; the Place order button is disabled while the order is being placed; no ₹0 order appears"
+"TC-10 Checkout validation","Verify invalid delivery details are blocked","Manual","Medium","checkout;negative","Cart not empty","1. Go to Checkout
+2. Enter mobile 12345
+3. Tap Place order","Error 'Enter a valid 10-digit mobile number' is shown and no order is placed"
+"TC-11 Rotate during checkout","Verify entered details survive a screen rotation","Manual","Medium","checkout;resilience","Cart not empty","1. Go to Checkout
+2. Fill all fields and choose a slot
+3. Rotate the device to landscape and back","All entered details and the selected slot are kept"
+"TC-12 Logout","Verify logout clears the session and the cart","Manual","Medium","profile","Logged in, cart has items","1. Tap the ⋮ menu → Profile
+2. Tap Log out
+3. Relaunch the app","The Login screen is shown; after logging in again the cart is empty"

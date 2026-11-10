@@ -1,0 +1,63 @@
+[
+  {
+    "id": "L2-BUG-2",
+    "tc": "TC-107",
+    "fix": "Route typo /support",
+    "result": "PASSED",
+    "proof": "playwright_suite/reports/verified\\verified_01_support_page.png"
+  },
+  {
+    "id": "L2-BUG-3",
+    "tc": "TC-108",
+    "fix": "Public coupon API 200",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-7",
+    "tc": "TC-113",
+    "fix": "Order history route discrepancy",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-6",
+    "tc": "TC-112",
+    "fix": "Certificate gating verification",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-8",
+    "tc": "TC-114",
+    "fix": "Slot reservation concurrency mutex",
+    "result": "PASSED"
+  },
+  {
+    "tc": "TC-105",
+    "journey": "Course Catalog",
+    "result": "PASSED",
+    "proof": "playwright_suite/reports/verified\\verified_06_courses_catalog.png"
+  },
+  {
+    "id": "L2-BUG-1",
+    "tc": "TC-109",
+    "fix": "Coupon accumulator reset",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-4",
+    "tc": "TC-110",
+    "fix": "createOrder amount discount sync",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-5",
+    "tc": "TC-111",
+    "fix": "Quiz multi-select answer map",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-9",
+    "tc": "TC-106",
+    "fix": "Password regex complexity sync",
+    "result": "PASSED"
+  }
+]

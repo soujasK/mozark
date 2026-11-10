@@ -1,0 +1,11 @@
+# Scratch and temporary scripts
+scratch/
+__pycache__/
+*.pyc
+*.pyo
+.gradle/
+build/
+local.properties
+FreshCart/.gradle/
+FreshCart/app/build/
+*.log

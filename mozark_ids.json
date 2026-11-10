@@ -1,0 +1,906 @@
+{
+  "orgId": "a57bcf7b-de33-48c0-b696-e42e811d4a44",
+  "orgName": "SoujasK_NMIMS",
+  "projectId": "47f13f42-a6d8-4829-8ecf-36a9a89b604c",
+  "projectName": "Starter Project",
+  "appId": "85f4cf1b-62b9-47ce-b7ef-7d541db64da7",
+  "appName": "Starter App",
+  "apk": {
+    "file": "FreshCart-v1.0.0.apk",
+    "fileId": "616340f8-088e-418d-a630-5cd495a2324b",
+    "mzfile": "mzfile://616340f8-088e-418d-a630-5cd495a2324b",
+    "note": "Verified: installed OK via mzfile on RFGYC14B5NV (2026-10-12)"
+  },
+  "apk_v110": {
+    "file": "FreshCart-v1.1.0.apk",
+    "fileId": "f250a2c4-d71a-4a54-8f4b-5bce86536420",
+    "mzfile": "mzfile://f250a2c4-d71a-4a54-8f4b-5bce86536420",
+    "note": "Uploaded 2026-10-13 via appium_get_app_upload_command + curl. Not yet installed on any device."
+  },
+  "apk_v120": {
+    "file": "FreshCart-v1.2.0.apk",
+    "fileId": "e442b113-e7bf-4a20-921f-2a62ff847f18",
+    "mzfile": "mzfile://e442b113-e7bf-4a20-921f-2a62ff847f18",
+    "note": "Uploaded 2026-10-13 via appium_get_app_upload_command + curl (local file 6,560,193 bytes; upload response reported fileInfo.size 0). Not yet installed on any device."
+  },
+  "apk_v101": {
+    "file": "FreshCart-v1.0.1.apk",
+    "fileId": "c79e4244-a005-417f-bc74-59a647cb6510",
+    "mzfile": "mzfile://c79e4244-a005-417f-bc74-59a647cb6510",
+    "note": "Uploaded 2026-10-13 via appium_get_app_upload_command + curl (local file 6,547,079 bytes; upload response reported fileInfo.size 0)."
+  },
+  "sessions": [
+    {
+      "purpose": "Feasibility run - login + Home layout check",
+      "date": "2026-10-12",
+      "appiumSessionId": "769c12a7-4f8a-4527-a763-a980298f71d0",
+      "mozarkTestId": "3db35f8b-fcae-4154-b360-d210c7e5b002",
+      "device": {
+        "udid": "RFGYC14B5NV",
+        "model": "Galaxy A16 (SM-A165M)",
+        "os": "Android 15 / API 35",
+        "screen": "1080x2340"
+      },
+      "capture": [
+        "recordDeviceScreen",
+        "captureDeviceScreenShots",
+        "captureDeviceLogs"
+      ],
+      "status": "stopped",
+      "assetsNote": "S3 links are presigned and expire after ~10 min; re-fetch with appium_list_outputs/appium_list_screenshots + fileName. Object paths below omit the signature.",
+      "assets": {
+        "video": "https://testinfra-app-testing.s3.ap-south-1.amazonaws.com/execution-output-files/3db35f8b-fcae-4154-b360-d210c7e5b002/RFGYC14B5NV_2026_10_12-13_20_50_970_device_video.mp4",
+        "deviceLog": "https://testinfra-app-testing.s3.ap-south-1.amazonaws.com/execution-output-files/3db35f8b-fcae-4154-b360-d210c7e5b002/RFGYC14B5NV_2026_10_12-13_20_50_device_log.txt",
+        "homeScreenshot": "https://testinfra-app-testing.s3.ap-south-1.amazonaws.com/execution-screenshots/3db35f8b-fcae-4154-b360-d210c7e5b002/screenshot_2026_10_12-13_21_47_478.png",
+        "otherOutputs": [
+          "appium_output.log",
+          "source_2026_10_12-13_21_14_676.txt",
+          "source_2026_10_12-13_21_33_454.txt"
+        ],
+        "autoScreenshots": 12
+      },
+      "localCopies": [
+        "evidence/mozark_A16_home.png",
+        "evidence/mozark_A16_session_video.mp4",
+        "evidence/mozark_A16_device_log.txt"
+      ]
+    }
+  ],
+  "testCases": {
+    "TC-01 Login with valid demo account": {
+      "readableId": "TC-1",
+      "id": "6acd00a0b1d4e1ae8b9d39bf"
+    },
+    "TC-02 Login with wrong password": {
+      "readableId": "TC-2",
+      "id": "6acd00a4d76b261186a41d65"
+    },
+    "TC-03 Search for a product": {
+      "readableId": "TC-3",
+      "id": "6acd00a5d76b261186a41d88"
+    },
+    "TC-04 Filter products by category": {
+      "readableId": "TC-4",
+      "id": "6acd00a8b1d4e1ae8b9d3a04"
+    },
+    "TC-05 Add products to cart": {
+      "readableId": "TC-5",
+      "id": "6acd00acd76b261186a41dcb"
+    },
+    "TC-06 Change quantity and remove item in cart": {
+      "readableId": "TC-6",
+      "id": "6acd00b1d76b261186a41def"
+    },
+    "TC-07 Apply SAVE50 coupon": {
+      "readableId": "TC-7",
+      "id": "6acd00b5b1d4e1ae8b9d3a46"
+    },
+    "TC-08 Place order with Cash on delivery": {
+      "readableId": "TC-8",
+      "id": "6acd00bad76b261186a41e2c"
+    },
+    "TC-09 Place order button tapped twice": {
+      "readableId": "TC-9",
+      "id": "6acd00bfd76b261186a41e52"
+    },
+    "TC-10 Checkout validation": {
+      "readableId": "TC-10",
+      "id": "6acd00c2b1d4e1ae8b9d3abf"
+    },
+    "TC-11 Rotate during checkout": {
+      "readableId": "TC-11",
+      "id": "6acd00c6d76b261186a41e8f"
+    },
+    "TC-12 Logout": {
+      "readableId": "TC-12",
+      "id": "6acd00c9d76b261186a41eb2"
+    },
+    "TC-13 Sign up with a strong password containing @": {
+      "readableId": "TC-13",
+      "id": "6acd2aebd76b261186a444ca"
+    },
+    "TC-14 Sign up with an already registered email": {
+      "readableId": "TC-14",
+      "id": "6acd2aeed76b261186a444ee"
+    },
+    "TC-15 Login with different email capitalization": {
+      "readableId": "TC-15",
+      "id": "6acd2af1b1d4e1ae8b9d690c"
+    },
+    "TC-16 Search is case-insensitive": {
+      "readableId": "TC-16",
+      "id": "6acd2af4b1d4e1ae8b9d694a"
+    },
+    "TC-17 Add multiple quantity from product page": {
+      "readableId": "TC-17",
+      "id": "6acd2af8d76b261186a44550"
+    },
+    "TC-18 Decrease quantity to zero removes the item": {
+      "readableId": "TC-18",
+      "id": "6acd2afbd76b261186a44574"
+    },
+    "TC-19 FRESH10 coupon calculation": {
+      "readableId": "TC-19",
+      "id": "6acd2b01d76b261186a445b3"
+    },
+    "TC-20 Stock limit from the Home Add button": {
+      "readableId": "TC-20",
+      "id": "6acd2b03b1d4e1ae8b9d6991"
+    },
+    "TC-21 Delivery slot is saved on the order": {
+      "readableId": "TC-21",
+      "id": "6acd2b07b1d4e1ae8b9d69d2"
+    },
+    "TC-22 Pay with a numeric UPI ID": {
+      "readableId": "TC-22",
+      "id": "6acd2b0bd76b261186a44615"
+    },
+    "TC-23 Order history shows the amount paid": {
+      "readableId": "TC-23",
+      "id": "6acd2b0eb1d4e1ae8b9d6a11"
+    },
+    "TC-24 Logout clears the session and the cart": {
+      "readableId": "TC-24",
+      "id": "6acd2b12b1d4e1ae8b9d6a35"
+    },
+    "TC-25 Account lock clears after successful reset": {
+      "readableId": "TC-25",
+      "id": "6acd3e40d76b261186a45b80"
+    },
+    "TC-26 Forgot password temporary password works": {
+      "readableId": "TC-26",
+      "id": "6acd3e42b1d4e1ae8b9d8739"
+    },
+    "TC-27 Sign up rejects mismatched confirm password": {
+      "readableId": "TC-27",
+      "id": "6acd3e44b1d4e1ae8b9d877a"
+    },
+    "TC-28 Change password updates the password": {
+      "readableId": "TC-28",
+      "id": "6acd3e49d76b261186a45be0"
+    },
+    "TC-29 Back after sign up does not return to the form": {
+      "readableId": "TC-29",
+      "id": "6acd3e4db1d4e1ae8b9d87bb"
+    },
+    "TC-30 Edit profile saves a valid phone": {
+      "readableId": "TC-30",
+      "id": "6acd3e50d76b261186a45c21"
+    },
+    "TC-31 Home greeting updates after name change": {
+      "readableId": "TC-31",
+      "id": "6acd3e54b1d4e1ae8b9d87fd"
+    },
+    "TC-32 My Orders shows only the current user's orders": {
+      "readableId": "TC-32",
+      "id": "6acd3e58b1d4e1ae8b9d881e"
+    },
+    "TC-33 Sort by price low to high": {
+      "readableId": "TC-33",
+      "id": "6acd3e5cb1d4e1ae8b9d885d"
+    },
+    "TC-34 Sort by price high to low": {
+      "readableId": "TC-34",
+      "id": "6acd3e60d76b261186a45c83"
+    },
+    "TC-35 Search with trailing space": {
+      "readableId": "TC-35",
+      "id": "6acd3e6cd76b261186a45ca5"
+    },
+    "TC-36 Search within selected category": {
+      "readableId": "TC-36",
+      "id": "6acd3e6eb1d4e1ae8b9d88c1"
+    },
+    "TC-37 Bakery category lists all bakery items": {
+      "readableId": "TC-37",
+      "id": "6acd3e72b1d4e1ae8b9d88e2"
+    },
+    "TC-38 Search text is kept after viewing a product": {
+      "readableId": "TC-38",
+      "id": "6acd3e76d76b261186a45ce7"
+    },
+    "TC-39 Category filter is kept after viewing a product": {
+      "readableId": "TC-39",
+      "id": "6acd3e7ab1d4e1ae8b9d8923"
+    },
+    "TC-40 Dairy price consistent between product page and cart": {
+      "readableId": "TC-40",
+      "id": "6acd3e7fd76b261186a45d29"
+    },
+    "TC-41 Top bar cart count updates": {
+      "readableId": "TC-41",
+      "id": "6acd3e83b1d4e1ae8b9d8980"
+    },
+    "TC-42 Quantity selector respects stock": {
+      "readableId": "TC-42",
+      "id": "6acd3e87d76b261186a45d6c"
+    },
+    "TC-43 Remove the right item from the wishlist": {
+      "readableId": "TC-43",
+      "id": "6acd3e8bb1d4e1ae8b9d89c2"
+    },
+    "TC-44 Move to cart from wishlist": {
+      "readableId": "TC-44",
+      "id": "6acd3e90d76b261186a45daa"
+    },
+    "TC-45 Wishlist is private to each account": {
+      "readableId": "TC-45",
+      "id": "6acd3e9ab1d4e1ae8b9d8a05"
+    },
+    "TC-46 Open Spinach product page": {
+      "readableId": "TC-46",
+      "id": "6acd3e9cd76b261186a45deb"
+    },
+    "TC-47 Clear cart cancel keeps items": {
+      "readableId": "TC-47",
+      "id": "6acd3ea0d76b261186a45e11"
+    },
+    "TC-48 Subtotal counts quantities": {
+      "readableId": "TC-48",
+      "id": "6acd3ea4d76b261186a45e50"
+    },
+    "TC-49 Free delivery above ₹499": {
+      "readableId": "TC-49",
+      "id": "6acd3ea8d76b261186a45e72"
+    },
+    "TC-50 Lowercase coupon code accepted": {
+      "readableId": "TC-50",
+      "id": "6acd3eacb1d4e1ae8b9d8a69"
+    },
+    "TC-51 Coupon does not carry over to the next order": {
+      "readableId": "TC-51",
+      "id": "6acd3eb0d76b261186a45eb5"
+    },
+    "TC-52 Cart + respects stock": {
+      "readableId": "TC-52",
+      "id": "6acd3eb5d76b261186a45ef4"
+    },
+    "TC-53 Cart count shows number of units": {
+      "readableId": "TC-53",
+      "id": "6acd3eb8b1d4e1ae8b9d8ac6"
+    },
+    "TC-54 Removing a coupon updates the totals": {
+      "readableId": "TC-54",
+      "id": "6acd3ebcd76b261186a45f37"
+    },
+    "TC-55 Removing the last item empties the cart": {
+      "readableId": "TC-55",
+      "id": "6acd3ec7b1d4e1ae8b9d8b0a"
+    },
+    "TC-56 Name with apostrophe accepted at checkout": {
+      "readableId": "TC-56",
+      "id": "6acd3ec9b1d4e1ae8b9d8b49"
+    },
+    "TC-57 Mobile number starting with 6 accepted": {
+      "readableId": "TC-57",
+      "id": "6acd3eced76b261186a45f78"
+    },
+    "TC-58 Delhi pincode accepted": {
+      "readableId": "TC-58",
+      "id": "6acd3ed1d76b261186a45f9c"
+    },
+    "TC-59 Address with comma accepted": {
+      "readableId": "TC-59",
+      "id": "6acd3ed6b1d4e1ae8b9d8b8e"
+    },
+    "TC-60 Delivery tip adds the chosen amount": {
+      "readableId": "TC-60",
+      "id": "6acd3edab1d4e1ae8b9d8bcd"
+    },
+    "TC-61 Selecting ₹30 tip": {
+      "readableId": "TC-61",
+      "id": "6acd3eded76b261186a45ffc"
+    },
+    "TC-62 Order total includes tip and express fee": {
+      "readableId": "TC-62",
+      "id": "6acd3ee2d76b261186a4601e"
+    },
+    "TC-63 Switching payment back to COD": {
+      "readableId": "TC-63",
+      "id": "6acd3ee7b1d4e1ae8b9d8c10"
+    },
+    "TC-64 Short delivery instructions": {
+      "readableId": "TC-64",
+      "id": "6acd3eead76b261186a4605f"
+    },
+    "TC-65 Saved address prefills correctly": {
+      "readableId": "TC-65",
+      "id": "6acd3ef4d76b261186a4609e"
+    },
+    "TC-66 Amount payable reflects coupon": {
+      "readableId": "TC-66",
+      "id": "6acd3ef7b1d4e1ae8b9d8c72"
+    },
+    "TC-67 Express fee charged once": {
+      "readableId": "TC-67",
+      "id": "6acd3efcb1d4e1ae8b9d8c94"
+    },
+    "TC-68 Checkout name prefilled with the logged-in user": {
+      "readableId": "TC-68",
+      "id": "6acd3effd76b261186a460e3"
+    },
+    "TC-69 Order IDs are unique": {
+      "readableId": "TC-69",
+      "id": "6acd3f03d76b261186a46121"
+    },
+    "TC-70 Order details open the tapped order": {
+      "readableId": "TC-70",
+      "id": "6acd3f08b1d4e1ae8b9d8cf5"
+    },
+    "TC-71 Cancelled order stays cancelled": {
+      "readableId": "TC-71",
+      "id": "6acd3f0cb1d4e1ae8b9d8d17"
+    },
+    "TC-72 Reorder keeps the original quantities": {
+      "readableId": "TC-72",
+      "id": "6acd3f10d76b261186a46164"
+    },
+    "TC-73 Order date shows today": {
+      "readableId": "TC-73",
+      "id": "6acd3f13d76b261186a461a3"
+    },
+    "TC-74 First order appears in My Orders": {
+      "readableId": "TC-74",
+      "id": "6acd3f17d76b261186a461c6"
+    }
+  },
+  "testPlan": {
+    "name": "FreshCart v1.0.0 - Round 1 Regression",
+    "readableId": "TP-1",
+    "id": "6acd00d2b1d4e1ae8b9d3b02"
+  },
+  "plan2": {
+    "name": "FreshCart v1.1.0 - Round 1 Regression (full)",
+    "readableId": "TP-2",
+    "id": "6acd2b1dd76b261186a4465c",
+    "testCases": "TC-1..TC-24 (24)",
+    "status": "Draft"
+  },
+  "plan3": {
+    "name": "FreshCart v1.2.0 - Full Regression",
+    "readableId": "TP-3",
+    "id": "6acd3f24b1d4e1ae8b9d8d79",
+    "testCases": "TC-1..TC-74 (74)",
+    "status": "Draft",
+    "apk": "mzfile://e442b113-e7bf-4a20-921f-2a62ff847f18"
+  },
+  "runD": {
+    "testRun": {
+      "name": "Run D - Android 14 comparison - v1.0.0",
+      "readableId": "TR-4",
+      "fromPlan": "TP-1",
+      "created": "2026-10-13",
+      "status": "Completed",
+      "gridNote": "Created with testPlanId TP-1 but the grid came up empty; only TC-1, TC-3, TC-6, TC-8 were added via tcm_add_test_cases_to_run. Linked to BUG-2, BUG-3, TR-1."
+    },
+    "status": "finished",
+    "date": "2026-10-13",
+    "mozarkTestId": "18fee0ca-3aaf-47c2-a419-6ce018728d0b",
+    "sessionStatus": "stopped 2026-10-13",
+    "apkInstalled": "mzfile://616340f8-088e-418d-a630-5cd495a2324b (OK)",
+    "method": "All taps via mobile: clickGesture at element centres from page-source bounds; mobile: clearApp before each TC; no workarounds (bottom VIEW CART used, not the action-bar CART).",
+    "results": {
+      "TC-1": "Passed (Run-1) 4/4. Home content starts at y=154 below the action bar (49-154); greeting [30,177][253,223], et_search [30,238][690,323], VIEW CART [23,1397][697,1487] above the nav bar (from 1510).",
+      "TC-3": "Passed (Run-1) 2/2. Centre tap (360,280) -> et_search focused, keyboard shown; 'Mango' -> list shows only 'Alphonso Mango'.",
+      "TC-6": "Passed (Run-1) 3/3. Bottom VIEW CART centre tap opened the cart (Mango ₹450x1, Apple ₹180x1, Subtotal ₹630). + on first item (645,263) -> qty 2, '₹450 × 2 = ₹900', Subtotal ₹1080. Remove (77,302) -> only Apple Shimla, Subtotal ₹180, Delivery ₹40, Total ₹220, stayed on Your Cart.",
+      "TC-8": "Passed (Run-1) 7/7. VIEW CART / PROCEED TO CHECKOUT / PLACE ORDER centre taps (360,1442) all worked; single tap -> Order FC812582, Total paid ₹630, Today 6 PM - 8 PM; My Orders shows exactly one order FC812582 ₹630 COD."
+    },
+    "ordersObserved": [
+      "FC812582 ₹630 (Alphonso Mango x1, Apple Shimla x1, COD)"
+    ],
+    "stepEvidence": {
+      "TC-1": [
+        "s4"
+      ],
+      "TC-3": [
+        "s1",
+        "s2"
+      ],
+      "TC-6": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "TC-8": [
+        "s1",
+        "s5",
+        "s6",
+        "s7"
+      ]
+    },
+    "outputs": {
+      "video": "R9ZTB0PGASP_2026_10_13-02_02_19_567_device_video.mp4",
+      "deviceLog": "R9ZTB0PGASP_2026_10_13-02_02_19_device_log.txt",
+      "appiumLog": "appium_output.log",
+      "pageSources": 10,
+      "screenshots": {
+        "auto": 121,
+        "manual": 11
+      }
+    },
+    "bugUpdates": {
+      "BUG-2": "Description: appended 'CROSS-DEVICE COMPARISON' section (Android 14 TC-8 7/7 pass vs A16 3/3 fail + required conclusion sentence). Attached BUG2_compare_A14_GalaxyA04_checkout_PLACE_ORDER_above_navbar_TR4_TC8.png (bugs/BUG-2/attachments/..._1791837938557_fc620d53.png, 83876 B; source screenshot_2026_10_13-02_11_42_793.png). Now 5 attachments.",
+      "BUG-3": "Description: appended 'CROSS-DEVICE COMPARISON' section (Android 14 TC-1/TC-3/TC-6 pass vs A16 3/3 fail + required conclusion sentence). Attached BUG3_compare_A14_GalaxyA04_home_search_visible_below_actionbar_TR4_TC1.png (bugs/BUG-3/attachments/..._1791837940783_52fea7ab.png, 96435 B; source screenshot_2026_10_13-02_04_46_182.png). Now 6 attachments.",
+      "newBugsCreated": "none"
+    },
+    "localCopies": [
+      "evidence/runD_tr4/A14_A04_TC1_s4_home.png",
+      "evidence/runD_tr4/A14_A04_TC8_s1_checkout.png"
+    ],
+    "deviceSelection": {
+      "note": "Mozark inventory lists all of these as OS 14, but the session capabilities report otherwise. Each probe session started with screen recording, screenshots and device logs, then was stopped right away, before any app install.",
+      "probes": [
+        {
+          "udid": "RZCY90S4FZL",
+          "model": "Galaxy A55 SM-A556E",
+          "actual": "Android 16 / API 36",
+          "appiumSessionId": "d111d881-51a5-4b3d-8ad7-c1dd7cfdb873",
+          "status": "stopped, not used"
+        },
+        {
+          "udid": "R5CTC0ER29H",
+          "model": "Galaxy S22 SM-S901U",
+          "actual": "Android 12 / API 31",
+          "appiumSessionId": "1a7e65ce-9c68-4779-aaf2-b641d1e279f4",
+          "status": "stopped, not used"
+        },
+        {
+          "udid": "R3CYA0GEJAA",
+          "model": "Galaxy S25 SM-S931U1",
+          "actual": "Android 16 / API 36",
+          "appiumSessionId": "a688ddc1-a45d-4396-96d5-d3f0450c45b5",
+          "status": "stopped, not used"
+        }
+      ],
+      "used": {
+        "udid": "R9ZTB0PGASP",
+        "model": "Samsung Galaxy A04 SM-A042F",
+        "actual": "Android 14 / API 34",
+        "screen": "720x1600, density 300, status bar 49px"
+      }
+    },
+    "appiumSessionId": "7abe7d55-7c28-47b1-89e7-4298426712d2",
+    "capture": [
+      "recordDeviceScreen",
+      "captureDeviceScreenShots",
+      "captureDeviceLogs"
+    ],
+    "part2": {
+      "purpose": "Second-device reproduction of BUG-1 (TC-9) and BUG-4 (TC-7 isolated) on Android 14",
+      "date": "2026-10-13",
+      "appiumSessionId": "511f9e02-6d9b-4901-9c11-c385ba187c80",
+      "device": {
+        "udid": "R9ZTB0PGASP",
+        "model": "Samsung Galaxy A04 SM-A042F",
+        "actual": "Android 14 / API 34",
+        "screen": "720x1600"
+      },
+      "deviceChoiceNote": "Preferred RZCY90S4FZL / R5CTC0ER29H / R3CYA0GEJAA were probed in Part 1 and are not Android 14 (16 / 12 / 16), so the verified Android 14 A04 was used.",
+      "capture": [
+        "recordDeviceScreen",
+        "captureDeviceScreenShots",
+        "captureDeviceLogs"
+      ],
+      "apkInstalled": "mzfile://616340f8-088e-418d-a630-5cd495a2324b (OK)",
+      "tr4GridAdded": [
+        "TC-9",
+        "TC-7"
+      ],
+      "method": "mobile: clearApp + startActivity .LoginActivity before each attempt; all taps mobile: clickGesture at element centres from page-source bounds; double-tap = mobile: doubleClickGesture at PLACE ORDER centre (360,1442), bounds [23,1397][697,1487]; bottom VIEW CART / PROCEED TO CHECKOUT used (no workarounds needed on Android 14).",
+      "results": {
+        "TC-9 Run-1": "Failed (reproduced). s1 Passed (cart Mango ₹450x1 + Apple ₹180x1, Subtotal ₹630, Delivery FREE, Total ₹630; checkout 9876543210 / 12 MG Road Bandra West / 400050 / Today 6 PM - 8 PM, Amount payable ₹630). s2 Failed: success screen 'Order ID: FC348756', 'Total paid: ₹0', 'Delivery: Today 6 PM - 8 PM'. s3 Failed: My Orders = FC348756 Total ₹0 COD (no items line) + FC348467 Total ₹630 COD (Alphonso Mango × 1, Apple Shimla × 1), both 13 Oct 2026 02:22 am. Evidence on s1, s2, s3.",
+        "TC-9 Retry-1": "Failed (reproduced). s1 Passed (same cart ₹630; same checkout values, Amount payable ₹630). s2 Failed: 'Order ID: FC547754', 'Total paid: ₹0'. s3 Failed: My Orders = FC547754 Total ₹0 COD (no items) + FC547455 Total ₹630 COD (Alphonso Mango × 1, Apple Shimla × 1), both 13 Oct 2026 02:25 am. Evidence on s2, s3.",
+        "TC-9 Retry-2": "Failed (reproduced). s1 Passed (same values, Amount payable ₹630). s2 Failed: 'Order ID: FC723059', 'Total paid: ₹0'. s3 Failed: My Orders = FC723059 Total ₹0 COD (no items) + FC722769 Total ₹630 COD (Alphonso Mango × 1, Apple Shimla × 1), both 13 Oct 2026 02:28 am. Evidence on s2, s3.",
+        "TC-9 summary": "BUG-1 reproduced 3/3 on Android 14 (Run-1, Retry-1, Retry-2).",
+        "TC-7 Run-1": "Failed (reproduced). Isolated variant: Apple Shimla added first, Alphonso Mango second (row 2). s1 Passed: cart row1 Apple ₹180x1, row2 Mango ₹450x1, Subtotal ₹630, et_coupon 'SAVE50'. s2 Passed: tv_coupon_status 'SAVE50 applied', button 'REMOVE', et_coupon 'SAVE50' (disabled), Subtotal ₹630, 'Discount (SAVE50): -₹50', Delivery FREE, Total ₹580. s3 Failed: after Remove Alphonso Mango (77,461): Subtotal ₹180, tv_coupon_status STILL 'SAVE50 applied', button STILL 'REMOVE', et_coupon 'SAVE50', tv_discount row absent (0 elements), Delivery ₹40, Total ₹220. Evidence on s2, s3.",
+        "TC-7 Retry-1": "Failed (reproduced). s1 Passed (Apple row1 / Mango row2, Subtotal ₹630, 'SAVE50' entered). s2 Passed: 'SAVE50 applied', button 'REMOVE', Subtotal ₹630, 'Discount (SAVE50): -₹50', Delivery FREE, Total ₹580. s3 Failed: after Remove Alphonso Mango: Subtotal ₹180, status STILL 'SAVE50 applied', button STILL 'REMOVE', et_coupon 'SAVE50', no tv_discount row, Delivery ₹40, Total ₹220. Evidence on s3.",
+        "TC-7 Retry-2": "Failed (reproduced). s1 Passed, s2 Passed (identical values: 'SAVE50 applied', REMOVE, ₹630, -₹50, FREE, ₹580). s3 Failed: after Remove Alphonso Mango: Subtotal ₹180, status STILL 'SAVE50 applied', button STILL 'REMOVE', et_coupon 'SAVE50', no tv_discount row, Delivery ₹40, Total ₹220. Evidence on s3.",
+        "TC-7 summary": "BUG-4 reproduced 3/3 on Android 14 (Run-1, Retry-1, Retry-2)."
+      },
+      "sessionStatus": "stopped 2026-10-13 via appium_stop_session (device R9ZTB0PGASP released)",
+      "tr4Grid": "TC-9: Run-1/Retry-1/Retry-2 all Failed (Retry-3 auto-seeded, unused). TC-7: Run-1/Retry-1/Retry-2 all Failed (Retry-3 auto-seeded, unused). TR-4 run status not re-patched (was 'Completed').",
+      "interrupted": "Mozark MCP auth expired immediately after appium_stop_session (2026-10-13). Not done: get_workflow_rules('attachments'), BUG-1/BUG-4 'Second-device reproduction' sections, BUG-1/BUG-4 screenshot attachments, appium_list_outputs for this session. Re-authenticate (/mcp) and apply pendingBugUpdates below.",
+      "ordersObserved": {
+        "TC-9 Run-1": [
+          "FC348467 ₹630 (Alphonso Mango x1, Apple Shimla x1)",
+          "FC348756 ₹0 (no items)"
+        ],
+        "TC-9 Retry-1": [
+          "FC547455 ₹630 (Alphonso Mango x1, Apple Shimla x1)",
+          "FC547754 ₹0 (no items)"
+        ],
+        "TC-9 Retry-2": [
+          "FC722769 ₹630 (Alphonso Mango x1, Apple Shimla x1)",
+          "FC723059 ₹0 (no items)"
+        ]
+      },
+      "status": "device work finished; bug updates applied 2026-10-13",
+      "appliedBugUpdates": {
+        "appliedAt": "2026-10-13T09:35:00+05:30",
+        "updates": {
+          "BUG-1 (6acd26d7b1d4e1ae8b9d640d)": "SECOND-DEVICE REPRODUCTION (2026-10-13): Reproduced 3/3 on Samsung Galaxy A04 SM-A042F (R9ZTB0PGASP), Android 14 / API 34, 720x1600, FreshCart v1.0.0 (mzfile://616340f8-088e-418d-a630-5cd495a2324b). Appium session 511f9e02-6d9b-4901-9c11-c385ba187c80 (screen recording + screenshots + device logs). TR-4 / TC-9. Each attempt: app data cleared, login demo@freshcart.app, add Alphonso Mango + Apple Shimla (Subtotal ₹630), checkout 9876543210 / 12 MG Road Bandra West / 400050 / Today 6 PM - 8 PM (Amount payable ₹630), double-tap PLACE ORDER at its centre (360,1442) with mobile: doubleClickGesture. Run-1: success screen 'Order ID: FC348756', 'Total paid: ₹0'; My Orders FC348467 ₹630 (Alphonso Mango × 1, Apple Shimla × 1) + FC348756 ₹0 (no items). Retry-1: FC547455 ₹630 + FC547754 ₹0. Retry-2: FC722769 ₹630 + FC723059 ₹0. Step evidence on TR-4/TC-9 s2 and s3 for every attempt. Conclusion: the defect is device-independent (Android 14 and Android 15).",
+          "BUG-4 (6acd2baed76b261186a446e4)": "SECOND-DEVICE REPRODUCTION (2026-10-13): Reproduced 3/3 on Samsung Galaxy A04 SM-A042F (R9ZTB0PGASP), Android 14 / API 34, FreshCart v1.0.0. Appium session 511f9e02-6d9b-4901-9c11-c385ba187c80. TR-4 / TC-7 isolated variant (Apple Shimla added first, Alphonso Mango second = row 2). Run-1, Retry-1, Retry-2 identical: after Apply SAVE50 at Subtotal ₹630: tv_coupon_status 'SAVE50 applied', button 'REMOVE', 'Discount (SAVE50): -₹50', Delivery FREE, Total ₹580. After Remove Alphonso Mango (row 2): Subtotal ₹180, tv_coupon_status STILL 'SAVE50 applied', apply button STILL 'REMOVE', coupon field 'SAVE50', discount row gone (tv_discount not present), Delivery ₹40, tv_total 'Total: ₹220'. No message shown. Step evidence on TR-4/TC-7 s2 (Run-1) and s3 (all attempts). Conclusion: the defect is device-independent (Android 14 and Android 15).",
+          "attachmentsToAdd": "1-2 per bug from session 511f9e02 step evidence: BUG-1 = TC-9 Run-1 s2 (success ₹0) + s3 (My Orders); BUG-4 = TC-7 Run-1 s2 (after Apply) + s3 (after Remove)."
+        },
+        "result": {
+          "BUG-1": "SECOND-DEVICE REPRODUCTION text appended verbatim; TR-4 linked (TC-9, TR-1, TR-4); attached BUG1_A14_GalaxyA04_success_FC348756_Total_paid_Rs0_TR4_TC9.png (52940 B, src screenshot_2026_10_13-02_22_38_549.png) + BUG1_A14_GalaxyA04_MyOrders_FC348467_630_plus_FC348756_Rs0_TR4_TC9.png (63808 B, src screenshot_2026_10_13-02_23_17_502.png); 6 attachments.",
+          "BUG-4": "SECOND-DEVICE REPRODUCTION text appended verbatim; TR-4 linked (TC-7, TR-1, TR-4); attached BUG4_A14_GalaxyA04_after_Apply_SAVE50_applied_minus50_TR4_TC7.png (82824 B, src screenshot_2026_10_13-02_31_22_545.png) + BUG4_A14_GalaxyA04_after_Remove_still_SAVE50_applied_no_discount_TR4_TC7.png (66836 B, src screenshot_2026_10_13-02_31_48_803.png); 5 attachments.",
+          "BUG-2": "Older NOTE corrected to: apps targeting SDK 35 or higher; this app targets SDK 36. TR-4 already linked. 5 attachments.",
+          "BUG-3": "Older NOTE corrected to: applies to apps targeting SDK 35 or higher; this app targets SDK 36. TR-4 already linked. 6 attachments.",
+          "localCopies": "evidence/proof/BUG1_A14_*.png, evidence/proof/BUG4_A14_*.png (candidates in evidence/proof/cand511/)"
+        }
+      }
+    },
+    "cleanup2026_10_13": {
+      "checkedAppiumSessions": [
+        "43e6b187-5f02-477d-bd3b-233929adcbf2",
+        "752dffb7-21e9-4b97-937b-5a39dc05234d",
+        "d7532475-7b93-4c22-8fcb-7e2188c658ca",
+        "e5472b42-6a44-482a-8318-e72c32db0034",
+        "05f29201-a4d0-49cd-8b69-0b0f034fdf0f",
+        "19e5fbb9-4533-4e68-b11b-6618466def1d",
+        "ca4e98d5-72a4-41bd-85f2-df3399df01da",
+        "dab9a224-08d0-4703-ad89-e89db3cea18e",
+        "769c12a7-4f8a-4527-a763-a980298f71d0",
+        "a17eade4-9a1e-46dd-8d4c-667b24999df9",
+        "ac1a0f6f-612c-4ab7-aaba-e1e0bd0afc73",
+        "b1672ddc-0097-4172-9ca9-0faef59cb352"
+      ],
+      "stopped": [
+        "43e6b187-5f02-477d-bd3b-233929adcbf2 (Google Pixel 4A 0B231JEC219988, Android 13)",
+        "19e5fbb9-4533-4e68-b11b-6618466def1d (Samsung M34 RZCW91MY78M, Android 14)"
+      ],
+      "alreadyEnded": "all other ids returned 404 SESSION_NOT_FOUND",
+      "opticsSessions": "none found in transcripts (optics_start_session never returned a session_id)",
+      "spinachBug": "none - bug list has only BUG-1..BUG-4"
+    }
+  },
+  "runE": {
+    "purpose": "Round 2 rehearsal - retest of BUG-1..BUG-4 fixes on FreshCart v1.0.1",
+    "date": "2026-10-13",
+    "testRun": {
+      "name": "Run E - Retest fixes - v1.0.1",
+      "readableId": "TR-5",
+      "internalId": "6acdf9a7b1d4e1ae8b9de31f",
+      "fromPlan": "TP-1",
+      "testCases": ["TC-1", "TC-3", "TC-6", "TC-7", "TC-8", "TC-9"],
+      "status": "Completed",
+      "comment": "6acdfe6bd76b261186a4be02 (TC-9/TC-7 attempts 2-3 on-device repeats, exact values)"
+    },
+    "apk": "mzfile://c79e4244-a005-417f-bc74-59a647cb6510 (apk_v101)",
+    "appiumSessionId": "f7e92d81-c419-47ac-91a7-88a1537fac01",
+    "mozarkTestId": "cb3da296-0b84-43f8-9c2b-d284cf58b259",
+    "device": {
+      "udid": "RFGYC14B5NV",
+      "model": "Samsung Galaxy A16 SM-A165M",
+      "actual": "Android 15 / API 35 (session caps platformVersion 15, deviceApiLevel 35)",
+      "screen": "1080x2340, density 450, status bar 96px"
+    },
+    "capture": ["recordDeviceScreen", "captureDeviceScreenShots", "captureDeviceLogs"],
+    "sessionStatus": "stopped 2026-10-13 via appium_stop_session",
+    "method": "All taps via mobile: clickGesture at element centres from page-source bounds; double-tap = mobile: doubleClickGesture at PLACE ORDER centre (540,2103), bounds [34,2036][1046,2171]; mobile: clearApp + startActivity .LoginActivity + fresh login before each TC-9/TC-7 attempt; mobile: hideKeyboard before slot tap. No workarounds (bottom VIEW CART / PROCEED / PLACE ORDER used).",
+    "layoutV101": "toolbar [0,96][1080,254]; screen_container [0,254][1080,2205]; bottom buttons [34,2036][1046,2171] (nav bar from 2205)",
+    "results": {
+      "TC-1": "Passed (Run-1) 4/4. Home: greeting 'Hi, Demo User!' [45,288][389,356], et_search [45,379][1035,505] below toolbar; VIEW CART above nav bar.",
+      "TC-3": "Passed (Run-1) 2/2. Centre tap (540,442) -> et_search focused, keyboard shown; 'Mango' -> only 'Alphonso Mango ₹450'.",
+      "TC-6": "Passed (Run-1) 3/3. VIEW CART centre tap -> cart Mango ₹450x1 (row1) + Apple ₹180x1, Subtotal ₹630. + first item (967,416) -> qty 2, '₹450 × 2 = ₹900', Subtotal ₹1080. Remove first item (115,473) -> Apple only, Subtotal ₹180, Delivery ₹40, Total ₹220, stayed on Your Cart.",
+      "TC-8": "Passed (Run-1) 7/7. PROCEED / PLACE ORDER centre taps (540,2103) worked; single tap -> 'Order ID: FC117803', 'Total paid: ₹630', 'Delivery: Today 6 PM - 8 PM'; My Orders exactly one order FC117803 ₹630 COD.",
+      "TC-9 attempt 1 (Run-1)": "Passed. Double-tap -> single success 'Order ID: FC277539', 'Total paid: ₹630'; My Orders only FC277539 ₹630 COD (Alphonso Mango × 1, Apple Shimla × 1), 05:37 AM. No ₹0 order.",
+      "TC-9 attempt 2 (on-device repeat)": "Passed. 'Order ID: FC417756', 'Total paid: ₹630'; My Orders only FC417756 ₹630, 05:40 AM. No ₹0 order.",
+      "TC-9 attempt 3 (on-device repeat)": "Passed. 'Order ID: FC529764', 'Total paid: ₹630'; My Orders only FC529764 ₹630, 05:42 AM. No ₹0 order.",
+      "TC-7 attempts 1-3 (1 = Run-1, 2-3 = on-device repeats)": "Passed 3/3, identical. Apple row1, Mango row2, Subtotal ₹630. After Apply: 'SAVE50 applied', REMOVE, 'Discount (SAVE50): -₹50', FREE, Total ₹580. After Remove Mango (115,708): tv_coupon_status 'SAVE50 removed: it needs a minimum order of ₹300', button APPLY, coupon field cleared, no discount row, no 'SAVE50 applied', Subtotal ₹180, Delivery ₹40, Total ₹220."
+    },
+    "retryNote": "TCM rejects Retry runs once Run-1 Passed ('This test case already Passed — no further run'), so TC-9/TC-7 attempts 2-3 were on-device repeats recorded in TR-5 comment.",
+    "verdict": {
+      "BUG-1": "Fixed (0/3 duplicate/₹0 orders; v1.0.0 was 6/6)",
+      "BUG-2": "Fixed on Android 15 (TC-8 7/7; v1.0.0 failed 3/3)",
+      "BUG-3": "Fixed on Android 15 (TC-1/TC-3/TC-6 pass; v1.0.0 failed 3/3 each)",
+      "BUG-4": "Fixed (coupon removed with message 3/3; v1.0.0 was 6/6)"
+    },
+    "ordersObserved": ["FC117803 ₹630 (TC-8)", "FC277539 ₹630 (TC-9 a1)", "FC417756 ₹630 (TC-9 a2)", "FC529764 ₹630 (TC-9 a3)"],
+    "stepEvidence": {
+      "TC-1": ["s4"],
+      "TC-3": ["s1", "s2"],
+      "TC-6": ["s1", "s2", "s3"],
+      "TC-7": ["s2", "s3"],
+      "TC-8": ["s1", "s5", "s6", "s7"],
+      "TC-9": ["s2", "s3"]
+    },
+    "outputs": {
+      "video": "RFGYC14B5NV_2026_10_13-05_28_49_547_device_video.mp4",
+      "deviceLog": "RFGYC14B5NV_2026_10_13-05_28_49_device_log.txt",
+      "appiumLog": "appium_output.log",
+      "pageSources": 36,
+      "screenshots": { "auto": 209, "manual": 21 }
+    },
+    "localEvidence": "evidence/retest_v101/ (14 PNGs from manual screenshots 05_30_34 .. 05_47_56)",
+    "report": "practice/RETEST_RESULTS.md",
+    "bugsChanged": "none (BUG-1..BUG-4 status/title/description untouched; no bugs created)"
+  },
+  "runA": {
+    "testRun": {
+      "name": "Run A - Galaxy A16 - Android 15",
+      "readableId": "TR-1",
+      "id": "6acd17dfb1d4e1ae8b9d489c",
+      "status": "Completed"
+    },
+    "status": "finished",
+    "finishedNote": "2026-10-13: TR-1 patched to Completed (no run-level finish tool; finish_testcase is per-TC). Not locked. Grid shows TC-3/6/8/9 'Not Started' and TC-1 'In Progress' because each has an empty, auto-seeded Retry-3 attempt; their Run-1..Retry-2 attempts are all Failed (19 failed attempts in failure analysis). TC-1 became 'In Progress' after an exploratory finish_testcase call paused its empty Retry-3.",
+    "device": "RFGYC14B5NV",
+    "date": "2026-10-12",
+    "lastUpdate": "2026-10-13: TC-11 + TC-12 Passed, TC-7 Retry-3 Failed (3/3 isolated). All 12 cases executed; TR-1 left open (In Progress) as requested.",
+    "interrupted": "2nd interruption 2026-10-12: Mozark MCP auth expired during TC-11 Run-1 step 3 (after rotate to landscape). Earlier: network outage during TC-9 Retry-1 (since completed).",
+    "appiumSessions": [
+      {
+        "appiumSessionId": "a17eade4-9a1e-46dd-8d4c-667b24999df9",
+        "capture": [
+          "recordDeviceScreen",
+          "captureDeviceScreenShots",
+          "captureDeviceLogs",
+          "captureNetworkLogs"
+        ],
+        "status": "stopped (cleanup after outage, 2026-10-12)",
+        "outputs": {
+          "video": "RFGYC14B5NV_2026_10_12-13_24_57_383_device_video.mp4",
+          "networkLog": "RFGYC14B5NV_2026_10_12-13_24_57_network_log.har",
+          "appiumLog": "appium_output.log",
+          "pageSources": 31,
+          "deviceLog": "RFGYC14B5NV_2026_10_12-13_24_57_device_log.txt (listed 2026-10-13)"
+        },
+        "screenshots": {
+          "auto": 456,
+          "manual": 35
+        }
+      },
+      {
+        "appiumSessionId": "ac1a0f6f-612c-4ab7-aaba-e1e0bd0afc73",
+        "purpose": "Resume: TC-9 Retry-1/Retry-2, TC-10, TC-11, TC-12",
+        "date": "2026-10-12",
+        "capture": [
+          "recordDeviceScreen",
+          "captureDeviceScreenShots",
+          "captureDeviceLogs",
+          "captureNetworkLogs"
+        ],
+        "apkInstalled": "mzfile://616340f8-088e-418d-a630-5cd495a2324b (OK)",
+        "status": "stopped 2026-10-12 (was still active after MCP auth expiry; stopped via appium_stop_session, device RFGYC14B5NV released). Mozark test bf4d9598-87a3-4135-ae8e-ed8420ce3dff",
+        "manualScreenshots": {
+          "TC-9 Retry-1": [
+            "screenshot_2026_10_12-14_13_23_460.png (success FC793531 Rs0)",
+            "screenshot_2026_10_12-14_13_53_953.png (My Orders FC793337 Rs630 + Rs0)"
+          ],
+          "TC-9 Retry-2": [
+            "screenshot_2026_10_12-14_15_53_418.png",
+            "screenshot_2026_10_12-14_16_15_511.png"
+          ],
+          "TC-10": [
+            "screenshot_2026_10_12-14_18_03_095.png"
+          ],
+          "localCopies": "evidence/runA_tr1/"
+        },
+        "workarounds": "Cart opened via action-bar CART (n) button (853,174) instead of bottom VIEW CART; PROCEED TO CHECKOUT / PLACE ORDER tapped at upper visible edge (540,2185) instead of centre (540,2238); mobile: hideKeyboard before slot taps. Logged as TR-1 comments (no per-step comment API).",
+        "tr1Comments": [
+          "6acd2376d76b261186a43de5 (TC-9 Retry-1)",
+          "6acd2401b1d4e1ae8b9d62aa (TC-9 Retry-2)",
+          "6acd2479d76b261186a43f65 (TC-10 Run-1)"
+        ]
+      },
+      {
+        "appiumSessionId": "b1672ddc-0097-4172-9ca9-0faef59cb352",
+        "purpose": "Finish TR-1: TC-11 Run-1 (resumed), TC-12 Run-1, TC-7 isolated retest (Retry-3 + 2 on-device repeats)",
+        "date": "2026-10-13",
+        "capture": [
+          "recordDeviceScreen",
+          "captureDeviceScreenShots",
+          "captureDeviceLogs"
+        ],
+        "apkInstalled": "mzfile://616340f8-088e-418d-a630-5cd495a2324b (OK)",
+        "status": "stopped 2026-10-13",
+        "outputs": {
+          "video": "RFGYC14B5NV_2026_10_12-14_33_15_717_device_video.mp4",
+          "deviceLog": "RFGYC14B5NV_2026_10_12-14_33_15_device_log.txt",
+          "appiumLog": "appium_output.log",
+          "pageSources": 18,
+          "note": "Output filenames carry a 2026_10_12 timestamp (server/device clock), session was run 2026-10-13"
+        },
+        "stepEvidence": {
+          "TC-11 Run-1 s3": 1,
+          "TC-12 Run-1 s3": 1,
+          "TC-7 Retry-3 s2": 1,
+          "TC-7 Retry-3 s3": "3 (attempt 1 + repeats 2 and 3)"
+        },
+        "workarounds": "Same as before: cart via action-bar CART (n) (853,174); PROCEED TO CHECKOUT at (540,2185); hideKeyboard before slot/Apply taps; et_name left prefilled (partly under action bar, BUG-3). All taps via mobile: clickGesture.",
+        "tr1Comments": [
+          "6acd2a7fd76b261186a444bf (TC-11, TC-12, TC-7 Retry-3 + repeats, exact values)"
+        ]
+      }
+    ],
+    "bugs": [
+      {
+        "readableId": "BUG-1",
+        "id": "6acd26d7b1d4e1ae8b9d640d",
+        "title": "Checkout: double-tap on Place order creates a duplicate ₹0 order",
+        "severity": "Critical",
+        "priority": "High",
+        "status": "Open",
+        "linked": [
+          "TC-9",
+          "TR-1"
+        ],
+        "repro": "3/3",
+        "attachments": 4
+      },
+      {
+        "readableId": "BUG-2",
+        "id": "6acd2700d76b261186a43ff2",
+        "title": "Checkout blocked on Android 15: View cart / Proceed to checkout / Place order buttons sit under the system navigation bar — taps trigger Home and exit the app",
+        "severity": "Blocker",
+        "priority": "High",
+        "status": "Open",
+        "linked": [
+          "TC-8",
+          "TC-5",
+          "TR-1"
+        ],
+        "repro": "3/3 (TC-8)",
+        "attachments": 4
+      },
+      {
+        "readableId": "BUG-3",
+        "id": "6acd2710b1d4e1ae8b9d645f",
+        "title": "Search and cart editing unusable on Android 15: action bar covers the search box and the first cart item — tapping Remove/+ on first item exits the cart",
+        "severity": "Major",
+        "priority": "High",
+        "status": "Open",
+        "linked": [
+          "TC-3",
+          "TC-6",
+          "TC-1",
+          "TR-1"
+        ],
+        "repro": "3/3 (TC-3, TC-6)",
+        "attachments": 5
+      },
+      {
+        "readableId": "BUG-4",
+        "id": "6acd2baed76b261186a446e4",
+        "title": "Cart: SAVE50 stays shown as applied after subtotal drops below the ₹300 minimum — discount silently disappears with no message",
+        "severity": "Major",
+        "priority": "Medium",
+        "status": "Open",
+        "linked": [
+          "TC-7",
+          "TR-1"
+        ],
+        "repro": "3/3 (TC-7 Retry-3 + 2 on-device repeats, session b1672ddc)",
+        "attachments": 3,
+        "filed": "2026-10-13"
+      }
+    ],
+    "evidence": {
+      "updated": "2026-10-13",
+      "note": "Evidence strengthening from existing session assets only (no device sessions). Bug descriptions BUG-1..BUG-4 got an appended EVIDENCE section; no titles changed (BUG-3 title already leads with the blocked journey). Appium server log clock is device time +4 h.",
+      "mozarkTestIds": {
+        "a17eade4-9a1e-46dd-8d4c-667b24999df9": "27aab0af-4f08-45e7-8792-c58983ead7f8",
+        "ac1a0f6f-612c-4ab7-aaba-e1e0bd0afc73": "bf4d9598-87a3-4135-ae8e-ed8420ce3dff",
+        "b1672ddc-0097-4172-9ca9-0faef59cb352": "4dce2fe2-c1d7-4cad-96b1-96224679cbdf"
+      },
+      "deviceLogs": {
+        "a17eade4-9a1e-46dd-8d4c-667b24999df9": "RFGYC14B5NV_2026_10_12-13_24_57_device_log.txt (available, ~28 MB)",
+        "ac1a0f6f-612c-4ab7-aaba-e1e0bd0afc73": "RFGYC14B5NV_2026_10_12-14_10_21_device_log.txt (available)",
+        "b1672ddc-0097-4172-9ca9-0faef59cb352": "RFGYC14B5NV_2026_10_12-14_33_15_device_log.txt (available)"
+      },
+      "localFolder": "evidence/proof/",
+      "candidatesFolder": "evidence/candidates_a17/ (all 35 manual screenshots of a17eade4 + 4 auto shots)",
+      "BUG-2": {
+        "attached": [
+          {
+            "file": "BUG2_1_checkout_PLACE_ORDER_under_navbar_TC8.png",
+            "source": "a17eade4 auto RFGYC14B5NV_2026-10-12T13-50-34-723757.jpg",
+            "bucketPath": "bugs/BUG-2/attachments/BUG2_1_checkout_PLACE_ORDER_under_navbar_TC8_1791836816301_79877ce9.png",
+            "stepEvidence": "TR-1 / TC-8 / Run-1 / s6"
+          },
+          {
+            "file": "BUG2_2_launcher_after_PLACE_ORDER_tap_TC8.png",
+            "source": "a17eade4 auto RFGYC14B5NV_2026-10-12T13-50-45-742332.jpg",
+            "bucketPath": "bugs/BUG-2/attachments/BUG2_2_launcher_after_PLACE_ORDER_tap_TC8_1791836818587_9c33f9e3.png",
+            "stepEvidence": "TR-1 / TC-8 / Run-1 / s6"
+          },
+          {
+            "file": "BUG2_3_cart_PROCEED_TO_CHECKOUT_under_navbar_TC8.png",
+            "source": "a17eade4 auto RFGYC14B5NV_2026-10-12T13-49-05-213976.jpg",
+            "bucketPath": "bugs/BUG-2/attachments/BUG2_3_cart_PROCEED_TO_CHECKOUT_under_navbar_TC8_1791836820884_29588988.png",
+            "stepEvidence": "TR-1 / TC-8 / Run-1 / s1"
+          }
+        ],
+        "attachmentsTotal": 4
+      },
+      "BUG-3": {
+        "attached": [
+          {
+            "file": "BUG3_1_home_searchbox_hidden_under_actionbar_TC3.png",
+            "source": "a17eade4 screenshot_2026_10_12-13_33_04_229.png",
+            "bucketPath": "bugs/BUG-3/attachments/BUG3_1_home_searchbox_hidden_under_actionbar_TC3_1791836823719_e0a249a2.png",
+            "stepEvidence": "TR-1 / TC-3 / Run-1 / s1"
+          },
+          {
+            "file": "BUG3_2_cart_first_item_under_actionbar_TC6.png",
+            "source": "a17eade4 screenshot_2026_10_12-13_40_25_445.png",
+            "bucketPath": "bugs/BUG-3/attachments/BUG3_2_cart_first_item_under_actionbar_TC6_1791836827391_d1defc6b.png",
+            "stepEvidence": "TR-1 / TC-6 / Retry-1 (runNumber 2) / s2"
+          },
+          {
+            "file": "BUG3_3_home_after_Remove_tap_cart_unchanged_TC6.png",
+            "source": "a17eade4 screenshot_2026_10_12-13_40_43_641.png",
+            "bucketPath": "bugs/BUG-3/attachments/BUG3_3_home_after_Remove_tap_cart_unchanged_TC6_1791836829672_682b09c1.png",
+            "stepEvidence": "TR-1 / TC-6 / Retry-1 (runNumber 2) / s3"
+          }
+        ],
+        "attachmentsTotal": 5
+      },
+      "BUG-1": {
+        "attached": [],
+        "descriptionOnly": "Evidence section added; points to Run-1 screenshots screenshot_2026_10_12-13_59_34_801.png / 13_59_53_246.png in a17eade4 (not attached)"
+      },
+      "BUG-4": {
+        "attached": [],
+        "descriptionOnly": "Evidence section added; notes the 3 attached repro PNGs are pixel-identical (same end state) and points to after-Apply screenshot_2026_10_12-14_40_24_079.png"
+      }
+    },
+    "bugsNote": "Filed 2026-10-12 with linkedWorkItems (no create-bug-from-step tool exists). TC-7 s3 SAVE50 below-minimum candidate: isolated from BUG-3 and reproduced 3/3 on 2026-10-13 (session b1672ddc), filed as BUG-4 on 2026-10-13",
+    "results": {
+      "TC-1": "Failed x3 (Run-1, Retry-1, Retry-2): s1-s3 Passed, s4 Failed - Home greeting/search hidden under bars",
+      "TC-2": "Passed (Run-1): s1-s4 Passed",
+      "TC-3": "Failed x3: s1 Failed (search field not focusable, action bar absorbs tap), s2 Blocked",
+      "TC-4": "Passed (Run-1): s1 Passed",
+      "TC-5": "Passed (Run-1): s1-s3 Passed",
+      "TC-6": "Failed x3: s1-s3 Failed (+ qty and Remove taps swallowed by title bar)",
+      "TC-7": "Failed x4 (Run-1, Retry-1, Retry-2, Retry-3). Retry-3 (2026-10-13) = isolated retest with Mango in row 2 (BUG-3 avoided): s1-s2 Passed, s3 Failed; reproduced 3/3 (Retry-3 + 2 on-device repeats in the same session, since TCM caps runs at Retry-3). After Apply: 'SAVE50 applied', button REMOVE, Subtotal ₹630, 'Discount (SAVE50): -₹50', Delivery FREE, Total ₹580. After Remove Alphonso Mango: Subtotal ₹180, status STILL 'SAVE50 applied', button STILL 'REMOVE', coupon field 'SAVE50', tv_discount row gone, Delivery ₹40, Total ₹220. Coupon not removed or flagged as not applicable, and the discount silently dropped. Filed as BUG-4.",
+      "TC-8": "Failed x3: s1 Failed, s2-s5 Passed, s6 Failed (bottom buttons tap system Home), s7 Passed; orders FC471966, FC661327, FC828244",
+      "TC-9": "Failed x3 (reproduced 3/3). Run-1: s1 Passed, s2-s3 Failed (FC965343 Rs630 + FC965543 Rs0). Retry-1: s1 Passed, s2-s3 Failed (FC793337 Rs630 + FC793531 Rs0). Retry-2: s1 Passed, s2-s3 Failed (FC944471 Rs630 + FC944663 Rs0)",
+      "TC-10": "Passed (Run-1): s1-s3 Passed - mobile 98765 -> 'Enter a valid 10-digit mobile number', My Orders empty (no order placed)",
+      "TC-11": "Passed (Run-1, completed 2026-10-13 after the auth-expiry interruption; all steps re-executed): s1-s3 Passed. Demo User / 9876543210 / 12 MG Road Bandra West / 400050 / Tomorrow 8 AM - 10 AM all kept after LANDSCAPE -> PORTRAIT",
+      "TC-12": "Passed (Run-1, 2026-10-13): s1-s3 Passed. Profile -> LOG OUT -> Login screen; relaunch -> Login screen; after logging in again CART (0)"
+    },
+    "ordersObserved": {
+      "TC-8": [
+        "FC471966",
+        "FC661327",
+        "FC828244"
+      ],
+      "TC-9 Run-1": [
+        "FC965343 Rs630",
+        "FC965543 Rs0"
+      ],
+      "TC-9 Retry-1": [
+        "FC793337 Rs630 (Alphonso Mango x1, Apple Shimla x1)",
+        "FC793531 Rs0 (no items)"
+      ],
+      "TC-9 Retry-2": [
+        "FC944471 Rs630 (Alphonso Mango x1, Apple Shimla x1)",
+        "FC944663 Rs0 (no items)"
+      ],
+      "TC-10 Run-1": []
+    }
+  }
+}

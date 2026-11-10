@@ -1,0 +1,66 @@
+[
+  {
+    "id": "L2-BUG-2",
+    "bug": "BUG-79",
+    "name": "Typo route /suport 404",
+    "status": "REPRODUCED",
+    "screenshot": "playwright_suite/reports/defects\\repro_01_suport_404.png"
+  },
+  {
+    "id": "L2-BUG-3",
+    "bug": "BUG-80",
+    "name": "Public coupon 401 barrier",
+    "status": "REPRODUCED",
+    "status_code": 401
+  },
+  {
+    "id": "L2-BUG-1",
+    "bug": "BUG-78",
+    "name": "Coupon accumulator leak",
+    "status": "REPRODUCED",
+    "screenshot": "playwright_suite/reports/defects\\repro_03_coupon_accumulator.png"
+  },
+  {
+    "id": "L2-BUG-4",
+    "bug": "BUG-81",
+    "name": "Client createOrder mismatch",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-5",
+    "bug": "BUG-82",
+    "name": "Quiz multi-select state wipe",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-6",
+    "bug": "BUG-83",
+    "name": "Certificate lock gating bypass",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-7",
+    "bug": "BUG-84",
+    "name": "Orders route 404 discrepancy",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-8",
+    "bug": "BUG-85",
+    "name": "Mentor slot concurrency collision",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-9",
+    "bug": "BUG-86",
+    "name": "Password validation regex disparity",
+    "status": "REPRODUCED",
+    "screenshot": "playwright_suite/reports/defects\\repro_09_auth_password_rules.png"
+  },
+  {
+    "id": "L2-BUG-10",
+    "bug": "BUG-87",
+    "name": "Razorpay test signature exposure",
+    "status": "REPRODUCED"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "console_errors": [
+    {
+      "type": "warning",
+      "text": "Unrecognized feature: 'web-share'.",
+      "url": "https://testing.dev.mozark.ai/"
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "screenshots": [
+    "01_home_landing.png",
+    "02_courses_catalog.png",
+    "05_mentors_catalog.png",
+    "06_mentor_detail_booking.png",
+    "07_auth_login.png",
+    "08_auth_register.png",
+    "09_support_page.png",
+    "10_typo_route_suport_404.png",
+    "11_learner_dashboard.png",
+    "12_admin_portal.png"
+  ]
+}

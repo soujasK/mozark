@@ -1,0 +1,282 @@
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/build.gradle.kts FreshCart-v1.0.1/app/build.gradle.kts
+--- FreshCart-v1.0.0/app/build.gradle.kts	2026-10-13 13:41:32.289125000 +0530
++++ FreshCart-v1.0.1/app/build.gradle.kts	2026-10-13 13:45:42.893726400 +0530
+@@ -1,39 +1,39 @@
+-plugins {
+-    alias(libs.plugins.android.application)
+-}
+-
+-android {
+-    namespace = "com.fromprompt.freshcart"
+-    compileSdk {
+-        version = release(36)
+-    }
+-
+-    defaultConfig {
+-        applicationId = "com.fromprompt.freshcart"
+-        minSdk = 24
+-        targetSdk = 36
+-        versionCode = 1
+-        versionName = "1.0.0"
+-    }
+-
+-    buildTypes {
+-        release {
+-            isMinifyEnabled = false
+-            proguardFiles(
+-                getDefaultProguardFile("proguard-android-optimize.txt"),
+-                "proguard-rules.pro"
+-            )
+-        }
+-    }
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_11
+-        targetCompatibility = JavaVersion.VERSION_11
+-    }
+-}
+-
+-dependencies {
+-    implementation(libs.appcompat)
+-    implementation(libs.material)
+-    implementation(libs.activity)
+-    implementation(libs.constraintlayout)
+-}
++plugins {
++    alias(libs.plugins.android.application)
++}
++
++android {
++    namespace = "com.fromprompt.freshcart"
++    compileSdk {
++        version = release(36)
++    }
++
++    defaultConfig {
++        applicationId = "com.fromprompt.freshcart"
++        minSdk = 24
++        targetSdk = 36
++        versionCode = 4
++        versionName = "1.0.1"
++    }
++
++    buildTypes {
++        release {
++            isMinifyEnabled = false
++            proguardFiles(
++                getDefaultProguardFile("proguard-android-optimize.txt"),
++                "proguard-rules.pro"
++            )
++        }
++    }
++    compileOptions {
++        sourceCompatibility = JavaVersion.VERSION_11
++        targetCompatibility = JavaVersion.VERSION_11
++    }
++}
++
++dependencies {
++    implementation(libs.appcompat)
++    implementation(libs.material)
++    implementation(libs.activity)
++    implementation(libs.constraintlayout)
++}
+Only in FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart: BaseActivity.java
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/CartActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/CartActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/CartActivity.java	2026-10-13 13:41:16.508727200 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/CartActivity.java	2026-10-13 13:46:30.565934800 +0530
+@@ -15,7 +15,7 @@
+ import java.util.ArrayList;
+ import java.util.Map;
+ 
+-public class CartActivity extends AppCompatActivity {
++public class CartActivity extends BaseActivity {
+     private final CartManager cart = CartManager.get();
+ 
+     private LinearLayout listCart;
+@@ -81,6 +81,12 @@
+     }
+ 
+     private void render() {
++        String couponDropped = cart.revalidateCoupon();
++        if (couponDropped != null) {
++            etCoupon.setText("");
++            showCouponStatus(couponDropped, true);
++        }
++
+         boolean empty = cart.isEmpty();
+         layoutEmpty.setVisibility(empty ? View.VISIBLE : View.GONE);
+         layoutContent.setVisibility(empty ? View.GONE : View.VISIBLE);
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/CartManager.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/CartManager.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/CartManager.java	2026-10-13 13:39:51.803135400 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/CartManager.java	2026-10-13 13:46:29.187889500 +0530
+@@ -94,6 +94,18 @@
+         coupon = null;
+     }
+ 
++    /**
++     * Re-checks the applied coupon after the cart changes. Returns a message if the coupon
++     * no longer qualifies and was removed, otherwise null.
++     */
++    public String revalidateCoupon() {
++        if ("SAVE50".equals(coupon) && subtotal() < 300) {
++            coupon = null;
++            return "SAVE50 removed: it needs a minimum order of ₹300";
++        }
++        return null;
++    }
++
+     public int discount() {
+         if (coupon == null) return 0;
+         int sub = subtotal();
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/CheckoutActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/CheckoutActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/CheckoutActivity.java	2026-10-13 13:41:17.881988300 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/CheckoutActivity.java	2026-10-13 13:46:27.866051100 +0530
+@@ -19,7 +19,7 @@
+ 
+ import java.util.Map;
+ 
+-public class CheckoutActivity extends AppCompatActivity {
++public class CheckoutActivity extends BaseActivity {
+     private final CartManager cart = CartManager.get();
+ 
+     private EditText etName;
+@@ -32,6 +32,7 @@
+     private TextView tvError;
+     private Button btnPlaceOrder;
+     private View progress;
++    private boolean placingOrder;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -67,6 +68,9 @@
+     }
+ 
+     private void placeOrder() {
++        // Ignore repeat taps while an order is already being placed.
++        if (placingOrder) return;
++
+         String name = etName.getText().toString().trim();
+         String phone = etPhone.getText().toString().trim();
+         String address = etAddress.getText().toString().trim();
+@@ -75,7 +79,9 @@
+         boolean isUpi = rgPayment.getCheckedRadioButtonId() == R.id.rb_upi;
+ 
+         String error = null;
+-        if (name.isEmpty()) {
++        if (cart.isEmpty()) {
++            error = "Your cart is empty";
++        } else if (name.isEmpty()) {
+             error = "Please enter your name";
+         } else if (!phone.matches("[6-9][0-9]{9}")) {
+             error = "Enter a valid 10-digit mobile number";
+@@ -99,6 +105,8 @@
+         String slot = ((RadioButton) findViewById(rgSlot.getCheckedRadioButtonId())).getText().toString();
+         String payment = isUpi ? "UPI (" + upi + ")" : "Cash on delivery";
+ 
++        placingOrder = true;
++        btnPlaceOrder.setEnabled(false);
+         progress.setVisibility(View.VISIBLE);
+         btnPlaceOrder.setText("Placing order...");
+ 
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/HomeActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/HomeActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/HomeActivity.java	2026-10-13 13:40:32.435989800 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/HomeActivity.java	2026-10-13 13:46:10.848837300 +0530
+@@ -21,7 +21,7 @@
+ 
+ import java.util.List;
+ 
+-public class HomeActivity extends AppCompatActivity {
++public class HomeActivity extends BaseActivity {
+     private LinearLayout listProducts;
+     private TextView tvEmpty;
+     private EditText etSearch;
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/LoginActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/LoginActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/LoginActivity.java	2026-10-13 13:40:29.775183700 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/LoginActivity.java	2026-10-13 13:46:10.665405200 +0530
+@@ -10,7 +10,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-public class LoginActivity extends AppCompatActivity {
++public class LoginActivity extends BaseActivity {
+     private Store store;
+     private EditText etEmail;
+     private EditText etPassword;
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/OrderSuccessActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/OrderSuccessActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/OrderSuccessActivity.java	2026-10-12 20:52:33.000000000 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/OrderSuccessActivity.java	2026-10-13 13:46:11.035564100 +0530
+@@ -9,7 +9,7 @@
+ import org.json.JSONException;
+ import org.json.JSONObject;
+ 
+-public class OrderSuccessActivity extends AppCompatActivity {
++public class OrderSuccessActivity extends BaseActivity {
+     public static final String EXTRA_ORDER = "order_json";
+ 
+     @Override
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/OrdersActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/OrdersActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/OrdersActivity.java	2026-10-13 13:41:19.235572000 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/OrdersActivity.java	2026-10-13 13:46:11.104695500 +0530
+@@ -15,7 +15,7 @@
+ import java.util.Date;
+ import java.util.Locale;
+ 
+-public class OrdersActivity extends AppCompatActivity {
++public class OrdersActivity extends BaseActivity {
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/ProductDetailActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/ProductDetailActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/ProductDetailActivity.java	2026-10-13 13:40:33.767975500 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/ProductDetailActivity.java	2026-10-13 13:46:10.893831700 +0530
+@@ -8,7 +8,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-public class ProductDetailActivity extends AppCompatActivity {
++public class ProductDetailActivity extends BaseActivity {
+     public static final String EXTRA_ID = "product_id";
+ 
+     private Product product;
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/ProfileActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/ProfileActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/ProfileActivity.java	2026-10-13 13:41:20.622956400 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/ProfileActivity.java	2026-10-13 13:46:11.178957500 +0530
+@@ -6,7 +6,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-public class ProfileActivity extends AppCompatActivity {
++public class ProfileActivity extends BaseActivity {
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/SignupActivity.java FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/SignupActivity.java
+--- FreshCart-v1.0.0/app/src/main/java/com/fromprompt/freshcart/SignupActivity.java	2026-10-13 13:40:31.116506800 +0530
++++ FreshCart-v1.0.1/app/src/main/java/com/fromprompt/freshcart/SignupActivity.java	2026-10-13 13:46:10.785386100 +0530
+@@ -9,7 +9,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-public class SignupActivity extends AppCompatActivity {
++public class SignupActivity extends BaseActivity {
+     private EditText etName;
+     private EditText etEmail;
+     private EditText etPassword;
+Only in FreshCart-v1.0.1/app/src/main/res/layout: activity_base.xml
+diff -ru '--exclude=build' '--exclude=.gradle' '--exclude=local.properties' FreshCart-v1.0.0/app/src/main/res/values/themes.xml FreshCart-v1.0.1/app/src/main/res/values/themes.xml
+--- FreshCart-v1.0.0/app/src/main/res/values/themes.xml	2026-10-12 20:54:12.000000000 +0530
++++ FreshCart-v1.0.1/app/src/main/res/values/themes.xml	2026-10-13 13:46:01.583892500 +0530
+@@ -1,12 +1,11 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <style name="Theme.FreshCart" parent="Theme.MaterialComponents.Light.DarkActionBar">
++    <style name="Theme.FreshCart" parent="Theme.MaterialComponents.Light.NoActionBar">
+         <item name="colorPrimary">@color/green_700</item>
+         <item name="colorPrimaryVariant">@color/green_900</item>
+         <item name="colorOnPrimary">@android:color/white</item>
+         <item name="colorSecondary">@color/orange_500</item>
+         <item name="colorOnSecondary">@android:color/white</item>
+-        <item name="android:statusBarColor">@color/green_900</item>
+     </style>
+ 
+     <style name="FreshCart.Title" parent="">

@@ -1,0 +1,99 @@
+"Title","Description","Type","Priority","Labels","Preconditions","Steps","Expected Result"
+"TC-25 Account lock clears after successful reset","Account lock clears after successful reset","Manual","Critical","login;security","Use a fresh test account (NOT the demo account): sign up lock@test.com / Fresh#2026","1. Log in with lock@test.com and wrong password Wrong#1 three times
+2. Wait 2 minutes
+3. Log in with the correct password Fresh#2026","After a short wait the correct password logs the user in"
+"TC-26 Forgot password temporary password works","Forgot password temporary password works","Manual","Critical","login;password","Logged out; account forgot@test.com / Fresh#2026 exists","1. Enter email forgot@test.com
+2. Tap Forgot password?
+3. Note the temporary password shown
+4. Enter it in Password and tap Log in","Login succeeds with the temporary password"
+"TC-27 Sign up rejects mismatched confirm password","Sign up rejects mismatched confirm password","Manual","High","signup","Logged out","1. Open Create account
+2. Name Ana Rao, email ana@test.com
+3. Password Fresh#2026, confirm Other#2026
+4. Tap Create account","Error 'Passwords do not match'; no account is created"
+"TC-28 Change password updates the password","Change password updates the password","Manual","Critical","profile;password","Logged in as an account with password Fresh#2026","1. Menu > Profile > Edit profile / Change password
+2. Current Fresh#2026, New Newer#2026
+3. Tap Update password
+4. Log out and log in with Newer#2026","Login with the new password succeeds"
+"TC-29 Back after sign up does not return to the form","Back after sign up does not return to the form","Manual","Medium","signup;navigation","Logged out","1. Create a new account successfully
+2. On Home, press the device Back button","The app exits; the sign-up form is not shown again"
+"TC-30 Edit profile saves a valid phone","Edit profile saves a valid phone","Manual","High","profile","Logged in","1. Open Edit profile
+2. Enter phone 9876543210
+3. Tap Save profile","'Profile updated'; Profile shows Phone: 9876543210"
+"TC-31 Home greeting updates after name change","Home greeting updates after name change","Manual","Medium","profile;home","Logged in as Demo User","1. Edit profile: change name to Demo Updated, Save
+2. Go back to Home","Home greeting shows 'Hi, Demo Updated!'"
+"TC-32 My Orders shows only the current user's orders","My Orders shows only the current user's orders","Manual","Critical","orders;security","Demo user has orders; a second account second@test.com exists","1. Open My Orders as demo and note the orders
+2. Log out and log in as second@test.com
+3. Open My Orders","second@test.com sees only their own orders (none)"
+"TC-33 Sort by price low to high","Sort by price low to high","Manual","High","home;sort","Logged in","1. On Home, set Sort by = Price: Low to High","Products listed ₹25, ₹30, ₹35, ₹40 ..."
+"TC-34 Sort by price high to low","Sort by price high to low","Manual","High","home;sort","Logged in","1. On Home, set Sort by = Price: High to Low","First product is Alphonso Mango ₹450"
+"TC-35 Search with trailing space","Search with trailing space","Manual","Medium","search","Logged in, search box visible","1. Type 'Banana ' (with a trailing space) in search","Banana is listed"
+"TC-36 Search within selected category","Search within selected category","Manual","Medium","search;filter","Logged in","1. Tap the Dairy chip
+2. Type P in search","Only Paneer (Dairy) is listed"
+"TC-37 Bakery category lists all bakery items","Bakery category lists all bakery items","Manual","High","home;filter","Logged in","1. Tap the Bakery chip","Whole Wheat Bread, Croissant and Multigrain Cookies are listed"
+"TC-38 Search text is kept after viewing a product","Search text is kept after viewing a product","Manual","Medium","search;navigation","Logged in","1. Search Apple
+2. Open Apple Shimla
+3. Press Back","Search box still shows Apple with filtered results"
+"TC-39 Category filter is kept after viewing a product","Category filter is kept after viewing a product","Manual","Medium","filter;navigation","Logged in","1. Tap Dairy
+2. Open Paneer
+3. Press Back","Dairy chip selected and only dairy products listed"
+"TC-40 Dairy price consistent between product page and cart","Dairy price consistent between product page and cart","Manual","High","product;pricing","Logged in, cart empty","1. Open Paneer (Home shows ₹90)
+2. Note the price
+3. Add to cart and open the cart","Same price on Home, product page and cart"
+"TC-41 Top bar cart count updates","Top bar cart count updates","Manual","Medium","home;cart","Logged in, cart empty","1. Add Banana from Home
+2. Look at CART (n) in the top bar","Shows CART (1)"
+"TC-42 Quantity selector respects stock","Quantity selector respects stock","Manual","Medium","product;stock","Logged in","1. Open Alphonso Mango (In stock: 5)
+2. Tap + 10 times","Quantity stops at 5"
+"TC-43 Remove the right item from the wishlist","Remove the right item from the wishlist","Manual","High","wishlist","Wishlist has Banana then Apple Shimla","1. Open My Wishlist
+2. Tap Remove on Apple Shimla","Apple Shimla is removed; Banana remains"
+"TC-44 Move to cart from wishlist","Move to cart from wishlist","Manual","Critical","wishlist;cart","Wishlist has Banana; cart empty","1. Open My Wishlist
+2. Tap Move to cart on Banana
+3. Open the cart","Banana x 1 is in the cart"
+"TC-45 Wishlist is private to each account","Wishlist is private to each account","Manual","High","wishlist;security","Demo wishlist has Banana","1. Log out
+2. Log in as second@test.com
+3. Open My Wishlist","Wishlist is empty"
+"TC-46 Open Spinach product page","Open Spinach product page","Manual","Critical","product;crash","Logged in","1. On Home, tap the Spinach row","Spinach details open"
+"TC-47 Clear cart cancel keeps items","Clear cart cancel keeps items","Manual","High","cart","Cart has items","1. In the cart tap Clear cart
+2. Tap Cancel","The cart is unchanged"
+"TC-48 Subtotal counts quantities","Subtotal counts quantities","Manual","Critical","cart;pricing","Cart has Banana x 1","1. In the cart tap + on Banana (qty 2)","Line shows ₹60 x 2 = ₹120 and Subtotal ₹120"
+"TC-49 Free delivery above ₹499","Free delivery above ₹499","Manual","High","cart;delivery","Cart subtotal ₹630 (Mango + Apple)","1. Open the cart and read Delivery","Delivery: FREE (as promised for orders above ₹499)"
+"TC-50 Lowercase coupon code accepted","Lowercase coupon code accepted","Manual","Medium","coupon","Cart subtotal at least ₹300","1. Enter save50 (lowercase) and tap Apply","SAVE50 applied"
+"TC-51 Coupon does not carry over to the next order","Coupon does not carry over to the next order","Manual","Critical","coupon;checkout","Place an order with FRESH10 applied","1. After the order, add Banana to the cart
+2. Open the cart","No coupon applied; no discount"
+"TC-52 Cart + respects stock","Cart + respects stock","Manual","High","cart;stock","Cart has Alphonso Mango x 5 (stock 5)","1. In the cart tap + on Mango","Quantity stays 5 with a stock message"
+"TC-53 Cart count shows number of units","Cart count shows number of units","Manual","Medium","home;cart","Cart empty","1. Add Banana, then in the cart set Banana qty 3
+2. Return to Home","View cart (3)"
+"TC-54 Removing a coupon updates the totals","Removing a coupon updates the totals","Manual","High","coupon;cart","Cart at least ₹300 with SAVE50 applied","1. Tap Remove next to the coupon","Discount row disappears and the total increases by ₹50"
+"TC-55 Removing the last item empties the cart","Removing the last item empties the cart","Manual","Critical","cart;checkout","Cart has only Banana","1. Tap Remove on Banana
+2. Tap Proceed to checkout and place an order","Empty-cart screen shown; checkout not possible"
+"TC-56 Name with apostrophe accepted at checkout","Name with apostrophe accepted at checkout","Manual","High","checkout;validation","Cart not empty","1. At checkout enter name Anil D'Souza and other valid details
+2. Place order","Order is placed"
+"TC-57 Mobile number starting with 6 accepted","Mobile number starting with 6 accepted","Manual","High","checkout;validation","Cart not empty","1. At checkout enter mobile 6123456789 and other valid details
+2. Place order","Order is placed"
+"TC-58 Delhi pincode accepted","Delhi pincode accepted","Manual","High","checkout;validation","Cart not empty","1. At checkout enter pincode 110001 and other valid details
+2. Place order","Order is placed"
+"TC-59 Address with comma accepted","Address with comma accepted","Manual","High","checkout;validation","Cart not empty","1. At checkout enter address '12, MG Road, Bandra' and other valid details
+2. Place order","Order is placed"
+"TC-60 Delivery tip adds the chosen amount","Delivery tip adds the chosen amount","Manual","High","checkout;tip","Cart total ₹80 (Tomato ₹40 + ₹40 delivery)","1. Open checkout with tip None
+2. Select ₹10 tip","Amount payable ₹80 with None, ₹90 with ₹10"
+"TC-61 Selecting ₹30 tip","Selecting ₹30 tip","Manual","Critical","checkout;crash","At checkout","1. Tap the ₹30 tip option","₹30 is added to the amount payable"
+"TC-62 Order total includes tip and express fee","Order total includes tip and express fee","Manual","High","checkout;pricing","Cart not empty","1. Choose Express and tip ₹10, note Amount payable
+2. Place order","'Total paid' equals the Amount payable"
+"TC-63 Switching payment back to COD","Switching payment back to COD","Manual","High","checkout;payment","Cart not empty","1. Select UPI and type abc
+2. Switch back to Cash on delivery
+3. Place order with valid details","Order placed with payment Cash on delivery"
+"TC-64 Short delivery instructions","Short delivery instructions","Manual","Critical","checkout;crash","Cart not empty","1. Enter valid details and instructions 'Ring the bell'
+2. Place order","Order is placed"
+"TC-65 Saved address prefills correctly","Saved address prefills correctly","Manual","High","checkout;address","Previous order placed with 'Save this address' ticked (phone 9876543210, pincode 400050)","1. Start a new checkout","Phone 9876543210 and pincode 400050 prefilled in the right fields"
+"TC-66 Amount payable reflects coupon","Amount payable reflects coupon","Manual","High","checkout;coupon","Cart ₹630 with SAVE50 (cart total ₹580)","1. Open checkout and read Amount payable","Amount payable ₹580 plus any tip"
+"TC-67 Express fee charged once","Express fee charged once","Manual","Medium","checkout;pricing","Cart not empty","1. Select Express (30 min) +₹25","Amount payable increases by ₹25"
+"TC-68 Checkout name prefilled with the logged-in user","Checkout name prefilled with the logged-in user","Manual","Medium","checkout","Logged in as second@test.com (name Second User)","1. Open checkout","Name field shows Second User"
+"TC-69 Order IDs are unique","Order IDs are unique","Manual","High","orders","Cart not empty","1. Place an order
+2. Within the same minute place another order","Two different order IDs"
+"TC-70 Order details open the tapped order","Order details open the tapped order","Manual","High","orders","At least 3 orders exist","1. Open My Orders
+2. Tap the top (newest) order","Details of that same order"
+"TC-71 Cancelled order stays cancelled","Cancelled order stays cancelled","Manual","Critical","orders","An order with status Placed","1. Open its details, Cancel order, Yes
+2. Go back and reopen the order","Status: Cancelled"
+"TC-72 Reorder keeps the original quantities","Reorder keeps the original quantities","Manual","High","orders;cart","An order with Banana x 3","1. Open the order and tap Reorder","Cart has Banana x 3"
+"TC-73 Order date shows today","Order date shows today","Manual","Medium","orders","Place an order","1. Open My Orders","Date shows today's date"
+"TC-74 First order appears in My Orders","First order appears in My Orders","Manual","Critical","orders","New account with no orders","1. Place one order
+2. Open My Orders","The order is listed"

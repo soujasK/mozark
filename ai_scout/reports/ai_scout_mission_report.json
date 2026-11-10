@@ -1,0 +1,40 @@
+{
+  "mission": "Mozark Autonomous AI Scout Exploration",
+  "target": "https://testing.dev.mozark.ai",
+  "candidate": "Soujas Kudchadker (NMIMS)",
+  "timestamp": "2026-11-10 16:42:38",
+  "elapsedSeconds": 10.13,
+  "routesDiscovered": [
+    "/",
+    "/auth",
+    "/certificates",
+    "/courses",
+    "/dashboard",
+    "/events",
+    "/mentors",
+    "/orders",
+    "/suport",
+    "mailto:hello@edulearning.in"
+  ],
+  "elementsInspected": 0,
+  "totalNetworkCalls": 188,
+  "totalAnomaliesDiscovered": 3,
+  "anomalies": [
+    {
+      "type": "BROKEN_ROUTE",
+      "route": "/suport",
+      "finding": "Navigation route /suport renders 404 catch-all page",
+      "proof": "ai_scout/reports\\scout_route__suport.png"
+    },
+    {
+      "type": "AUTH_BARRIER_ON_PUBLIC_API",
+      "endpoint": "/api/coupons/validate",
+      "finding": "Coupon validation is gated behind JWT auth, blocking prospective learners"
+    },
+    {
+      "type": "ROUTE_DISCREPANCY",
+      "endpoint": "/api/orders",
+      "finding": "Orders endpoint returned 401; client component expects payment orders router"
+    }
+  ]
+}
