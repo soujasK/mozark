@@ -2,8 +2,8 @@
   "mission": "Mozark Autonomous AI Scout Exploration",
   "target": "https://testing.dev.mozark.ai",
   "candidate": "Soujas Kudchadker (NMIMS)",
-  "timestamp": "2026-11-10 16:42:38",
-  "elapsedSeconds": 10.13,
+  "timestamp": "2026-11-10 20:23:00",
+  "elapsedSeconds": 11.15,
   "routesDiscovered": [
     "/",
     "/auth",
@@ -17,7 +17,7 @@
     "mailto:hello@edulearning.in"
   ],
   "elementsInspected": 0,
-  "totalNetworkCalls": 188,
+  "totalNetworkCalls": 191,
   "totalAnomaliesDiscovered": 3,
   "anomalies": [
     {

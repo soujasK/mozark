@@ -5,6 +5,7 @@ ZIP_NAME = "Mozark_Level2_NMIMS_Master_Submission.zip"
 BASE_DIR = r"c:\Users\kudch\Downloads\mozark"
 
 files_to_include = [
+    "ROUND2_AND_BONUS_MASTER_CLEARANCE.md",
     "LEVEL2_AUDITED_SUBMISSION_DOSSIER.md",
     "LEVEL2_SUBMISSION_SHOWCASE.html",
     "LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html",
@@ -12,6 +13,7 @@ files_to_include = [
     "LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md",
     "LEVEL2_EXECUTIVE_PITCH_DECK.html",
     "LEVEL2_VIDEO_PITCH_SCRIPT.md",
+    "README.md",
     "run_evaluation.py",
     "run_submission.bat",
     "mozark_ids.json",
