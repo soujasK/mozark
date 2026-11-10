@@ -1,6 +1,9 @@
 # Mozark Back to Campus Hackathon 2026: "From Prompt to Performance"
 ## Enterprise Quality Engineering, Automated Verification & Full-Stack Defect Remediation
 
+[![Level 2 Quality Engineering CI/CD](https://github.com/soujasK/mozark/actions/workflows/mozark_level2_ci.yml/badge.svg)](https://github.com/soujasK/mozark/actions/workflows/mozark_level2_ci.yml)
+[![Release](https://img.shields.io/github/v/release/soujasK/mozark)](https://github.com/soujasK/mozark/releases/tag/v2.0.0)
+
 **Participant:** Soujas Kudchadker (`soujas.kudchadker13@nmims.in`)  
 **Institution:** NMIMS  
 **Mozark Organization:** `SoujasK_NMIMS` (`a57bcf7b-de33-48c0-b696-e42e811d4a44`)  
@@ -20,14 +23,15 @@ This repository contains the complete, audited quality engineering submission fo
 
 | Deliverable | Description | Format |
 | :--- | :--- | :---: |
-| [LEVEL2_SUBMISSION_SHOWCASE.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_SUBMISSION_SHOWCASE.html) | Interactive Evaluator Showcase: Live Defective vs. Patched interactive test-benches, test run telemetry, and 27-defect inspection | Interactive HTML |
-| [LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html) | Bonus Round Remediation Lab: Interactive selector for all 27 defects (`BUG-78` to `BUG-104`), side-by-side vulnerable vs. patched code, diffs, and MCP CLI commands | Interactive HTML |
-| [LEVEL2_AUDITED_SUBMISSION_DOSSIER.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_AUDITED_SUBMISSION_DOSSIER.md) | Master Audit Dossier: 81 test cases, 80 requirements, 27 defect tickets, 100% pass rate across 8 locked suites, and GCS binary screenshot evidence | Markdown |
+| [LEVEL2_SUBMISSION_SHOWCASE.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_SUBMISSION_SHOWCASE.html) | Interactive Evaluator Showcase: Live Defective vs. Patched interactive test-benches, test run telemetry, and 100-defect inspection | Interactive HTML |
+| [LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html) | Bonus Round Remediation Lab: Interactive selector for all 100 defects (`BUG-78` to `BUG-177`), side-by-side vulnerable vs. patched code, diffs, and MCP CLI commands | Interactive HTML |
+| [LEVEL2_AUDITED_SUBMISSION_DOSSIER.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_AUDITED_SUBMISSION_DOSSIER.md) | Master Audit Dossier: 81 test cases, 80 requirements, 100 defect tickets, 100% pass rate across 8 locked suites, and GCS binary screenshot evidence | Markdown |
+| [ROUND2_AND_BONUS_MASTER_CLEARANCE.md](file:///c:/Users/kudch/Downloads/mozark/ROUND2_AND_BONUS_MASTER_CLEARANCE.md) | Master Defect Clearance Matrix: Full clearance mapping for all 67 Level 1 defects and 100 Level 2 defects | Markdown |
 | [LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md) | Formal IEEE-829 Test Summary Report: Quantitative test metrics, risk assessment, and exit criteria evaluation | Markdown |
 | [LEVEL2_EXECUTIVE_PITCH_DECK.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_EXECUTIVE_PITCH_DECK.html) | 7-Slide Visual Executive Presentation Deck (Keyboard navigatable, printable to PDF) | HTML Presentation |
 | [LEVEL2_VIDEO_PITCH_SCRIPT.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_VIDEO_PITCH_SCRIPT.md) | Structured 2-minute executive briefing script for video review | Markdown |
 | [LEVEL2_XP_MONITOR.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_XP_MONITOR.html) | Real-time 5-Pillar Cloud TCM Quality Asset Inventory and Telemetry Monitor | HTML Dashboard |
-| [Mozark_Level2_NMIMS_Master_Submission.zip](file:///c:/Users/kudch/Downloads/mozark/Mozark_Level2_NMIMS_Master_Submission.zip) | Master 10.12 MB submission bundle containing all test suites, reports, prompts, and lab files | Zip Archive |
+| [Mozark_Level2_NMIMS_Master_Submission.zip](file:///c:/Users/kudch/Downloads/mozark/Mozark_Level2_NMIMS_Master_Submission.zip) | Master 10.17 MB submission bundle containing all test suites, reports, prompts, and lab files | [Download v2.0.0 Release](https://github.com/soujasK/mozark/releases/download/v2.0.0/Mozark_Level2_NMIMS_Master_Submission.zip) |
 
 #### Level 1 Deliverables (FreshCart Native Android)
 
