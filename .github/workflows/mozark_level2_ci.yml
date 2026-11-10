@@ -27,19 +27,19 @@ jobs:
           pip install playwright requests urllib3
           playwright install --with-deps chromium
 
-      - name: Stage 1: Execute Defect Reproduction Suite
+      - name: "Stage 1: Execute Defect Reproduction Suite"
         run: |
           python playwright_suite/tests/test_defect_reproduction.py
 
-      - name: Stage 2: Execute In-Browser Route Interception Verification
+      - name: "Stage 2: Execute In-Browser Route Interception Verification"
         run: |
           python playwright_suite/tests/test_verified_fixes.py
 
-      - name: Stage 3: Run Autonomous AI Scout Crawler
+      - name: "Stage 3: Run Autonomous AI Scout Crawler"
         run: |
           python ai_scout/ai_scout_edu.py
 
-      - name: Stage 4: Run Master Evaluator Test Engine
+      - name: "Stage 4: Run Master Evaluator Test Engine"
         run: |
           python run_evaluation.py
 
@@ -52,4 +52,3 @@ jobs:
             ai_scout/reports/
             LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md
             LEVEL2_SUBMISSION_SHOWCASE.html
-
