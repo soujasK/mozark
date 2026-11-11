@@ -135,9 +135,9 @@ All 81 test cases are actively indexed in `Starter Project` under application `S
 
 ---
 
-### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-277)
+### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-300)
 
-All 200 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
+All 223 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
 
 - **Lead Assignee:** Soujas Kudchadker (`soujas.kudchadker13@nmims.in`)
 - **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..305`), Requirement (`REQ-52..251`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
@@ -346,6 +346,29 @@ All 200 defect tickets across the entire Edu Learning Platform codebase are offi
 | **BUG-275** | `6af4436ab33acc0678cca003` | Admin Panel: Audit Log Filter by Date Inverts Bounds on UTC Midnight Crossing | Resolved | Medium | `08_evidence_capture.png` |
 | **BUG-276** | `6af4436ceaceed221893e6b9` | Live Chat: Message Input Auto-Grow Fails to Shrink on Text Deletion via Backspace | Resolved | Low | `09_evidence_capture.png` |
 | **BUG-277** | `6af4436eeaceed221893e6dc` | Course Player: Fullscreen Toggle on iOS Safari Triggers Layout Shift in Navigation Header | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-278** | `6af4cae15b95b58cd901d55f` | Offline Storage: IndexedDB QuotaExceededError Throws Unhandled Exception on Safari Private Browsing | Resolved | High | `01_evidence_capture.png` |
+| **BUG-279** | `6af4cae35b95b58cd901d582` | Certificates: Canvas WebGL Context Loss on Mobile GPU Memory Pressure Freezes Export | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-280** | `6af4cae7b33acc0678cda1fd` | Auth: Registration Email Fails RFC 5891 Punycode Normalization for Internationalized Domains | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-281** | `6af4cae8b33acc0678cda21f` | PWA Service Worker: Immediate skipWaiting Triggers Stale Chunk Hash Mismatch Loop | Resolved | High | `04_evidence_capture.png` |
+| **BUG-282** | `6af4cae95b95b58cd901d5c7` | Security: WebAuthn Passkey Registration Hangs on User Gesture Abort Timeout | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-283** | `6af4caeb5b95b58cd901d60c` | Audio Classroom: AudioContext Suspended State Blocks Playback on iOS Background Switch | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-284** | `6af4caedb33acc0678cda265` | CDN Pipeline: Subresource Integrity Hash Mismatch on Gzip Compression Edge Failover | Resolved | High | `07_evidence_capture.png` |
+| **BUG-285** | `6af4caee5b95b58cd901d62e` | BroadcastChannel: Multi-Tab State Sync Throws DataCloneError on Non-Serializable Error Instances | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-286** | `6af4caefb33acc0678cda2ab` | Live Proctoring: WebRTC PeerConnection Leaks Transceivers on Consecutive Reconnects | Resolved | High | `09_evidence_capture.png` |
+| **BUG-287** | `6af4caf1b33acc0678cda2d9` | Video Player: Subtitles VTT Parser Throws RangeError on 4-Digit Milliseconds | Resolved | Low | `00_evidence_capture.png` |
+| **BUG-288** | `6af4caf35b95b58cd901d6b8` | Interactive Code Runner: WebAssembly Memory Growth Exceeds 32-bit Address Space on Loops | Resolved | Critical | `01_evidence_capture.png` |
+| **BUG-289** | `6af4caf5b33acc0678cda3d2` | Analytics: Page Visibility Flapping During OS Notifications Distorts Active Session Time | Resolved | Low | `02_evidence_capture.png` |
+| **BUG-290** | `6af4caf7b33acc0678cda3f5` | Form Validation: RTL Bidirectional Text Injection Inverts Currency Symbol Positioning | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-291** | `6af4caf8b33acc0678cda418` | Classroom Notes: LocalStorage Quota Recovery Fails to Evict Stale Auto-Drafts | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-292** | `6af4cafa5b95b58cd901d736` | Search Bar: IME Japanese and Chinese Composition Enter Key Triggers Premature Submission | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-293** | `6af4cafdb33acc0678cda45d` | Live Webinar: Screen Share Capture Stream Fails on Resolution Resize During Presentation | Resolved | High | `06_evidence_capture.png` |
+| **BUG-294** | `6af4cafe5b95b58cd901d77b` | Quiz Engine: Fast Keyboard Spacebar Toggles Radio Group Without Selecting Option | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-295** | `6af4cb00b33acc0678cda4c6` | User Profile: Cropped Image Blob Creation Leaks Object URL on Repeated Uploads | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-296** | `6af4cb025b95b58cd901d79d` | Payments: Stripe Elements Card CVC Validation Race Condition on Rapid Autofill | Resolved | High | `09_evidence_capture.png` |
+| **BUG-297** | `6af4cb06b33acc0678cda50b` | Course Catalog: Infinite Scroll IntersectionObserver Duplicates Requests on 120Hz Screens | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-298** | `6af4cb085b95b58cd901d7e3` | Admin Portal: CSV Export BOM Marker Missing for Excel Windows UTF-8 Compatibility | Resolved | Low | `01_evidence_capture.png` |
+| **BUG-299** | `6af4cb0a5b95b58cd901d829` | Certificate Verification: Microdata Schema.org EducationalCredential JSON-LD Syntax Error | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-300** | `6af4cb0c5b95b58cd901d84b` | Live Chat: WebSocket Exponential Backoff Max Delay Exceeds Thirty Seconds Under Network Glitches | Resolved | Medium | `03_evidence_capture.png` |
 
 ---
 
