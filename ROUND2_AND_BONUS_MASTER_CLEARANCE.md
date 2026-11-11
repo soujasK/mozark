@@ -119,7 +119,7 @@ Below is the complete inventory of all **67 defects** cataloged, analyzed, and a
 
 Below is the complete inventory of all **100 defects** cataloged, analyzed, and surgically remediated across the Edu Learning Platform web application (`https://testing.dev.mozark.ai/`), mapped directly to test cases `TC-105` to `TC-185`, requirements `REQ-52` to `REQ-131`, and verified in Mozark TCM under test runs `TR-13`, `TR-16`, `TR-17`, `TR-18`, `TR-19`, `TR-20`, `TR-21`, `TR-23`, and defect reproduction suites `TR-24`, `TR-25`, and `TR-26`.
 
-### Complete 150-Defect Clearance Matrix (BUG-78 to BUG-227)
+### Complete 150-Defect Clearance Matrix (BUG-78 to BUG-277)
 
 | # | Bug ID | TC ID | Req ID | Journey / Module | Defect Description & Root Cause Location | Architectural Fix in JavaScript / React | Verified Suite |
 |---|---|---|---|---|---|---|---|

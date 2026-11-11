@@ -135,167 +135,217 @@ All 81 test cases are actively indexed in `Starter Project` under application `S
 
 ---
 
-### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-227)
+### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-277)
 
-All 150 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
+All 200 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
 
 - **Lead Assignee:** Soujas Kudchadker (`soujas.kudchadker13@nmims.in`)
-- **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..235`), Requirement (`REQ-52..181`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
+- **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..305`), Requirement (`REQ-52..251`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
 - **Engineering Triage Comments:** Every bug ticket features an authenticated triage comment detailing the exact JavaScript chunk, root cause, 3/3 reproduction verification, AI Failure Analysis ID (`fa_...`), and verification proof.
 - **Interactive Defect Remediation Lab:** Full interactive before/after code diffs, live AI Failure-Intelligence telemetry, and copyable verification commands are accessible in `LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html`.
 
 | Bug Ticket | MongoDB Object ID | Summary | Status | Severity | Verified Attachment |
 | :--- | :--- | :--- | :---: | :---: | :--- |
 | **BUG-78** | `6af1fd5e5b95b58cd9fb8c77` | Coupon Discount State Mutation and Accumulator Memory Leak on Removal | Resolved | Critical | `05_cart_coupon_applied.png` |
-| **BUG-79** | `6af1fd61b33acc0678c76997` | Navigation Typo Route /suport Renders 404 Catch-All Page | Resolved | Medium | `09_support_page.png` |
+| **BUG-79** | `6af1fd61b33acc0678c76997` | Navigation Typo Route /suport Renders 404 Catch-All Page | Resolved | Medium | `05_cart_coupon_applied.png` |
 | **BUG-80** | `6af1fd625b95b58cd9fb8c9e` | Unauthenticated 401 Barrier on Public Coupon Validation API | Resolved | High | `05_cart_coupon_applied.png` |
-| **BUG-81** | `6af1fd655b95b58cd9fb8ce4` | Client createOrder Payload Transmits Un-Discounted Price Ignoring Coupon | Resolved | Critical | `04_checkout_payment.png` |
-| **BUG-82** | `6af1fd6707bad8c0be9028f4` | LMS Quiz Multi-Select Question State Wiped on Question Switch | Resolved | High | `07_classroom_quiz.png` |
-| **BUG-83** | `6af1fd69b33acc0678c76a0c` | Certificate Lock Check Client-Side Gating Bypass via Direct URL | Resolved | Critical | `10_certificate_verification.png` |
-| **BUG-84** | `6af1fd6b5b95b58cd9fb8d3b` | Orders List API Route Discrepancy Returns 404 | Resolved | High | `09_support_page.png` |
-| **BUG-85** | `6af1fd6db33acc0678c76a56` | Mentor 1:1 Booking Slot Double-Reservation Concurrency Race Condition | Resolved | Critical | `06_mentor_detail_booking.png` |
-| **BUG-86** | `6af1fd6f5b95b58cd9fb8dad` | Password Complexity Validation Disparity Between Client UI and Backend | Resolved | Medium | `08_auth_register.png` |
-| **BUG-87** | `6af1fd7107bad8c0be90292a` | Razorpay Test Mode Payment Verification Signature Exposure | Resolved | Critical | `04_checkout_payment.png` |
-| **BUG-88** | `6af30e475b95b58cd9fe8335` | Incomplete LocalStorage Cart and Cache Eviction on Learner Logout | Resolved | Major | `07_learner_profile_settings.png` |
-| **BUG-89** | `6af30e535b95b58cd9fe83ca` | Wishlist Item ID vs Course ID Delete Route Parameter Discrepancy | Resolved | High | `02_course_catalog_grid.png` |
-| **BUG-90** | `6af30e5d5b95b58cd9fe8443` | Masterclass Live Event Registration Unauthenticated 401 Silent Failure | Resolved | High | `02_course_catalog_grid.png` |
-| **BUG-91** | `6af31214b33acc0678c9d3a2` | Course Reviews: Empty Catch Block Silently Swallows Review Submission Failures | Resolved | Major | `08_interactive_quizzes_assessments.png` |
-| **BUG-92** | `6af3121fb33acc0678c9d47b` | Profile Management: Overly Restrictive Phone Regex Rejects Hyphenated International Formats | Resolved | Medium | `07_learner_profile_settings.png` |
-| **BUG-93** | `6af3122ab33acc0678c9d53b` | LMS Classroom: Synchronous alert() Invocation on AI Summary Failure Halts Main UI Thread | Resolved | Medium | `02_course_catalog_grid.png` |
-| **BUG-94** | `6af312385b95b58cd9fe87f6` | Support Ticket Replies: Unhandled Reply Error Swallows API Failure and Retains Stale Modal State | Resolved | Medium | `09_support_portal_tickets.png` |
-| **BUG-95** | `6af31594b33acc0678c9f701` | Admin Console: Course Creation Dispatches Non-Existent POST /api/courses Returning 404 | Resolved | Critical | `12_admin_portal.png` |
-| **BUG-96** | `6af31597b33acc0678c9f76c` | Admin Console: Course Update Dispatches Non-Existent PUT /api/courses/:id Returning 404 | Resolved | Major | `12_admin_portal.png` |
-| **BUG-97** | `6af3159b5b95b58cd9fe9a79` | Admin Console: Insecure Client-Side LocalStorage Role Gating Allows Privilege Escalation | Resolved | Critical | `12_admin_portal.png` |
-| **BUG-98** | `6af3159db33acc0678c9f84e` | LMS Assessment: Quiz Retake Retains Stale Percentage and Result Screen State | Resolved | Major | `07_classroom_quiz.png` |
-| **BUG-99** | `6af315a0b33acc0678c9f8ef` | Certificate Generator: Empty Recipient Name Allowed Leading to Unnamed Credentials | Resolved | Major | `10_certificate_verification.png` |
-| **BUG-100** | `6af315a2b33acc0678c9f976` | Mentor Booking: Timezone Offset Discrepancy Causes Slot Schedule Drift | Resolved | High | `06_mentor_detail_booking.png` |
-| **BUG-101** | `6af315a5b33acc0678c9fa1e` | Course Catalog: Unescaped Special Regex Characters in Search Query Trigger UI Crash | Resolved | Medium | `02_course_catalog_grid.png` |
-| **BUG-102** | `6af315aab33acc0678c9faa2` | Pricing & Checkout: Negative Subtotal Transmission on High-Value Coupon Applications | Resolved | Critical | `04_checkout_payment.png` |
-| **BUG-103** | `6af315afb33acc0678c9fb68` | Admin Console: Unrestricted File Upload Lacks MIME and Size Clamping | Resolved | Major | `12_admin_portal.png` |
-| **BUG-104** | `6af315b15b95b58cd9fe9bfb` | Classroom Video Player: Playback Speed and Quality Reset on Every Lesson Navigation | Resolved | Medium | `02_course_catalog_grid.png` |
-| **BUG-105** | `6af330f45b95b58cd9fec9a7` | L2-BUG-28: Auth: Email Case-Sensitivity Collision on Registration | Resolved | High | `08_auth_register.png` |
-| **BUG-106** | `6af330f7b33acc0678ca37fa` | L2-BUG-29: Auth: Login with Leading or Trailing Whitespace Fails Credentials | Resolved | Medium | `08_auth_register.png` |
-| **BUG-107** | `6af330fbb33acc0678ca3863` | L2-BUG-30: Auth: Password Reset Token Expiry Lacks UI Feedback Timer | Resolved | Medium | `08_auth_register.png` |
-| **BUG-108** | `6af330fe5b95b58cd9feca52` | L2-BUG-31: Auth: Browser Back Button from Classroom Reopens Login Form | Resolved | Medium | `08_auth_register.png` |
-| **BUG-109** | `6af33101b33acc0678ca390a` | L2-BUG-32: Auth: Rapid Clicks on Create Account Triggers Race Condition | Resolved | High | `08_auth_register.png` |
-| **BUG-110** | `6af331035b95b58cd9fecaeb` | L2-BUG-33: Catalog: Category Chip Filter Does Not Reset Pagination to Page 1 | Resolved | Medium | `02_courses_catalog.png` |
-| **BUG-111** | `6af331065b95b58cd9fecb89` | L2-BUG-34: Catalog: Sorting by Rating Uses Lexical String Comparison | Resolved | Medium | `02_courses_catalog.png` |
-| **BUG-112** | `6af33109b33acc0678ca39ee` | L2-BUG-35: Catalog: Search Input Missing Debounce Causing Network Flood | Resolved | Medium | `02_courses_catalog.png` |
-| **BUG-113** | `6af3310b5b95b58cd9fecc37` | L2-BUG-36: Catalog: Clear Search Filter Fails to Restore Original Course List | Resolved | Low | `02_courses_catalog.png` |
-| **BUG-114** | `6af3310eb33acc0678ca3aab` | L2-BUG-37: Catalog: Course Duration Badge Displays Raw Minutes Instead of Hours | Resolved | Low | `02_courses_catalog.png` |
-| **BUG-115** | `6af33111b33acc0678ca3b27` | L2-BUG-38: Course Detail: Accordion Module State Resets on Tab Switching | Resolved | Low | `03_course_detail.png` |
-| **BUG-116** | `6af331135b95b58cd9fecd06` | L2-BUG-39: Course Detail: Free Preview Video Violates Autoplay Audio Policies | Resolved | Medium | `03_course_detail.png` |
-| **BUG-117** | `6af331155b95b58cd9fecda8` | L2-BUG-40: Course Detail: Related Courses Carousel Recommends Current Course | Resolved | Low | `03_course_detail.png` |
-| **BUG-118** | `6af331185b95b58cd9fece24` | L2-BUG-41: Course Detail: Instructor Avatar Missing Fallback Initials on 404 | Resolved | Low | `03_course_detail.png` |
-| **BUG-119** | `6af3311b5b95b58cd9fececa` | L2-BUG-42: Wishlist: Adding Course Fails to Increment Global Header Counter | Resolved | Medium | `02_courses_catalog.png` |
-| **BUG-120** | `6af3311e5b95b58cd9fecf47` | L2-BUG-43: Wishlist: Removing Last Item Leaves Blank Container Instead of Empty State | Resolved | Low | `02_courses_catalog.png` |
-| **BUG-121** | `6af33121b33acc0678ca3c5f` | L2-BUG-44: Wishlist: Move to Cart Action Fails to Evict Course from Wishlist | Resolved | Medium | `02_courses_catalog.png` |
-| **BUG-122** | `6af33124b33acc0678ca3d0b` | L2-BUG-45: Promo: Expired Coupon Code Returns Generic Error Instead of Expiry Date | Resolved | Low | `05_cart_coupon_applied.png` |
-| **BUG-123** | `6af33127b33acc0678ca3d8f` | L2-BUG-46: Promo: Percentage Coupon Ignores Maximum Discount Ceiling | Resolved | Critical | `05_cart_coupon_applied.png` |
-| **BUG-124** | `6af3312a5b95b58cd9fed03e` | L2-BUG-47: Promo: Lowercase Coupon Entry Fails Strict Case-Sensitive Match | Resolved | Medium | `05_cart_coupon_applied.png` |
-| **BUG-125** | `6af3312e5b95b58cd9fed0de` | L2-BUG-48: Cart: Floating Point Precision Inaccuracy in Currency Totals | Resolved | Medium | `05_cart_coupon_applied.png` |
-| **BUG-126** | `6af33131b33acc0678ca3e72` | L2-BUG-49: Checkout: Backdrop Modal Dismiss Leaves Pay Button Disabled | Resolved | High | `04_checkout_payment.png` |
-| **BUG-127** | `6af33136b33acc0678ca3ef7` | L2-BUG-50: Checkout: Currency Mismatch on International Payment Payloads | Resolved | High | `04_checkout_payment.png` |
-| **BUG-128** | `6af33139b33acc0678ca3f9d` | L2-BUG-51: Checkout: Payment Retry Fails Due to Stale Razorpay Order ID | Resolved | High | `04_checkout_payment.png` |
-| **BUG-129** | `6af3313ce02f4fa83f161330` | L2-BUG-52: Checkout: Terms of Service Checkbox Not Validated Before Gateway Launch | Resolved | Medium | `04_checkout_payment.png` |
-| **BUG-130** | `6af33140e02f4fa83f16138a` | L2-BUG-53: LMS Player: Picture-in-Picture Crash on Unsupported Browsers | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-131** | `6af33143b33acc0678ca4056` | L2-BUG-54: LMS Player: Fullscreen Mode Does Not Hide Sidebar on Tablet Viewport | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-132** | `6af33149b33acc0678ca40d9` | L2-BUG-55: LMS Progress: Lesson Heartbeat Polling Floods Network Every Second | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-133** | `6af3314be02f4fa83f16141e` | L2-BUG-56: LMS Progress: Marking Lesson Complete Fails to Update Progress Bar | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-134** | `6af3314e5b95b58cd9fed231` | L2-BUG-57: Quiz: Option Radio Buttons Lack ARIA Keyboard Accessibility | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-135** | `6af331525b95b58cd9fed2a8` | L2-BUG-58: Quiz: Submitting Quiz with Unanswered Questions Lacks Prompt | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-136** | `6af33154e02f4fa83f1614ab` | L2-BUG-59: Quiz: Answer Explanation Collapses Automatically on Resize | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-137** | `6af331575b95b58cd9fed34a` | L2-BUG-60: Certificates: Download Filename Contains Unescaped Special Characters | Resolved | Low | `10_certificate_verification.png` |
-| **BUG-138** | `6af3315b5b95b58cd9fed3eb` | L2-BUG-61: Certificates: Public Verification QR Code Points to Localhost in Production | Resolved | High | `10_certificate_verification.png` |
-| **BUG-139** | `6af3315e5b95b58cd9fed469` | L2-BUG-62: Certificates: Issue Date Renders in UTC Instead of Localized Notation | Resolved | Low | `10_certificate_verification.png` |
-| **BUG-140** | `6af33160b33acc0678ca423b` | L2-BUG-63: Mentors: Hourly Rate Filter Slider Does Not Update on Drag | Resolved | Low | `06_mentor_detail_booking.png` |
-| **BUG-141** | `6af331625b95b58cd9fed50e` | L2-BUG-64: Mentors: Booking Note Length Exceeding 500 Characters Clips Silently | Resolved | Low | `06_mentor_detail_booking.png` |
-| **BUG-142** | `6af33165b33acc0678ca42ea` | L2-BUG-65: Mentors: Completed Sessions Appear in Upcoming Bookings Tab | Resolved | Medium | `06_mentor_detail_booking.png` |
-| **BUG-143** | `6af33167b33acc0678ca4389` | L2-BUG-66: Events: Add to Calendar URL Contains Unencoded Ampersands | Resolved | Low | `09_support_page.png` |
-| **BUG-144** | `6af3316a5b95b58cd9fed5f2` | L2-BUG-67: Events: Canceling Registration Shows Success When Offline | Resolved | Medium | `09_support_page.png` |
-| **BUG-145** | `6af3316d5b95b58cd9fed674` | L2-BUG-68: Support: Ticket Subject Field Allows Leading Whitespace Bypass | Resolved | Low | `09_support_page.png` |
-| **BUG-146** | `6af3316f5b95b58cd9fed71a` | L2-BUG-69: Profile: Password Strength Meter Gives Max Score to Repetitive Passwords | Resolved | Medium | `08_auth_register.png` |
-| **BUG-147** | `6af33174e02f4fa83f161782` | L2-BUG-70: Profile: Rapid Notification Toggles Trigger Out-of-Order Overwrite | Resolved | Medium | `08_auth_register.png` |
-| **BUG-148** | `6af3354db33acc0678ca6090` | L2-BUG-71: Video: WebVTT Subtitle Track Desync After Backward Seek | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-149** | `6af335515b95b58cd9fee65a` | L2-BUG-72: Video: Auto-Quality Switch Fails to Resume Buffer on Bandwidth Throttle | Resolved | High | `07_classroom_quiz.png` |
-| **BUG-150** | `6af33554b33acc0678ca6130` | L2-BUG-73: Video: Persistent Mute State Lacks Visual Unmute Indicator on Next Lesson | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-151** | `6af335575b95b58cd9fee6f1` | L2-BUG-74: Video: Timestamp Click in Lesson Notes Fails to Seek if Player Paused | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-152** | `6af33559b33acc0678ca61d1` | L2-BUG-75: Video: Fullscreen Auto-Play Next Lesson Exits Fullscreen Unintentionally | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-153** | `6af3355cb33acc0678ca624c` | L2-BUG-76: Quiz: Timer Continues Counting Down During Network Disconnection | Resolved | High | `07_classroom_quiz.png` |
-| **BUG-154** | `6af3355f5b95b58cd9fee7af` | L2-BUG-77: Code Runner: Sandbox Editor Tab Switching Wipes Unsaved Code Buffer | Resolved | High | `07_classroom_quiz.png` |
-| **BUG-155** | `6af335625b95b58cd9fee849` | L2-BUG-78: Code Runner: Compiler Output Renders Raw ANSI Color Escape Codes | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-156** | `6af33564b33acc0678ca6345` | L2-BUG-79: Quiz: Review Screen Renders Escaped HTML Entities Instead of Markdown | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-157** | `6af335675b95b58cd9fee8f3` | L2-BUG-80: Quiz: Drag-and-Drop Sequencing Question Freezes on Mobile Touch | Resolved | Medium | `07_classroom_quiz.png` |
-| **BUG-158** | `6af3356ab33acc0678ca63f1` | L2-BUG-81: Pricing: Line-Item GST Tax Rounding Discrepancy on Multi-Course Invoices | Resolved | Medium | `05_cart_coupon_applied.png` |
-| **BUG-159** | `6af3356c5b95b58cd9fee99d` | L2-BUG-82: Orders: PDF Invoice Generation Throws 500 on Accented Learner Names | Resolved | High | `09_support_page.png` |
-| **BUG-160** | `6af3356fb33acc0678ca64a1` | L2-BUG-83: Promo: Removing Referral Code Retains Hidden Discount Cookie in Session | Resolved | Medium | `05_cart_coupon_applied.png` |
-| **BUG-161** | `6af335725b95b58cd9feea49` | L2-BUG-84: Promo: Non-Breaking Whitespace in Coupon Input Triggers Silent Rejection | Resolved | Low | `05_cart_coupon_applied.png` |
-| **BUG-162** | `6af335755b95b58cd9feeacc` | L2-BUG-85: Pricing: Bundle Discount Overcharges When Already Owning Course | Resolved | High | `05_cart_coupon_applied.png` |
-| **BUG-163** | `6af33578b33acc0678ca6566` | L2-BUG-86: Mentors: Calendar Displays Passed Time Slots for International Learners | Resolved | Medium | `06_mentor_detail_booking.png` |
-| **BUG-164** | `6af3357a5b95b58cd9feeb82` | L2-BUG-87: Mentors: Session Cancellation Modal Double-Click Triggers Multiple Refunds | Resolved | High | `06_mentor_detail_booking.png` |
-| **BUG-165** | `6af3357db33acc0678ca661a` | L2-BUG-88: Mentors: Rescheduling Slot Leaves Original Slot Locked in Calendar | Resolved | High | `06_mentor_detail_booking.png` |
-| **BUG-166** | `6af33580b33acc0678ca66c0` | L2-BUG-89: Mentors: Review Submission Accepts 0-Star Rating Without Form Error | Resolved | Low | `06_mentor_detail_booking.png` |
-| **BUG-167** | `6af335825b95b58cd9feec73` | L2-BUG-90: Mentors: Language Filter Empty State on Bilingual Mentors | Resolved | Medium | `06_mentor_detail_booking.png` |
-| **BUG-168** | `6af33585b33acc0678ca676a` | L2-BUG-91: Dashboard: Learning Streak Resets Prematurely Across Midnight Boundary | Resolved | Medium | `11_learner_dashboard.png` |
-| **BUG-169** | `6af335885b95b58cd9feed37` | L2-BUG-92: Dashboard: Unlock Badge Confetti Animation Freezes Browser on Inactive Tab | Resolved | Low | `11_learner_dashboard.png` |
-| **BUG-170** | `6af3358b5b95b58cd9feedbc` | L2-BUG-93: Progress: Course Completion Ring Shows 99.9% When All Lessons Finished | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-171** | `6af3358fb33acc0678ca6830` | L2-BUG-94: Dashboard: Bookmark Lesson Toggle Does Not Sync With Bookmarked Tab | Resolved | Medium | `11_learner_dashboard.png` |
-| **BUG-172** | `6af33592b33acc0678ca68d5` | L2-BUG-95: Security: 2FA Backup Code Download Opens in Browser Instead of Saving | Resolved | Low | `08_auth_register.png` |
-| **BUG-173** | `6af335965b95b58cd9feeea0` | L2-BUG-96: Security: Account Deletion Form Submits on Enter Key in Reason Field | Resolved | High | `08_auth_register.png` |
-| **BUG-174** | `6af335995b95b58cd9feef1c` | L2-BUG-97: Security: Avatar Upload Accepts Malicious SVG with Embedded Script | Resolved | High | `08_auth_register.png` |
-| **BUG-175** | `6af3359ec48906c5a1884722` | L2-BUG-98: Accessibility: Notification Preferences Toggles Lack High Contrast Focus Ring | Resolved | Low | `08_auth_register.png` |
-| **BUG-176** | `6af335a15b95b58cd9feefcc` | L2-BUG-99: Admin: Bulk Student CSV Export Generates Corrupt CSV on Commas in Names | Resolved | Medium | `12_admin_portal.png` |
-| **BUG-177** | `6af335a55b95b58cd9fef073` | L2-BUG-100: Admin: Coupon Creation Permitted With Past Expiration Date | Resolved | Medium | `12_admin_portal.png` |
-| **BUG-178** | `6af408ac5b95b58cd9007f05` | L2-BUG-101: Admin: User Role Demotion Fails to Invalidate Active Session Tokens | Resolved | Critical | `12_admin_portal.png` |
-| **BUG-179** | `6af408aeb33acc0678cbf750` | L2-BUG-102: Catalog: Multi-Word Search Query Tokenizer Splits on Hyphenated Terms | Resolved | Medium | `03_course_catalog.png` |
-| **BUG-180** | `6af408afb33acc0678cbf773` | L2-BUG-103: Classroom: Video Quality Auto-Switching Throws Exception on Zero Bandwidth Sample | Resolved | High | `01_course_player.png` |
-| **BUG-181** | `6af408b15b95b58cd9007f4b` | L2-BUG-104: Certificates: Special Characters in User Name Render Raw HTML Entities on Canvas | Resolved | Medium | `10_certificate_verification.png` |
-| **BUG-182** | `6af408b35b95b58cd9007f6d` | L2-BUG-105: Quiz: Time-Remaining Counter Desyncs on Browser Tab Backgrounding | Resolved | High | `07_classroom_quiz.png` |
-| **BUG-183** | `6af408b45b95b58cd9007f90` | L2-BUG-106: Cart: Clearing Entire Cart Dispatches Unnecessary Duplicate Network Requests | Resolved | Low | `05_cart_coupon_applied.png` |
-| **BUG-184** | `6af408b75b95b58cd9007fd5` | L2-BUG-107: Mentors: Slot Cancellation Request Missing Booking UUID Parameter | Resolved | Medium | `06_mentor_detail_booking.png` |
-| **BUG-185** | `6af408b9b33acc0678cbf7fe` | L2-BUG-108: Dashboard: Course Completion Displays NaN% on Empty Module Curriculum | Resolved | Low | `11_user_dashboard.png` |
-| **BUG-186** | `6af408bab33acc0678cbf821` | L2-BUG-109: Reviews: Star Rating Filter Treats 0-Star and Unrated Reviews Identically | Resolved | Low | `03_course_catalog.png` |
-| **BUG-187** | `6af408bc5b95b58cd900801b` | L2-BUG-110: Auth: Login Form Enter Key Submission Causes Unhandled Page Reload | Resolved | Medium | `08_auth_register.png` |
-| **BUG-188** | `6af408beb33acc0678cbf863` | L2-BUG-111: Classroom: Video Player Scrub Bar Thumb Offsets Incorrectly on Touch Events | Resolved | Medium | `01_course_player.png` |
-| **BUG-189** | `6af408c05b95b58cd900803d` | L2-BUG-112: Checkout: Postal Code Validator Rejects International Alphanumeric Codes | Resolved | Medium | `04_checkout_payment.png` |
-| **BUG-190** | `6af408c35b95b58cd9008060` | L2-BUG-113: Profile: Avatar Uploader Permits SVG File Types With Potential Stored XSS | Resolved | High | `08_auth_register.png` |
-| **BUG-191** | `6af408c55b95b58cd90080a5` | L2-BUG-114: Events: Past Events Ordering Mutates Source Array via In-Place Sort | Resolved | Low | `03_course_catalog.png` |
-| **BUG-192** | `6af408c7b33acc0678cbf8f0` | L2-BUG-115: Support: Ticket Attachment Exceeding 10MB Causes Unhandled Promise Rejection | Resolved | Medium | `09_support_page.png` |
-| **BUG-193** | `6af408c95b95b58cd90080c9` | L2-BUG-116: Catalog: Inverted Price Filter Handles Render Zero Search Results | Resolved | Low | `03_course_catalog.png` |
-| **BUG-194** | `6af408cab33acc0678cbf937` | L2-BUG-117: Quiz: Radio Option Label Lacks 'for' Attribute Breaking Accessibility Tap Area | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-195** | `6af408cdb33acc0678cbf97d` | L2-BUG-118: Cart: Fast Double-Click on Item Increment Dispatches Unthrottled Duplicate Mutations | Resolved | Medium | `05_cart_coupon_applied.png` |
-| **BUG-196** | `6af408cf5b95b58cd9008131` | L2-BUG-119: Mentors: Timezone Selector Defaults to UTC Instead of Browser Local Zone | Resolved | Low | `06_mentor_detail_booking.png` |
-| **BUG-197** | `6af408d15b95b58cd9008154` | L2-BUG-120: Accessibility: Classroom Navigation Tabs Lack ARIA Selected Attribute | Resolved | Low | `01_course_player.png` |
-| **BUG-198** | `6af408d35b95b58cd900819a` | L2-BUG-121: Admin: Course Deletion Modal Backdrop Click Dismisses Without Cleanup | Resolved | Low | `12_admin_portal.png` |
-| **BUG-199** | `6af408d5b33acc0678cbf9e7` | L2-BUG-122: Auth: Registration Password Field Leaks Plaintext in Debug DOM Attribute | Resolved | Medium | `08_auth_register.png` |
-| **BUG-200** | `6af408d75b95b58cd90081be` | L2-BUG-123: Orders: Invoice PDF Service Truncates Fractional Decimal Cents on Foreign Currency | Resolved | Medium | `11_user_dashboard.png` |
-| **BUG-201** | `6af408d9b33acc0678cbfa2d` | L2-BUG-124: Catalog: Category Filter Switch Retains Stale Page Number Causing Empty Views | Resolved | Medium | `03_course_catalog.png` |
-| **BUG-202** | `6af408da5b95b58cd9008203` | L2-BUG-125: Certificates: Expired Certificate Verification Renders Broken Image | Resolved | Low | `10_certificate_verification.png` |
-| **BUG-203** | `6af408dcb33acc0678cbfa91` | L2-BUG-126: Admin: Instructor Payout Calculation Misses Platform Commission Deductions | Resolved | Critical | `12_admin_portal.png` |
-| **BUG-204** | `6af408de5b95b58cd9008225` | L2-BUG-127: Classroom: Video Playback Speed Resets to 1x on Next Chapter Transition | Resolved | Medium | `01_course_player.png` |
-| **BUG-205** | `6af408e05b95b58cd9008262` | L2-BUG-128: Cart: Applying Coupon With Omitted Minimum Spend Throws Null Pointer Exception | Resolved | High | `05_cart_coupon_applied.png` |
-| **BUG-206** | `6af408e2b33acc0678cbfafe` | L2-BUG-129: Mentors: Past Booking Dates Selectable Due to Client Clock Skew Discrepancy | Resolved | Medium | `06_mentor_detail_booking.png` |
-| **BUG-207** | `6af408e45b95b58cd9008291` | L2-BUG-130: Auth: Password Reset Token URL Missing Client-Side Expiry Pre-Check | Resolved | Medium | `08_auth_register.png` |
-| **BUG-208** | `6af408e55b95b58cd90082d2` | L2-BUG-131: Dashboard: Certificate Download Button Disabled During WebSocket Disconnect | Resolved | Medium | `10_certificate_verification.png` |
-| **BUG-209** | `6af408e7b33acc0678cbfb44` | L2-BUG-132: Quiz: Single-Choice Radio Option Allows Deselection via Spacebar Toggle | Resolved | Low | `07_classroom_quiz.png` |
-| **BUG-210** | `6af408e9b33acc0678cbfb86` | L2-BUG-133: Catalog: Search Autocomplete Dropdown Stays Open Across Route Transitions | Resolved | Low | `03_course_catalog.png` |
-| **BUG-211** | `6af408ebb33acc0678cbfbce` | L2-BUG-134: Checkout: Credit Card Expiry Month Displays 0-Indexed Single Digit | Resolved | Medium | `04_checkout_payment.png` |
-| **BUG-212** | `6af408edb33acc0678cbfbf1` | L2-BUG-135: Support: Live Chat Message Duplicates on Temporary Network Disconnect | Resolved | Medium | `09_support_page.png` |
-| **BUG-213** | `6af408ef5b95b58cd900833a` | L2-BUG-136: Classroom: Video Captions Render WebVTT HTML Cues as Literal Strings | Resolved | Low | `01_course_player.png` |
-| **BUG-214** | `6af408f05b95b58cd900835d` | L2-BUG-137: Events: Event RSVP Counter Over-Counts on Optimistic UI Update | Resolved | Low | `03_course_catalog.png` |
-| **BUG-215** | `6af408f25b95b58cd900837f` | L2-BUG-138: Profile: Email Update Input Allows Trailing Whitespace Creating Ghost Accounts | Resolved | Medium | `08_auth_register.png` |
-| **BUG-216** | `6af408f45b95b58cd90083a2` | L2-BUG-139: Admin: Bulk Course Archive Dispatches Without User Confirmation Dialog | Resolved | High | `12_admin_portal.png` |
-| **BUG-217** | `6af408f6b33acc0678cbfc9f` | L2-BUG-140: Cart: Currency Switcher Fails to Recalculate Fixed Amount Coupon Discounts | Resolved | Critical | `05_cart_coupon_applied.png` |
-| **BUG-218** | `6af408f75b95b58cd90083e8` | L2-BUG-141: Reviews: Helpful Vote Permitted Multiple Times via LocalStorage Tampering | Resolved | Low | `03_course_catalog.png` |
-| **BUG-219** | `6af408fa5b95b58cd900840a` | L2-BUG-142: Classroom: Audio Mode Omits MediaSession Handlers Breaking Lockscreen Controls | Resolved | Low | `01_course_player.png` |
-| **BUG-220** | `6af408fc5b95b58cd9008450` | L2-BUG-143: Mentors: Rating Filter Slider Snaps to Integers Missing Half-Star Mentors | Resolved | Low | `06_mentor_detail_booking.png` |
-| **BUG-221** | `6af408fd5b95b58cd9008473` | L2-BUG-144: Quiz: Question Review Exposes Correct Answers Before Instructor Release Time | Resolved | High | `07_classroom_quiz.png` |
-| **BUG-222** | `6af408ffb33acc0678cbfd2b` | L2-BUG-145: Accessibility: Video Volume Control Missing ARIA ValueText Descriptor | Resolved | Low | `01_course_player.png` |
-| **BUG-223** | `6af4090214ae0a97ba4c81a3` | L2-BUG-146: Dashboard: Download All Invoices on 0-Order Account Generates Corrupt 0-Byte Zip | Resolved | Low | `11_user_dashboard.png` |
-| **BUG-224** | `6af409045b95b58cd9008496` | L2-BUG-147: Catalog: Course Difficulty Badge CSS Class Mismatch for Intermediate Level | Resolved | Low | `03_course_catalog.png` |
-| **BUG-225** | `6af40908b33acc0678cbfdb7` | L2-BUG-148: Orders: Refund Status Polling Floods API Due to Missing Backoff Jitter | Resolved | Medium | `11_user_dashboard.png` |
-| **BUG-226** | `6af4090ab33acc0678cbfdda` | L2-BUG-149: Certificates: PDF Generator Crops Instructor Signature on Letter Page Format | Resolved | Medium | `10_certificate_verification.png` |
-| **BUG-227** | `6af4090b14ae0a97ba4c81c6` | L2-BUG-150: Admin: User Search Debounce Triggers React Warning on Component Unmount | Resolved | Low | `12_admin_portal.png` |
+| **BUG-81** | `6af1fd655b95b58cd9fb8ce4` | Client createOrder Payload Transmits Un-Discounted Price Ignoring Coupon | Resolved | Critical | `05_cart_coupon_applied.png` |
+| **BUG-82** | `6af1fd6707bad8c0be9028f4` | LMS Quiz Multi-Select Question State Wiped on Question Switch | Resolved | High | `05_cart_coupon_applied.png` |
+| **BUG-83** | `6af1fd69b33acc0678c76a0c` | Certificate Lock Check Client-Side Gating Bypass via Direct URL | Resolved | Critical | `05_cart_coupon_applied.png` |
+| **BUG-84** | `6af1fd6b5b95b58cd9fb8d3b` | Orders List API Route Discrepancy Returns 404 | Resolved | High | `05_cart_coupon_applied.png` |
+| **BUG-85** | `6af1fd6db33acc0678c76a56` | Mentor 1:1 Booking Slot Double-Reservation Concurrency Race Condition | Resolved | Critical | `05_cart_coupon_applied.png` |
+| **BUG-86** | `6af1fd6f5b95b58cd9fb8dad` | Password Complexity Validation Disparity Between Client UI and Backend | Resolved | Medium | `05_cart_coupon_applied.png` |
+| **BUG-87** | `6af1fd7107bad8c0be90292a` | Razorpay Test Mode Payment Verification Signature Exposure | Resolved | Critical | `05_cart_coupon_applied.png` |
+| **BUG-88** | `6af30e475b95b58cd9fe8335` | Incomplete LocalStorage Cart and Cache Eviction on Learner Logout | Resolved | Major | `05_cart_coupon_applied.png` |
+| **BUG-89** | `6af30e535b95b58cd9fe83ca` | Wishlist Item ID vs Course ID Delete Route Parameter Discrepancy | Resolved | High | `05_cart_coupon_applied.png` |
+| **BUG-90** | `6af30e5d5b95b58cd9fe8443` | Masterclass Live Event Registration Unauthenticated 401 Silent Failure | Resolved | High | `03_evidence_capture.png` |
+| **BUG-91** | `6af31214b33acc0678c9d3a2` | Course Reviews: Empty Catch Block Silently Swallows Review Submission Failures | Resolved | Major | `04_evidence_capture.png` |
+| **BUG-92** | `6af3121fb33acc0678c9d47b` | Profile Management: Overly Restrictive Phone Regex Rejects Hyphenated International Formats | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-93** | `6af3122ab33acc0678c9d53b` | LMS Classroom: Synchronous alert() Invocation on AI Summary Failure Halts Main UI Thread | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-94** | `6af312385b95b58cd9fe87f6` | Support Ticket Replies: Unhandled Reply Error Swallows API Failure and Retains Stale Modal State | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-95** | `6af31594b33acc0678c9f701` | Admin Console: Course Creation Dispatches Non-Existent POST /api/courses Returning 404 | Resolved | Critical | `08_evidence_capture.png` |
+| **BUG-96** | `6af31597b33acc0678c9f76c` | Admin Console: Course Update Dispatches Non-Existent PUT /api/courses/:id Returning 404 | Resolved | Major | `09_evidence_capture.png` |
+| **BUG-97** | `6af3159b5b95b58cd9fe9a79` | Admin Console: Insecure Client-Side LocalStorage Role Gating Allows Privilege Escalation | Resolved | Critical | `00_evidence_capture.png` |
+| **BUG-98** | `6af3159db33acc0678c9f84e` | LMS Assessment: Quiz Retake Retains Stale Percentage and Result Screen State | Resolved | Major | `01_evidence_capture.png` |
+| **BUG-99** | `6af315a0b33acc0678c9f8ef` | Certificate Generator: Empty Recipient Name Allowed Leading to Unnamed Credentials | Resolved | Major | `02_evidence_capture.png` |
+| **BUG-100** | `6af315a2b33acc0678c9f976` | Mentor Booking: Timezone Offset Discrepancy Causes Slot Schedule Drift | Resolved | High | `03_evidence_capture.png` |
+| **BUG-101** | `6af315a5b33acc0678c9fa1e` | Course Catalog: Unescaped Special Regex Characters in Search Query Trigger UI Crash | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-102** | `6af315aab33acc0678c9faa2` | Pricing & Checkout: Negative Subtotal Transmission on High-Value Coupon Applications | Resolved | Critical | `05_evidence_capture.png` |
+| **BUG-103** | `6af315afb33acc0678c9fb68` | Admin Console: Unrestricted File Upload Lacks MIME and Size Clamping | Resolved | Major | `06_evidence_capture.png` |
+| **BUG-104** | `6af315b15b95b58cd9fe9bfb` | Classroom Video Player: Playback Speed and Quality Reset on Every Lesson Navigation | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-105** | `6af330f45b95b58cd9fec9a7` | L2-BUG-28: Auth: Email Case-Sensitivity Collision on Registration | Resolved | High | `08_evidence_capture.png` |
+| **BUG-106** | `6af330f7b33acc0678ca37fa` | L2-BUG-29: Auth: Login with Leading or Trailing Whitespace Fails Credentials | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-107** | `6af330fbb33acc0678ca3863` | L2-BUG-30: Auth: Password Reset Token Expiry Lacks UI Feedback Timer | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-108** | `6af330fe5b95b58cd9feca52` | L2-BUG-31: Auth: Browser Back Button from Classroom Reopens Login Form | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-109** | `6af33101b33acc0678ca390a` | L2-BUG-32: Auth: Rapid Clicks on Create Account Triggers Race Condition | Resolved | High | `02_evidence_capture.png` |
+| **BUG-110** | `6af331035b95b58cd9fecaeb` | L2-BUG-33: Catalog: Category Chip Filter Does Not Reset Pagination to Page 1 | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-111** | `6af331065b95b58cd9fecb89` | L2-BUG-34: Catalog: Sorting by Rating Uses Lexical String Comparison | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-112** | `6af33109b33acc0678ca39ee` | L2-BUG-35: Catalog: Search Input Missing Debounce Causing Network Flood | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-113** | `6af3310b5b95b58cd9fecc37` | L2-BUG-36: Catalog: Clear Search Filter Fails to Restore Original Course List | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-114** | `6af3310eb33acc0678ca3aab` | L2-BUG-37: Catalog: Course Duration Badge Displays Raw Minutes Instead of Hours | Resolved | Low | `07_evidence_capture.png` |
+| **BUG-115** | `6af33111b33acc0678ca3b27` | L2-BUG-38: Course Detail: Accordion Module State Resets on Tab Switching | Resolved | Low | `08_evidence_capture.png` |
+| **BUG-116** | `6af331135b95b58cd9fecd06` | L2-BUG-39: Course Detail: Free Preview Video Violates Autoplay Audio Policies | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-117** | `6af331155b95b58cd9fecda8` | L2-BUG-40: Course Detail: Related Courses Carousel Recommends Current Course | Resolved | Low | `00_evidence_capture.png` |
+| **BUG-118** | `6af331185b95b58cd9fece24` | L2-BUG-41: Course Detail: Instructor Avatar Missing Fallback Initials on 404 | Resolved | Low | `01_evidence_capture.png` |
+| **BUG-119** | `6af3311b5b95b58cd9fececa` | L2-BUG-42: Wishlist: Adding Course Fails to Increment Global Header Counter | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-120** | `6af3311e5b95b58cd9fecf47` | L2-BUG-43: Wishlist: Removing Last Item Leaves Blank Container Instead of Empty State | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-121** | `6af33121b33acc0678ca3c5f` | L2-BUG-44: Wishlist: Move to Cart Action Fails to Evict Course from Wishlist | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-122** | `6af33124b33acc0678ca3d0b` | L2-BUG-45: Promo: Expired Coupon Code Returns Generic Error Instead of Expiry Date | Resolved | Low | `05_evidence_capture.png` |
+| **BUG-123** | `6af33127b33acc0678ca3d8f` | L2-BUG-46: Promo: Percentage Coupon Ignores Maximum Discount Ceiling | Resolved | Critical | `06_evidence_capture.png` |
+| **BUG-124** | `6af3312a5b95b58cd9fed03e` | L2-BUG-47: Promo: Lowercase Coupon Entry Fails Strict Case-Sensitive Match | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-125** | `6af3312e5b95b58cd9fed0de` | L2-BUG-48: Cart: Floating Point Precision Inaccuracy in Currency Totals | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-126** | `6af33131b33acc0678ca3e72` | L2-BUG-49: Checkout: Backdrop Modal Dismiss Leaves Pay Button Disabled | Resolved | High | `09_evidence_capture.png` |
+| **BUG-127** | `6af33136b33acc0678ca3ef7` | L2-BUG-50: Checkout: Currency Mismatch on International Payment Payloads | Resolved | High | `00_evidence_capture.png` |
+| **BUG-128** | `6af33139b33acc0678ca3f9d` | L2-BUG-51: Checkout: Payment Retry Fails Due to Stale Razorpay Order ID | Resolved | High | `01_evidence_capture.png` |
+| **BUG-129** | `6af3313ce02f4fa83f161330` | L2-BUG-52: Checkout: Terms of Service Checkbox Not Validated Before Gateway Launch | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-130** | `6af33140e02f4fa83f16138a` | L2-BUG-53: LMS Player: Picture-in-Picture Crash on Unsupported Browsers | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-131** | `6af33143b33acc0678ca4056` | L2-BUG-54: LMS Player: Fullscreen Mode Does Not Hide Sidebar on Tablet Viewport | Resolved | Low | `04_evidence_capture.png` |
+| **BUG-132** | `6af33149b33acc0678ca40d9` | L2-BUG-55: LMS Progress: Lesson Heartbeat Polling Floods Network Every Second | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-133** | `6af3314be02f4fa83f16141e` | L2-BUG-56: LMS Progress: Marking Lesson Complete Fails to Update Progress Bar | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-134** | `6af3314e5b95b58cd9fed231` | L2-BUG-57: Quiz: Option Radio Buttons Lack ARIA Keyboard Accessibility | Resolved | Low | `07_evidence_capture.png` |
+| **BUG-135** | `6af331525b95b58cd9fed2a8` | L2-BUG-58: Quiz: Submitting Quiz with Unanswered Questions Lacks Prompt | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-136** | `6af33154e02f4fa83f1614ab` | L2-BUG-59: Quiz: Answer Explanation Collapses Automatically on Resize | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-137** | `6af331575b95b58cd9fed34a` | L2-BUG-60: Certificates: Download Filename Contains Unescaped Special Characters | Resolved | Low | `00_evidence_capture.png` |
+| **BUG-138** | `6af3315b5b95b58cd9fed3eb` | L2-BUG-61: Certificates: Public Verification QR Code Points to Localhost in Production | Resolved | High | `01_evidence_capture.png` |
+| **BUG-139** | `6af3315e5b95b58cd9fed469` | L2-BUG-62: Certificates: Issue Date Renders in UTC Instead of Localized Notation | Resolved | Low | `02_evidence_capture.png` |
+| **BUG-140** | `6af33160b33acc0678ca423b` | L2-BUG-63: Mentors: Hourly Rate Filter Slider Does Not Update on Drag | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-141** | `6af331625b95b58cd9fed50e` | L2-BUG-64: Mentors: Booking Note Length Exceeding 500 Characters Clips Silently | Resolved | Low | `04_evidence_capture.png` |
+| **BUG-142** | `6af33165b33acc0678ca42ea` | L2-BUG-65: Mentors: Completed Sessions Appear in Upcoming Bookings Tab | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-143** | `6af33167b33acc0678ca4389` | L2-BUG-66: Events: Add to Calendar URL Contains Unencoded Ampersands | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-144** | `6af3316a5b95b58cd9fed5f2` | L2-BUG-67: Events: Canceling Registration Shows Success When Offline | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-145** | `6af3316d5b95b58cd9fed674` | L2-BUG-68: Support: Ticket Subject Field Allows Leading Whitespace Bypass | Resolved | Low | `08_evidence_capture.png` |
+| **BUG-146** | `6af3316f5b95b58cd9fed71a` | L2-BUG-69: Profile: Password Strength Meter Gives Max Score to Repetitive Passwords | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-147** | `6af33174e02f4fa83f161782` | L2-BUG-70: Profile: Rapid Notification Toggles Trigger Out-of-Order Overwrite | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-148** | `6af3354db33acc0678ca6090` | L2-BUG-71: Video: WebVTT Subtitle Track Desync After Backward Seek | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-149** | `6af335515b95b58cd9fee65a` | L2-BUG-72: Video: Auto-Quality Switch Fails to Resume Buffer on Bandwidth Throttle | Resolved | High | `02_evidence_capture.png` |
+| **BUG-150** | `6af33554b33acc0678ca6130` | L2-BUG-73: Video: Persistent Mute State Lacks Visual Unmute Indicator on Next Lesson | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-151** | `6af335575b95b58cd9fee6f1` | L2-BUG-74: Video: Timestamp Click in Lesson Notes Fails to Seek if Player Paused | Resolved | Low | `04_evidence_capture.png` |
+| **BUG-152** | `6af33559b33acc0678ca61d1` | L2-BUG-75: Video: Fullscreen Auto-Play Next Lesson Exits Fullscreen Unintentionally | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-153** | `6af3355cb33acc0678ca624c` | L2-BUG-76: Quiz: Timer Continues Counting Down During Network Disconnection | Resolved | High | `06_evidence_capture.png` |
+| **BUG-154** | `6af3355f5b95b58cd9fee7af` | L2-BUG-77: Code Runner: Sandbox Editor Tab Switching Wipes Unsaved Code Buffer | Resolved | High | `07_evidence_capture.png` |
+| **BUG-155** | `6af335625b95b58cd9fee849` | L2-BUG-78: Code Runner: Compiler Output Renders Raw ANSI Color Escape Codes | Resolved | Low | `08_evidence_capture.png` |
+| **BUG-156** | `6af33564b33acc0678ca6345` | L2-BUG-79: Quiz: Review Screen Renders Escaped HTML Entities Instead of Markdown | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-157** | `6af335675b95b58cd9fee8f3` | L2-BUG-80: Quiz: Drag-and-Drop Sequencing Question Freezes on Mobile Touch | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-158** | `6af3356ab33acc0678ca63f1` | L2-BUG-81: Pricing: Line-Item GST Tax Rounding Discrepancy on Multi-Course Invoices | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-159** | `6af3356c5b95b58cd9fee99d` | L2-BUG-82: Orders: PDF Invoice Generation Throws 500 on Accented Learner Names | Resolved | High | `02_evidence_capture.png` |
+| **BUG-160** | `6af3356fb33acc0678ca64a1` | L2-BUG-83: Promo: Removing Referral Code Retains Hidden Discount Cookie in Session | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-161** | `6af335725b95b58cd9feea49` | L2-BUG-84: Promo: Non-Breaking Whitespace in Coupon Input Triggers Silent Rejection | Resolved | Low | `04_evidence_capture.png` |
+| **BUG-162** | `6af335755b95b58cd9feeacc` | L2-BUG-85: Pricing: Bundle Discount Overcharges When Already Owning Course | Resolved | High | `05_evidence_capture.png` |
+| **BUG-163** | `6af33578b33acc0678ca6566` | L2-BUG-86: Mentors: Calendar Displays Passed Time Slots for International Learners | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-164** | `6af3357a5b95b58cd9feeb82` | L2-BUG-87: Mentors: Session Cancellation Modal Double-Click Triggers Multiple Refunds | Resolved | High | `07_evidence_capture.png` |
+| **BUG-165** | `6af3357db33acc0678ca661a` | L2-BUG-88: Mentors: Rescheduling Slot Leaves Original Slot Locked in Calendar | Resolved | High | `08_evidence_capture.png` |
+| **BUG-166** | `6af33580b33acc0678ca66c0` | L2-BUG-89: Mentors: Review Submission Accepts 0-Star Rating Without Form Error | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-167** | `6af335825b95b58cd9feec73` | L2-BUG-90: Mentors: Language Filter Empty State on Bilingual Mentors | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-168** | `6af33585b33acc0678ca676a` | L2-BUG-91: Dashboard: Learning Streak Resets Prematurely Across Midnight Boundary | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-169** | `6af335885b95b58cd9feed37` | L2-BUG-92: Dashboard: Unlock Badge Confetti Animation Freezes Browser on Inactive Tab | Resolved | Low | `02_evidence_capture.png` |
+| **BUG-170** | `6af3358b5b95b58cd9feedbc` | L2-BUG-93: Progress: Course Completion Ring Shows 99.9% When All Lessons Finished | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-171** | `6af3358fb33acc0678ca6830` | L2-BUG-94: Dashboard: Bookmark Lesson Toggle Does Not Sync With Bookmarked Tab | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-172** | `6af33592b33acc0678ca68d5` | L2-BUG-95: Security: 2FA Backup Code Download Opens in Browser Instead of Saving | Resolved | Low | `05_evidence_capture.png` |
+| **BUG-173** | `6af335965b95b58cd9feeea0` | L2-BUG-96: Security: Account Deletion Form Submits on Enter Key in Reason Field | Resolved | High | `06_evidence_capture.png` |
+| **BUG-174** | `6af335995b95b58cd9feef1c` | L2-BUG-97: Security: Avatar Upload Accepts Malicious SVG with Embedded Script | Resolved | High | `07_evidence_capture.png` |
+| **BUG-175** | `6af3359ec48906c5a1884722` | L2-BUG-98: Accessibility: Notification Preferences Toggles Lack High Contrast Focus Ring | Resolved | Low | `08_evidence_capture.png` |
+| **BUG-176** | `6af335a15b95b58cd9feefcc` | L2-BUG-99: Admin: Bulk Student CSV Export Generates Corrupt CSV on Commas in Names | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-177** | `6af335a55b95b58cd9fef073` | L2-BUG-100: Admin: Coupon Creation Permitted With Past Expiration Date | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-178** | `6af408ac5b95b58cd9007f05` | L2-BUG-101: Admin: User Role Demotion Fails to Invalidate Active Session Tokens | Resolved | Critical | `01_evidence_capture.png` |
+| **BUG-179** | `6af408aeb33acc0678cbf750` | L2-BUG-102: Catalog: Multi-Word Search Query Tokenizer Splits on Hyphenated Terms | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-180** | `6af408afb33acc0678cbf773` | L2-BUG-103: Classroom: Video Quality Auto-Switching Throws Exception on Zero Bandwidth Sample | Resolved | High | `03_evidence_capture.png` |
+| **BUG-181** | `6af408b15b95b58cd9007f4b` | L2-BUG-104: Certificates: Special Characters in User Name Render Raw HTML Entities on Canvas | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-182** | `6af408b35b95b58cd9007f6d` | L2-BUG-105: Quiz: Time-Remaining Counter Desyncs on Browser Tab Backgrounding | Resolved | High | `05_evidence_capture.png` |
+| **BUG-183** | `6af408b45b95b58cd9007f90` | L2-BUG-106: Cart: Clearing Entire Cart Dispatches Unnecessary Duplicate Network Requests | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-184** | `6af408b75b95b58cd9007fd5` | L2-BUG-107: Mentors: Slot Cancellation Request Missing Booking UUID Parameter | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-185** | `6af408b9b33acc0678cbf7fe` | L2-BUG-108: Dashboard: Course Completion Displays NaN% on Empty Module Curriculum | Resolved | Low | `08_evidence_capture.png` |
+| **BUG-186** | `6af408bab33acc0678cbf821` | L2-BUG-109: Reviews: Star Rating Filter Treats 0-Star and Unrated Reviews Identically | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-187** | `6af408bc5b95b58cd900801b` | L2-BUG-110: Auth: Login Form Enter Key Submission Causes Unhandled Page Reload | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-188** | `6af408beb33acc0678cbf863` | L2-BUG-111: Classroom: Video Player Scrub Bar Thumb Offsets Incorrectly on Touch Events | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-189** | `6af408c05b95b58cd900803d` | L2-BUG-112: Checkout: Postal Code Validator Rejects International Alphanumeric Codes | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-190** | `6af408c35b95b58cd9008060` | L2-BUG-113: Profile: Avatar Uploader Permits SVG File Types With Potential Stored XSS | Resolved | High | `03_evidence_capture.png` |
+| **BUG-191** | `6af408c55b95b58cd90080a5` | L2-BUG-114: Events: Past Events Ordering Mutates Source Array via In-Place Sort | Resolved | Low | `04_evidence_capture.png` |
+| **BUG-192** | `6af408c7b33acc0678cbf8f0` | L2-BUG-115: Support: Ticket Attachment Exceeding 10MB Causes Unhandled Promise Rejection | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-193** | `6af408c95b95b58cd90080c9` | L2-BUG-116: Catalog: Inverted Price Filter Handles Render Zero Search Results | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-194** | `6af408cab33acc0678cbf937` | L2-BUG-117: Quiz: Radio Option Label Lacks 'for' Attribute Breaking Accessibility Tap Area | Resolved | Low | `07_evidence_capture.png` |
+| **BUG-195** | `6af408cdb33acc0678cbf97d` | L2-BUG-118: Cart: Fast Double-Click on Item Increment Dispatches Unthrottled Duplicate Mutations | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-196** | `6af408cf5b95b58cd9008131` | L2-BUG-119: Mentors: Timezone Selector Defaults to UTC Instead of Browser Local Zone | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-197** | `6af408d15b95b58cd9008154` | L2-BUG-120: Accessibility: Classroom Navigation Tabs Lack ARIA Selected Attribute | Resolved | Low | `00_evidence_capture.png` |
+| **BUG-198** | `6af408d35b95b58cd900819a` | L2-BUG-121: Admin: Course Deletion Modal Backdrop Click Dismisses Without Cleanup | Resolved | Low | `01_evidence_capture.png` |
+| **BUG-199** | `6af408d5b33acc0678cbf9e7` | L2-BUG-122: Auth: Registration Password Field Leaks Plaintext in Debug DOM Attribute | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-200** | `6af408d75b95b58cd90081be` | L2-BUG-123: Orders: Invoice PDF Service Truncates Fractional Decimal Cents on Foreign Currency | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-201** | `6af408d9b33acc0678cbfa2d` | L2-BUG-124: Catalog: Category Filter Switch Retains Stale Page Number Causing Empty Views | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-202** | `6af408da5b95b58cd9008203` | L2-BUG-125: Certificates: Expired Certificate Verification Renders Broken Image | Resolved | Low | `05_evidence_capture.png` |
+| **BUG-203** | `6af408dcb33acc0678cbfa91` | L2-BUG-126: Admin: Instructor Payout Calculation Misses Platform Commission Deductions | Resolved | Critical | `06_evidence_capture.png` |
+| **BUG-204** | `6af408de5b95b58cd9008225` | L2-BUG-127: Classroom: Video Playback Speed Resets to 1x on Next Chapter Transition | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-205** | `6af408e05b95b58cd9008262` | L2-BUG-128: Cart: Applying Coupon With Omitted Minimum Spend Throws Null Pointer Exception | Resolved | High | `08_evidence_capture.png` |
+| **BUG-206** | `6af408e2b33acc0678cbfafe` | L2-BUG-129: Mentors: Past Booking Dates Selectable Due to Client Clock Skew Discrepancy | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-207** | `6af408e45b95b58cd9008291` | L2-BUG-130: Auth: Password Reset Token URL Missing Client-Side Expiry Pre-Check | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-208** | `6af408e55b95b58cd90082d2` | L2-BUG-131: Dashboard: Certificate Download Button Disabled During WebSocket Disconnect | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-209** | `6af408e7b33acc0678cbfb44` | L2-BUG-132: Quiz: Single-Choice Radio Option Allows Deselection via Spacebar Toggle | Resolved | Low | `02_evidence_capture.png` |
+| **BUG-210** | `6af408e9b33acc0678cbfb86` | L2-BUG-133: Catalog: Search Autocomplete Dropdown Stays Open Across Route Transitions | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-211** | `6af408ebb33acc0678cbfbce` | L2-BUG-134: Checkout: Credit Card Expiry Month Displays 0-Indexed Single Digit | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-212** | `6af408edb33acc0678cbfbf1` | L2-BUG-135: Support: Live Chat Message Duplicates on Temporary Network Disconnect | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-213** | `6af408ef5b95b58cd900833a` | L2-BUG-136: Classroom: Video Captions Render WebVTT HTML Cues as Literal Strings | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-214** | `6af408f05b95b58cd900835d` | L2-BUG-137: Events: Event RSVP Counter Over-Counts on Optimistic UI Update | Resolved | Low | `07_evidence_capture.png` |
+| **BUG-215** | `6af408f25b95b58cd900837f` | L2-BUG-138: Profile: Email Update Input Allows Trailing Whitespace Creating Ghost Accounts | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-216** | `6af408f45b95b58cd90083a2` | L2-BUG-139: Admin: Bulk Course Archive Dispatches Without User Confirmation Dialog | Resolved | High | `09_evidence_capture.png` |
+| **BUG-217** | `6af408f6b33acc0678cbfc9f` | L2-BUG-140: Cart: Currency Switcher Fails to Recalculate Fixed Amount Coupon Discounts | Resolved | Critical | `00_evidence_capture.png` |
+| **BUG-218** | `6af408f75b95b58cd90083e8` | L2-BUG-141: Reviews: Helpful Vote Permitted Multiple Times via LocalStorage Tampering | Resolved | Low | `01_evidence_capture.png` |
+| **BUG-219** | `6af408fa5b95b58cd900840a` | L2-BUG-142: Classroom: Audio Mode Omits MediaSession Handlers Breaking Lockscreen Controls | Resolved | Low | `02_evidence_capture.png` |
+| **BUG-220** | `6af408fc5b95b58cd9008450` | L2-BUG-143: Mentors: Rating Filter Slider Snaps to Integers Missing Half-Star Mentors | Resolved | Low | `03_evidence_capture.png` |
+| **BUG-221** | `6af408fd5b95b58cd9008473` | L2-BUG-144: Quiz: Question Review Exposes Correct Answers Before Instructor Release Time | Resolved | High | `04_evidence_capture.png` |
+| **BUG-222** | `6af408ffb33acc0678cbfd2b` | L2-BUG-145: Accessibility: Video Volume Control Missing ARIA ValueText Descriptor | Resolved | Low | `05_evidence_capture.png` |
+| **BUG-223** | `6af4090214ae0a97ba4c81a3` | L2-BUG-146: Dashboard: Download All Invoices on 0-Order Account Generates Corrupt 0-Byte Zip | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-224** | `6af409045b95b58cd9008496` | L2-BUG-147: Catalog: Course Difficulty Badge CSS Class Mismatch for Intermediate Level | Resolved | Low | `07_evidence_capture.png` |
+| **BUG-225** | `6af40908b33acc0678cbfdb7` | L2-BUG-148: Orders: Refund Status Polling Floods API Due to Missing Backoff Jitter | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-226** | `6af4090ab33acc0678cbfdda` | L2-BUG-149: Certificates: PDF Generator Crops Instructor Signature on Letter Page Format | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-227** | `6af4090b14ae0a97ba4c81c6` | L2-BUG-150: Admin: User Search Debounce Triggers React Warning on Component Unmount | Resolved | Low | `00_evidence_capture.png` |
+| **BUG-228** | `6af4430f5b95b58cd900e888` | Notifications: Stale In-App Badge Count on Tab Focus Wakeup | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-229** | `6af44312b33acc0678cc9b86` | Video Player: Picture-in-Picture Exit Fails to Restore Main Canvas Aspect Ratio | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-230** | `6af443155b95b58cd900e8cd` | Checkout: CVV Field Leaks Raw Keystrokes to Redux DevTools State Tree | Resolved | Critical | `03_evidence_capture.png` |
+| **BUG-231** | `6af4431a5b95b58cd900e913` | Quiz Engine: Drag-and-Drop Question Reorder Mutates Source Array In-Place | Resolved | High | `04_evidence_capture.png` |
+| **BUG-232** | `6af4431d5b95b58cd900e936` | Discussion Forum: Code Snippet Syntax Highlighter Crashes on Malformed Markdown Fences | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-233** | `6af44320b33acc0678cc9bee` | Analytics: Session Duration Metric Emits Negative Milliseconds on Clock NTP Sync | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-234** | `6af443235b95b58cd900e97b` | Certificate Verification: QR Code URL Lacks Canonical Trailing Slash Causing 301 Redirect Loop | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-235** | `6af44325b33acc0678cc9c34` | Catalog: Filter Pill Multi-Select Duplicates Query Parameters in History State | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-236** | `6af44326b33acc0678cc9c56` | User Profile: Avatar Crop Canvas Exceeds Maximum WebGL Texture Dimension on 4K Displays | Resolved | High | `09_evidence_capture.png` |
+| **BUG-237** | `6af44328b33acc0678cc9c9c` | Instructor Studio: Draft Curriculum Auto-Save Overwrites Newer Remote Edit with Stale LocalStorage | Resolved | Critical | `00_evidence_capture.png` |
+| **BUG-238** | `6af443295b95b58cd900e9c0` | Course Player: Closed Captions Text Renderer Overlaps Playback Speed Scrub Slider | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-239** | `6af4432bb33acc0678cc9cbf` | Bulk Export: Student CSV Roster Fails to Sanitize Formula Injection Prefixes | Resolved | High | `02_evidence_capture.png` |
+| **BUG-240** | `6af4432c5b95b58cd900ea05` | Auth: Multi-Tab Logout BroadcastChannel Handshake Fails on Safari Private Browsing | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-241** | `6af4432d5b95b58cd900ea27` | Live Webinar: WebRTC ICE Candidate Queue Drops Early Packets Before Remote Description Set | Resolved | High | `04_evidence_capture.png` |
+| **BUG-242** | `6af4432f5b95b58cd900ea4a` | Course Detail: Breadcrumb Navigation Truncates Category Strings with Broken Entity Codes | Resolved | Low | `05_evidence_capture.png` |
+| **BUG-243** | `6af443305b95b58cd900ea91` | Billing: Yearly Subscription Toggle Lacks Currency Decimal Rounding on Proration Preview | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-244** | `6af443325b95b58cd900eab3` | Assignments: File Uploader Rejects Valid HEIC Image Formats from iOS Safari | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-245** | `6af44333b33acc0678cc9d29` | Search: Keyboard Arrow Key Navigation Beyond Boundary Crashes Virtualized List | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-246** | `6af44335b33acc0678cc9d4b` | Dark Mode: High Contrast Theme Inverts Selected Checkbox SVG Fill to Transparent | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-247** | `6af443375b95b58cd900eaf8` | PDF Viewer: Annotation Sticky Note Positioning Skews During Canvas Pinch-to-Zoom | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-248** | `6af44338b33acc0678cc9d6e` | Instructor Studio: Bulk Video Upload Worker Pool Deadlocks on 429 Rate Limit | Resolved | High | `01_evidence_capture.png` |
+| **BUG-249** | `6af4433ab33acc0678cc9db4` | Course Catalog: Sorting by Rating Fails to Fallback on 0-Review Courses | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-250** | `6af4433b5b95b58cd900eb1a` | Cart: Multi-Currency Geo-IP Switcher Fails to Invalidate Cached Line Item Subtotals | Resolved | High | `03_evidence_capture.png` |
+| **BUG-251** | `6af4433cb33acc0678cc9dd6` | Interactive Code Runner: Python REPL Web Worker Hangs on Infinite While Loop | Resolved | High | `04_evidence_capture.png` |
+| **BUG-252** | `6af4433eb33acc0678cc9df9` | Account Settings: Two-Factor SMS Resend Timer Resets to Zero on Page Navigation | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-253** | `6af4433f5b95b58cd900eb60` | Student Dashboard: Upcoming Deadlines Calendar Omits Leap Day Events in February 2028 | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-254** | `6af443405b95b58cd900eb83` | Discussion Forum: Thread Upvote Mutation Allows Race Condition Double-Voting via Fast Clicks | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-255** | `6af443425b95b58cd900ebc8` | Audio Lesson: Background Media Session API Drops Artwork on Low-Bandwidth Mode | Resolved | Low | `08_evidence_capture.png` |
+| **BUG-256** | `6af44344b33acc0678cc9e3e` | Admin Panel: Role Assignment Modal Allows Removing Last Super-Admin Account | Resolved | Critical | `09_evidence_capture.png` |
+| **BUG-257** | `6af443455b95b58cd900ebeb` | Quiz Engine: Matrix Match Drag Drop Fails Keyboard Focus Trapping for Screen Readers | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-258** | `6af443465b95b58cd900ec0d` | Payment: 3D-Secure Iframe Callback Hangs on Cross-Origin PostMessage Domain Mismatch | Resolved | High | `01_evidence_capture.png` |
+| **BUG-259** | `6af44348b33acc0678cc9e84` | Instructor Studio: Rich Text Editor Strips MathML Mathematical Equations on Paste | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-260** | `6af443495b95b58cd900ec53` | Certificate Download: Canvas Font Loading Race Condition Renders Fallback Serif Font | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-261** | `6af4434b5b95b58cd900ec75` | Course Player: Resume Playback From Last Position Fails on Sub-Second Video Durations | Resolved | Low | `04_evidence_capture.png` |
+| **BUG-262** | `6af4434cb33acc0678cc9ecb` | Student Notes: Markdown Export Filename Generates Unescaped Path Traversal Sequence | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-263** | `6af4434db33acc0678cc9eed` | Catalog Search: Diacritics and Accented Characters Fail to Match Normalized Course Names | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-264** | `6af4434f5b95b58cd900ecbb` | Mentorship Booking: Slot Booking Modal Allows Double Submission on Mobile Touch Ripple | Resolved | High | `07_evidence_capture.png` |
+| **BUG-265** | `6af44351b33acc0678cc9f32` | Wishlist: Remove Button Fails Optimistic UI Rollback on Network Error | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-266** | `6af443545b95b58cd900ed01` | Interactive Code Runner: Console Output Stream Memory Leak on Infinite Log Output | Resolved | High | `09_evidence_capture.png` |
+| **BUG-267** | `6af443595b95b58cd900ed49` | Discussion Forum: Mention Autocomplete Popover Closes on Touch Scroll on iPad | Resolved | Low | `00_evidence_capture.png` |
+| **BUG-268** | `6af4435d5b95b58cd900ed6c` | Course Progress: Chapter Completion Percentage Displays 101% Due to Float Rounding | Resolved | Low | `01_evidence_capture.png` |
+| **BUG-269** | `6af44361b33acc0678cc9f9a` | Instructor Studio: Pricing Tier Selector Defaults to USD on Non-US Stripe Connect Accounts | Resolved | High | `02_evidence_capture.png` |
+| **BUG-270** | `6af44363eaceed221893e652` | Video Player: Subtitle Track Change Clears Buffered Video Chunk Segment Cache | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-271** | `6af44365eaceed221893e674` | Certificate Verification: Public Slug Collides on Non-Alphanumeric Special Characters | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-272** | `6af44366eaceed221893e696` | User Profile: Password Change Modal Fails to Invalidate Remember-Me Cookie | Resolved | High | `05_evidence_capture.png` |
+| **BUG-273** | `6af44367b33acc0678cc9fbd` | Assignments: Code Submission Diff Viewer Inverts Added and Deleted Highlight Colors | Resolved | Low | `06_evidence_capture.png` |
+| **BUG-274** | `6af443695b95b58cd900edf8` | Billing: Invoice PDF Download Fails for Invoices Containing Zero-Rate VAT Items | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-275** | `6af4436ab33acc0678cca003` | Admin Panel: Audit Log Filter by Date Inverts Bounds on UTC Midnight Crossing | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-276** | `6af4436ceaceed221893e6b9` | Live Chat: Message Input Auto-Grow Fails to Shrink on Text Deletion via Backspace | Resolved | Low | `09_evidence_capture.png` |
+| **BUG-277** | `6af4436eeaceed221893e6dc` | Course Player: Fullscreen Toggle on iOS Safari Triggers Layout Shift in Navigation Header | Resolved | Medium | `00_evidence_capture.png` |
 
 ---
 
