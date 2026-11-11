@@ -135,12 +135,12 @@ All 81 test cases are actively indexed in `Starter Project` under application `S
 
 ---
 
-### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-177)
+### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-202)
 
-All 100 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
+All 125 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
 
 - **Lead Assignee:** Soujas Kudchadker (`soujas.kudchadker13@nmims.in`)
-- **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..114`), Requirement (`REQ-52..60`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
+- **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..210`), Requirement (`REQ-52..156`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
 - **Engineering Triage Comments:** Every bug ticket features an authenticated triage comment detailing the exact JavaScript chunk, root cause, 3/3 reproduction verification, AI Failure Analysis ID (`fa_...`), and verification proof.
 - **Interactive Defect Remediation Lab:** Full interactive before/after code diffs, live AI Failure-Intelligence telemetry, and copyable verification commands are accessible in `LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html`.
 
@@ -246,6 +246,31 @@ All 100 defect tickets across the entire Edu Learning Platform codebase are offi
 | **BUG-175** | `6af3359ec48906c5a1884722` | L2-BUG-98: Accessibility: Notification Preferences Toggles Lack High Contrast Focus Ring | Resolved | Low | `08_auth_register.png` |
 | **BUG-176** | `6af335a15b95b58cd9feefcc` | L2-BUG-99: Admin: Bulk Student CSV Export Generates Corrupt CSV on Commas in Names | Resolved | Medium | `12_admin_portal.png` |
 | **BUG-177** | `6af335a55b95b58cd9fef073` | L2-BUG-100: Admin: Coupon Creation Permitted With Past Expiration Date | Resolved | Medium | `12_admin_portal.png` |
+| **BUG-178** | `6af34dd79555aa8e00c09f02` | L2-BUG-101: Admin: User Role Demotion Fails to Invalidate Active Session Tokens | Resolved | Critical | `12_admin_portal.png` |
+| **BUG-179** | `6af34c7dca7cf4e9b02ad23c` | L2-BUG-102: Catalog: Multi-Word Search Query Tokenizer Splits on Hyphenated Terms | Resolved | Medium | `03_course_catalog.png` |
+| **BUG-180** | `6af349deb7aaa89503930c3b` | L2-BUG-103: Classroom: Video Quality Auto-Switching Throws Exception on Zero Bandwidth Sample | Resolved | High | `01_course_player.png` |
+| **BUG-181** | `6af348376ba018ce02099afd` | L2-BUG-104: Certificates: Special Characters in User Name Render Raw HTML Entities on Canvas | Resolved | Medium | `10_certificate_verification.png` |
+| **BUG-182** | `6af34abb94265cbb969a04d5` | L2-BUG-105: Quiz: Time-Remaining Counter Desyncs on Browser Tab Backgrounding | Resolved | High | `07_classroom_quiz.png` |
+| **BUG-183** | `6af34e8a2daf3d4be968d143` | L2-BUG-106: Cart: Clearing Entire Cart Dispatches Unnecessary Duplicate Network Requests | Resolved | Low | `05_cart_coupon_applied.png` |
+| **BUG-184** | `6af340fd6fd70190b1181bd6` | L2-BUG-107: Mentors: Slot Cancellation Request Missing Booking UUID Parameter | Resolved | Medium | `06_mentor_detail_booking.png` |
+| **BUG-185** | `6af3479605993701883d1fc4` | L2-BUG-108: Dashboard: Course Completion Displays NaN% on Empty Module Curriculum | Resolved | Low | `11_user_dashboard.png` |
+| **BUG-186** | `6af3486dbdbbeedc8d3bcacb` | L2-BUG-109: Reviews: Star Rating Filter Treats 0-Star and Unrated Reviews Identically | Resolved | Low | `03_course_catalog.png` |
+| **BUG-187** | `6af3479e4b6fcce7ead7a8c8` | L2-BUG-110: Auth: Login Form Enter Key Submission Causes Unhandled Page Reload | Resolved | Medium | `08_auth_register.png` |
+| **BUG-188** | `6af34f0639b8e87e6a78f01e` | L2-BUG-111: Classroom: Video Player Scrub Bar Thumb Offsets Incorrectly on Touch Events | Resolved | Medium | `01_course_player.png` |
+| **BUG-189** | `6af344616edba0fd67beb93a` | L2-BUG-112: Checkout: Postal Code Validator Rejects International Alphanumeric Codes | Resolved | Medium | `04_checkout_payment.png` |
+| **BUG-190** | `6af34b39896d734a3a6832ee` | L2-BUG-113: Profile: Avatar Uploader Permits SVG File Types With Potential Stored XSS | Resolved | High | `08_auth_register.png` |
+| **BUG-191** | `6af34ab8cb6909a857474512` | L2-BUG-114: Events: Past Events Ordering Mutates Source Array via In-Place Sort | Resolved | Low | `03_course_catalog.png` |
+| **BUG-192** | `6af348b13bb687aeca04689e` | L2-BUG-115: Support: Ticket Attachment Exceeding 10MB Causes Unhandled Promise Rejection | Resolved | Medium | `09_support_page.png` |
+| **BUG-193** | `6af3463dbecb461e4fd1ac6c` | L2-BUG-116: Catalog: Inverted Price Filter Handles Render Zero Search Results | Resolved | Low | `03_course_catalog.png` |
+| **BUG-194** | `6af347a75662c738e01d5455` | L2-BUG-117: Quiz: Radio Option Label Lacks 'for' Attribute Breaking Accessibility Tap Area | Resolved | Low | `07_classroom_quiz.png` |
+| **BUG-195** | `6af34b2dbed1ce418c9e4ea2` | L2-BUG-118: Cart: Fast Double-Click on Item Increment Dispatches Unthrottled Duplicate Mutations | Resolved | Medium | `05_cart_coupon_applied.png` |
+| **BUG-196** | `6af34699709c26eefab4aab8` | L2-BUG-119: Mentors: Timezone Selector Defaults to UTC Instead of Browser Local Zone | Resolved | Low | `06_mentor_detail_booking.png` |
+| **BUG-197** | `6af3451431fd40023683f1aa` | L2-BUG-120: Accessibility: Classroom Navigation Tabs Lack ARIA Selected Attribute | Resolved | Low | `01_course_player.png` |
+| **BUG-198** | `6af340a7f352ca67cb0a5bea` | L2-BUG-121: Admin: Course Deletion Modal Backdrop Click Dismisses Without Cleanup | Resolved | Low | `12_admin_portal.png` |
+| **BUG-199** | `6af34e90b4a60c34ed3a7396` | L2-BUG-122: Auth: Registration Password Field Leaks Plaintext in Debug DOM Attribute | Resolved | Medium | `08_auth_register.png` |
+| **BUG-200** | `6af3423ffa6f65b4b6a52721` | L2-BUG-123: Orders: Invoice PDF Service Truncates Fractional Decimal Cents on Foreign Currency | Resolved | Medium | `11_user_dashboard.png` |
+| **BUG-201** | `6af343376cb06048e873179f` | L2-BUG-124: Catalog: Category Filter Switch Retains Stale Page Number Causing Empty Views | Resolved | Medium | `03_course_catalog.png` |
+| **BUG-202** | `6af34c78269444564ae73fdc` | L2-BUG-125: Certificates: Expired Certificate Verification Renders Broken Image | Resolved | Low | `10_certificate_verification.png` |
 
 ---
 
