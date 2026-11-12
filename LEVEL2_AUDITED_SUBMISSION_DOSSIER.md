@@ -135,9 +135,9 @@ All 81 test cases are actively indexed in `Starter Project` under application `S
 
 ---
 
-### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-300)
+### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-500)
 
-All 223 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
+All 423 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
 
 - **Lead Assignee:** Soujas Kudchadker (`soujas.kudchadker13@nmims.in`)
 - **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..305`), Requirement (`REQ-52..251`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
@@ -369,6 +369,206 @@ All 223 defect tickets across the entire Edu Learning Platform codebase are offi
 | **BUG-298** | `6af4cb085b95b58cd901d7e3` | Admin Portal: CSV Export BOM Marker Missing for Excel Windows UTF-8 Compatibility | Resolved | Low | `01_evidence_capture.png` |
 | **BUG-299** | `6af4cb0a5b95b58cd901d829` | Certificate Verification: Microdata Schema.org EducationalCredential JSON-LD Syntax Error | Resolved | Medium | `02_evidence_capture.png` |
 | **BUG-300** | `6af4cb0c5b95b58cd901d84b` | Live Chat: WebSocket Exponential Backoff Max Delay Exceeds Thirty Seconds Under Network Glitches | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-301** | `6af558610ef35ecedf851b65` | Web Workers & Service Workers: Periodic Background Sync Permission Check | Resolved | High | `04_evidence_capture.png` |
+| **BUG-302** | `6af55863cfc7e08ab8376c14` | Web Workers & Service Workers: DedicatedWorker Structured Clone ArrayBuffer Stutter | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-303** | `6af558640ef35ecedf851bab` | Web Workers & Service Workers: CacheStorage 206 Partial Content Video Range Fallback | Resolved | High | `06_evidence_capture.png` |
+| **BUG-304** | `6af55866d249ca6fae73d1da` | Web Workers & Service Workers: SharedWorker Inactive Tab Port Leak | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-305** | `6af55867cfc7e08ab8376c36` | Web Workers & Service Workers: Workbox Unbounded Lesson Audio Cache Eviction | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-306** | `6af558690ef35ecedf851bf1` | Web Workers & Service Workers: Fetch Event Response Body Stream Lock Collision | Resolved | High | `09_evidence_capture.png` |
+| **BUG-307** | `6af5586ad249ca6fae73d21b` | Web Workers & Service Workers: Background Fetch Cancellation Abort Handling | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-308** | `6af5586c0ef35ecedf851c14` | Web Workers & Service Workers: Comlink Non-Transferable State Proxy Exception | Resolved | High | `01_evidence_capture.png` |
+| **BUG-309** | `6af5586dd249ca6fae73d264` | Web Workers & Service Workers: PushNotification Premature Worker Termination | Resolved | High | `02_evidence_capture.png` |
+| **BUG-310** | `6af5586ecfc7e08ab8376c58` | Web Workers & Service Workers: Offline Navigation Route Query String Cache Miss | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-311** | `6af5586fcfc7e08ab8376c7a` | Web Workers & Service Workers: Cache.addAll Atomic Batch Single Asset 404 Failure | Resolved | High | `04_evidence_capture.png` |
+| **BUG-312** | `6af558700ef35ecedf851c5a` | Web Workers & Service Workers: Inline Blob Worker URL Premature Revocation | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-313** | `6af55872d249ca6fae73d2aa` | Web Workers & Service Workers: Service Worker Navigation Preload Header Fallback | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-314** | `6af558730ef35ecedf851c7c` | Web Workers & Service Workers: Worker Global Unhandled Promise Rejection Hole | Resolved | High | `07_evidence_capture.png` |
+| **BUG-315** | `6af55874d249ca6fae73d2cc` | Web Workers & Service Workers: Clear-Site-Data Hard Logout Client Unregistration | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-316** | `6af55875d249ca6fae73d2ee` | Web Workers & Service Workers: SharedArrayBuffer Concurrency Lock Omission | Resolved | High | `09_evidence_capture.png` |
+| **BUG-317** | `6af55876cfc7e08ab8376c9d` | Web Workers & Service Workers: CacheStorage Write QuotaExceededError Fallback | Resolved | High | `00_evidence_capture.png` |
+| **BUG-318** | `6af55878cfc7e08ab8376cc0` | Web Workers & Service Workers: Worker Terminate Pending Queue Promise Leak | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-319** | `6af558790ef35ecedf851ce5` | Web Workers & Service Workers: Service Worker Synthetic Response Content-Encoding | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-320** | `6af5587ad249ca6fae73d334` | Web Workers & Service Workers: ServiceWorker Client.claim Double Hydration | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-321** | `6af5587c0ef35ecedf851d07` | Audio/Video Streaming & Media Source Extensions: MediaSource SourceBuffer AppendBuffer Overlap | Resolved | High | `04_evidence_capture.png` |
+| **BUG-322** | `6af5587d0ef35ecedf851d2a` | Audio/Video Streaming & Media Source Extensions: AudioContext Mobile Auto-Suspend Desync | Resolved | High | `05_evidence_capture.png` |
+| **BUG-323** | `6af5587fd249ca6fae73d379` | Audio/Video Streaming & Media Source Extensions: HLS Stream Discontinuity Sequence Tag Syntax Crash | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-324** | `6af55880cfc7e08ab8376ce2` | Audio/Video Streaming & Media Source Extensions: Picture-in-Picture IFrame Security Check Omission | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-325** | `6af558810ef35ecedf851d70` | Audio/Video Streaming & Media Source Extensions: WebCodecs VideoDecoder Flush Keyframe Requirement | Resolved | High | `08_evidence_capture.png` |
+| **BUG-326** | `6af55882cfc7e08ab8376d04` | Audio/Video Streaming & Media Source Extensions: Audio GainNode Ramp At CurrentTime IndexSizeError | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-327** | `6af55883cfc7e08ab8376d26` | Audio/Video Streaming & Media Source Extensions: WebVTT Subtitle CRLF Line Break Parsing Drop | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-328** | `6af55885d249ca6fae73d3e1` | Audio/Video Streaming & Media Source Extensions: MediaRecorder VP9 iOS Safari Support Crash | Resolved | High | `01_evidence_capture.png` |
+| **BUG-329** | `6af55886d249ca6fae73d404` | Audio/Video Streaming & Media Source Extensions: AnalyserNode Frequency Buffer Length Mismatch | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-330** | `6af55888cfc7e08ab8376d48` | Audio/Video Streaming & Media Source Extensions: HTMLMediaElement PlaybackRate Android Hardware Crash | Resolved | High | `03_evidence_capture.png` |
+| **BUG-331** | `6af55889cfc7e08ab8376d6b` | Audio/Video Streaming & Media Source Extensions: Widevine DRM EME Insecure Context Crash | Resolved | High | `04_evidence_capture.png` |
+| **BUG-332** | `6af5588a0ef35ecedf851dda` | Audio/Video Streaming & Media Source Extensions: MediaSession Artwork Dimensions Missing Lock Screen | Resolved | Minor | `05_evidence_capture.png` |
+| **BUG-333** | `6af5588bd249ca6fae73d449` | Audio/Video Streaming & Media Source Extensions: Fullscreen API User Gesture Requirement Trap | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-334** | `6af5588cd249ca6fae73d46b` | Audio/Video Streaming & Media Source Extensions: SourceBuffer Remove Operation Updating Overlap | Resolved | High | `07_evidence_capture.png` |
+| **BUG-335** | `6af5588d0ef35ecedf851e20` | Audio/Video Streaming & Media Source Extensions: Voice Activity Detection Hardcoded Clipping | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-336** | `6af5588ecfc7e08ab8376d8e` | Audio/Video Streaming & Media Source Extensions: Video Seek Before LoadedMetadata Exception | Resolved | High | `09_evidence_capture.png` |
+| **BUG-337** | `6af55890cfc7e08ab8376db1` | Audio/Video Streaming & Media Source Extensions: DASH MPD Manifest Dynamic Period Offset Drift | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-338** | `6af558910ef35ecedf851e65` | Audio/Video Streaming & Media Source Extensions: GetUserMedia Audio Constraint Bluetooth Failover | Resolved | High | `01_evidence_capture.png` |
+| **BUG-339** | `6af55892d249ca6fae73d4b1` | Audio/Video Streaming & Media Source Extensions: Video DisableRemotePlayback AirPlay Attribute | Resolved | Minor | `02_evidence_capture.png` |
+| **BUG-340** | `6af558930ef35ecedf851e88` | Audio/Video Streaming & Media Source Extensions: WebCodecs AudioData CopyTo Stereo Buffer Allocation | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-341** | `6af55894d249ca6fae73d4f7` | WebGL & HTML5 Canvas Rendering: Canvas ToDataURL Tainted Cross-Origin Avatar | Resolved | High | `04_evidence_capture.png` |
+| **BUG-342** | `6af558960ef35ecedf851ecd` | WebGL & HTML5 Canvas Rendering: WebGL Fragment Shader Compilation Error Silent Fallback | Resolved | High | `05_evidence_capture.png` |
+| **BUG-343** | `6af55897cfc7e08ab8376dd3` | WebGL & HTML5 Canvas Rendering: WebGPU Adapter Null Check On Legacy Devices | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-344** | `6af55898cfc7e08ab8376df5` | WebGL & HTML5 Canvas Rendering: Canvas HiDPI Retina DevicePixelRatio Blurry Text | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-345** | `6af55899d249ca6fae73d53d` | WebGL & HTML5 Canvas Rendering: WebGL Texture Memory Leak On Component Unmount | Resolved | High | `08_evidence_capture.png` |
+| **BUG-346** | `6af5589ad249ca6fae73d560` | WebGL & HTML5 Canvas Rendering: Canvas Pointer Coordinates Zoom Offset Correction | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-347** | `6af5589cd249ca6fae73d586` | WebGL & HTML5 Canvas Rendering: Canvas Path2D Negative Radius IndexSizeError | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-348** | `6af5589e0ef35ecedf851f13` | WebGL & HTML5 Canvas Rendering: WebGL Framebuffer Completion Status Validation | Resolved | High | `01_evidence_capture.png` |
+| **BUG-349** | `6af558a0d249ca6fae73d5ea` | WebGL & HTML5 Canvas Rendering: Canvas DrawImage HAVE_NOTHING ReadyState Crash | Resolved | High | `02_evidence_capture.png` |
+| **BUG-350** | `6af558a10ef35ecedf851f59` | WebGL & HTML5 Canvas Rendering: WebGL Vertex Attribute Array Binding Unbind | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-351** | `6af558a3cfc7e08ab8376e17` | WebGL & HTML5 Canvas Rendering: Canvas PDF Certificate DPI Metadata Omission | Resolved | Minor | `04_evidence_capture.png` |
+| **BUG-352** | `6af558a5d249ca6fae73d630` | WebGL & HTML5 Canvas Rendering: WebGPU Buffer MapAsync Concurrent Queue Conflict | Resolved | High | `05_evidence_capture.png` |
+| **BUG-353** | `6af558a6cfc7e08ab8376e3a` | WebGL & HTML5 Canvas Rendering: Canvas Animation RequestAnimationFrame Background Drain | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-354** | `6af558a70ef35ecedf851f9e` | WebGL & HTML5 Canvas Rendering: WebGL Uniform Location Cache Relink Stale Reference | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-355** | `6af558a80ef35ecedf851fc0` | WebGL & HTML5 Canvas Rendering: Canvas MeasureText Font Face Loading Race | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-356** | `6af558aad249ca6fae73d676` | WebGL & HTML5 Canvas Rendering: WebGL Depth Test Restore Overlay Z-Fighting | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-357** | `6af558abcfc7e08ab8376e5c` | WebGL & HTML5 Canvas Rendering: Canvas LineDashOffset Float Precision Overflow | Resolved | Minor | `00_evidence_capture.png` |
+| **BUG-358** | `6af558accfc7e08ab8376e7f` | WebGL & HTML5 Canvas Rendering: WebGPU Pipeline Error Scope Filter Omission | Resolved | High | `01_evidence_capture.png` |
+| **BUG-359** | `6af558adcfc7e08ab8376ea2` | WebGL & HTML5 Canvas Rendering: CreateImageBitmap SVG Source Missing Dimensions | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-360** | `6af558aecfc7e08ab8376ec4` | WebGL & HTML5 Canvas Rendering: WebGL Context Lost Event PreventDefault Omission | Resolved | High | `03_evidence_capture.png` |
+| **BUG-361** | `6af558af0ef35ecedf852028` | WebRTC & Real-Time Signaling: WebRTC Signaling Disconnect Local Offer Deadlock | Resolved | High | `04_evidence_capture.png` |
+| **BUG-362** | `6af558b00ef35ecedf85204c` | WebRTC & Real-Time Signaling: ICE Gathering IPv6 STUN Incompatible Router Drop | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-363** | `6af558b2d249ca6fae73d6df` | WebRTC & Real-Time Signaling: RTCRtpSender ReplaceTrack Null Mute Exception | Resolved | High | `06_evidence_capture.png` |
+| **BUG-364** | `6af558b3d249ca6fae73d702` | WebRTC & Real-Time Signaling: DataChannel BufferedAmount Low Threshold Backpressure | Resolved | High | `07_evidence_capture.png` |
+| **BUG-365** | `6af558b4d249ca6fae73d725` | WebRTC & Real-Time Signaling: WebRTC Screen Share Track OnEnded Banner Cleanup | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-366** | `6af558b50ef35ecedf852091` | WebRTC & Real-Time Signaling: SetRemoteDescription Precedes LocalDescription Race | Resolved | High | `09_evidence_capture.png` |
+| **BUG-367** | `6af558b6cfc7e08ab8376ee8` | WebRTC & Real-Time Signaling: WebRTC GetStats Polling Leak After Call End | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-368** | `6af558b7d249ca6fae73d76a` | WebRTC & Real-Time Signaling: ICE Connection Failed Automatic Restart Trigger | Resolved | High | `01_evidence_capture.png` |
+| **BUG-369** | `6af558b90ef35ecedf8520d7` | WebRTC & Real-Time Signaling: WebRTC Audio Dynamic Bitrate Clamp Floor | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-370** | `6af558bacfc7e08ab8376f0a` | WebRTC & Real-Time Signaling: RTCDataChannel BinaryType ArrayBuffer Throughput | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-371** | `6af558bb0ef35ecedf8520f9` | WebRTC & Real-Time Signaling: Simultaneous Bidirectional Offer RFC 8829 Glare | Resolved | High | `04_evidence_capture.png` |
+| **BUG-372** | `6af558bdd249ca6fae73d7d3` | WebRTC & Real-Time Signaling: Student View-Only Transceiver RecvOnly Direction | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-373** | `6af558becfc7e08ab8376f2c` | WebRTC & Real-Time Signaling: WebRTC Simulcast Spatial Layer MaxBitrate Caps | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-374** | `6af558bfd249ca6fae73d7f5` | WebRTC & Real-Time Signaling: GetUserMedia NotAllowedError Actionable Guidance | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-375** | `6af558c20ef35ecedf85213f` | WebRTC & Real-Time Signaling: PeerConnection Close Mid-AddIceCandidate Exception | Resolved | High | `08_evidence_capture.png` |
+| **BUG-376** | `6af558c3cfc7e08ab8376f4e` | WebRTC & Real-Time Signaling: Acoustic Echo Cancellation SampleRate Lock Conflict | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-377** | `6af558c5d249ca6fae73d83a` | WebRTC & Real-Time Signaling: RTCDataChannel OnClose Connection Reset Omission | Resolved | High | `00_evidence_capture.png` |
+| **BUG-378** | `6af558c6cfc7e08ab8376f70` | WebRTC & Real-Time Signaling: Signaling Heartbeat Malformed JSON SyntaxError | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-379** | `6af558c70ef35ecedf852185` | WebRTC & Real-Time Signaling: Screen Share Audio Checkbox Unchecked Null Reference | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-380** | `6af558c8cfc7e08ab8376f92` | WebRTC & Real-Time Signaling: Screen Share Detail ContentHint Blurry Code Editor | Resolved | Minor | `03_evidence_capture.png` |
+| **BUG-381** | `6af558c9d249ca6fae73d880` | CSS Layout, Subgrid & Visual Engines: CSS Subgrid Column Gap Inheritance Jitter | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-382** | `6af558cacfc7e08ab8376fb5` | CSS Layout, Subgrid & Visual Engines: Container Query ResizeObserver Loop Limit Exceeded | Resolved | High | `05_evidence_capture.png` |
+| **BUG-383** | `6af558cc0ef35ecedf8521ca` | CSS Layout, Subgrid & Visual Engines: Nested Flex Child Min-Width Zero Overflow | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-384** | `6af558cdd249ca6fae73d8c5` | CSS Layout, Subgrid & Visual Engines: Sticky Navigation Header Detach On Overflow Clip | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-385** | `6af558ce0ef35ecedf85220f` | CSS Layout, Subgrid & Visual Engines: CSS 3D Transform Stacking Context Menu Clipping | Resolved | High | `08_evidence_capture.png` |
+| **BUG-386** | `6af558cfcfc7e08ab8376fd8` | CSS Layout, Subgrid & Visual Engines: CSS Subgrid Fallback Grid Tracks Omission | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-387** | `6af558d1cfc7e08ab8376ffa` | CSS Layout, Subgrid & Visual Engines: Backdrop Filter Smooth Scrolling Compositor Lag | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-388** | `6af558d20ef35ecedf852232` | CSS Layout, Subgrid & Visual Engines: Scroll Snap Horizontal Tab Focus Trap | Resolved | High | `01_evidence_capture.png` |
+| **BUG-389** | `6af558d3d249ca6fae73d90a` | CSS Layout, Subgrid & Visual Engines: Aspect Ratio 16/9 Cumulative Layout Shift | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-390** | `6af558d40ef35ecedf852278` | CSS Layout, Subgrid & Visual Engines: RTL Logical Properties Margin Inconsistency | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-391** | `6af558d5d249ca6fae73d94f` | CSS Layout, Subgrid & Visual Engines: CSS Text Clamping Missing Box Orient Attributes | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-392** | `6af558d6d249ca6fae73d971` | CSS Layout, Subgrid & Visual Engines: Global Will-Change Transform Mobile VRAM Exhaustion | Resolved | High | `05_evidence_capture.png` |
+| **BUG-393** | `6af558d8cfc7e08ab837701c` | CSS Layout, Subgrid & Visual Engines: ResizeObserver OffsetHeight Layout Thrashing | Resolved | High | `06_evidence_capture.png` |
+| **BUG-394** | `6af558d90ef35ecedf8522bd` | CSS Layout, Subgrid & Visual Engines: Theme Accent Color Dark Mode Contrast Inversion | Resolved | Minor | `07_evidence_capture.png` |
+| **BUG-395** | `6af558dacfc7e08ab837703f` | CSS Layout, Subgrid & Visual Engines: Modal Dialog Background Body Scroll Bleed | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-396** | `6af558dcd249ca6fae73d9da` | CSS Layout, Subgrid & Visual Engines: CSS Transition All Accidental Reflow Trigger | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-397** | `6af558de0ef35ecedf8522e0` | CSS Layout, Subgrid & Visual Engines: OKLCH Color Space Fallback Older Mobile WebKit | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-398** | `6af558dfd249ca6fae73d9fc` | CSS Layout, Subgrid & Visual Engines: OptimizeLegibility Layout Lag Long Markdown Documents | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-399** | `6af558e00ef35ecedf852302` | CSS Layout, Subgrid & Visual Engines: Focus Outline Removal Without Focus-Visible Alternative | Resolved | High | `02_evidence_capture.png` |
+| **BUG-400** | `6af558e2cfc7e08ab83770a5` | CSS Layout, Subgrid & Visual Engines: View Transitions Name Collision Animation Abortion | Resolved | High | `03_evidence_capture.png` |
+| **BUG-401** | `6af558e30ef35ecedf852325` | Internationalization, RTL & Localized Formatting: Intl Collator Alphabetical Sorting Locale Ignorance | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-402** | `6af558e7cfc7e08ab83770ca` | Internationalization, RTL & Localized Formatting: DateTimeFormat Client Timezone Webinar Schedule Drift | Resolved | High | `05_evidence_capture.png` |
+| **BUG-403** | `6af558ebd249ca6fae73da64` | Internationalization, RTL & Localized Formatting: RTL Bidirectional Isolation User Handles Inversion | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-404** | `6af558ecd249ca6fae73da86` | Internationalization, RTL & Localized Formatting: Intl NumberFormat Hardcoded Currency Symbol Inversion | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-405** | `6af558edd249ca6fae73dacb` | Internationalization, RTL & Localized Formatting: Plural Rules Engine Two-Form Limitation Crash | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-406** | `6af558eecfc7e08ab8377110` | Internationalization, RTL & Localized Formatting: RelativeTimeFormat Sub-Hour Granularity Truncation | Resolved | Minor | `09_evidence_capture.png` |
+| **BUG-407** | `6af558f00ef35ecedf852347` | Internationalization, RTL & Localized Formatting: Devanagari Font Subset Unicode Range Tofu Box | Resolved | High | `00_evidence_capture.png` |
+| **BUG-408** | `6af558f1cfc7e08ab8377156` | Internationalization, RTL & Localized Formatting: Name Validation Regex Accented Character Rejection | Resolved | High | `01_evidence_capture.png` |
+| **BUG-409** | `6af558f20ef35ecedf85236a` | Internationalization, RTL & Localized Formatting: Calendar Picker First Day Of Week Locale Mismatch | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-410** | `6af558f3d249ca6fae73db33` | Internationalization, RTL & Localized Formatting: Comma Decimal Separator Number Parsing NaN | Resolved | High | `03_evidence_capture.png` |
+| **BUG-411** | `6af558f50ef35ecedf85238c` | Internationalization, RTL & Localized Formatting: Translation Key Fallback Raw Identifier Display | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-412** | `6af558f6cfc7e08ab837719c` | Internationalization, RTL & Localized Formatting: Course Duration Locale Pronunciation East Asian | Resolved | Minor | `05_evidence_capture.png` |
+| **BUG-413** | `6af558f7cfc7e08ab83771bf` | Internationalization, RTL & Localized Formatting: String Substring UTF-16 Surrogate Pair Slicing | Resolved | High | `06_evidence_capture.png` |
+| **BUG-414** | `6af558f8cfc7e08ab83771e2` | Internationalization, RTL & Localized Formatting: RTL Carousel Pagination Arrow Inversion | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-415** | `6af558fa0ef35ecedf8523ae` | Internationalization, RTL & Localized Formatting: E.164 Phone Number Formatting Leading Zero Duplication | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-416** | `6af558fb0ef35ecedf8523d0` | Internationalization, RTL & Localized Formatting: LocalStorage Preferred Locale HTTP Accept Header Desync | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-417** | `6af558fcd249ca6fae73db9c` | Internationalization, RTL & Localized Formatting: Turkish Dotted Undotted I Uppercase Mapping | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-418** | `6af558fe0ef35ecedf8523f2` | Internationalization, RTL & Localized Formatting: Intl ListFormat Localized Author Conjunctions | Resolved | Minor | `01_evidence_capture.png` |
+| **BUG-419** | `6af558ff0ef35ecedf852415` | Internationalization, RTL & Localized Formatting: Unit Formatter Manual Division Rounding Error | Resolved | Minor | `02_evidence_capture.png` |
+| **BUG-420** | `6af55901cfc7e08ab837724a` | Internationalization, RTL & Localized Formatting: Collator Search German Sharp S Sensitivity | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-421** | `6af55902d249ca6fae73dbe1` | Security, CSP & Client Hardening: Forum Post Markdown Parser XSS Sanitization Hole | Resolved | Critical | `04_evidence_capture.png` |
+| **BUG-422** | `6af55904d249ca6fae73dc04` | Security, CSP & Client Hardening: Content Security Policy Script-Src Unsafe-Eval Leak | Resolved | High | `05_evidence_capture.png` |
+| **BUG-423** | `6af559050ef35ecedf852438` | Security, CSP & Client Hardening: Auth Session Cookie SameSite Lax Secure Omission | Resolved | High | `06_evidence_capture.png` |
+| **BUG-424** | `6af55906cfc7e08ab837728f` | Security, CSP & Client Hardening: Cross-Origin-Opener-Policy COOP Header Omission | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-425** | `6af55907cfc7e08ab83772d5` | Security, CSP & Client Hardening: Checkout Frame Embedding X-Frame-Options Hole | Resolved | High | `08_evidence_capture.png` |
+| **BUG-426** | `6af5590a0ef35ecedf85245a` | Security, CSP & Client Hardening: JWT Plaintext LocalStorage Storage Vulnerability | Resolved | High | `09_evidence_capture.png` |
+| **BUG-427** | `6af5590ecfc7e08ab837731b` | Security, CSP & Client Hardening: Email Validation ReDoS Catastrophic Backtracking | Resolved | High | `00_evidence_capture.png` |
+| **BUG-428** | `6af5590f0ef35ecedf85247d` | Security, CSP & Client Hardening: Login ReturnUrl Query Open Redirect Vulnerability | Resolved | Critical | `01_evidence_capture.png` |
+| **BUG-429** | `6af55910d249ca6fae73dc6d` | Security, CSP & Client Hardening: Window PostMessage Missing Origin Validation | Resolved | Critical | `02_evidence_capture.png` |
+| **BUG-430** | `6af55911d249ca6fae73dc8f` | Security, CSP & Client Hardening: Referrer-Policy Sensitive Token Leakage | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-431** | `6af559130ef35ecedf8524c3` | Security, CSP & Client Hardening: External CDN Script Subresource Integrity Omission | Resolved | High | `04_evidence_capture.png` |
+| **BUG-432** | `6af55914d249ca6fae73dcd4` | Security, CSP & Client Hardening: Client Secret Equality Timing Attack Vulnerability | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-433** | `6af55915cfc7e08ab837733d` | Security, CSP & Client Hardening: WebSocket Auth Token Query Parameter Logging | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-434** | `6af55917d249ca6fae73dcf7` | Security, CSP & Client Hardening: State Hydration Object Deep Merge Prototype Pollution | Resolved | High | `07_evidence_capture.png` |
+| **BUG-435** | `6af55918cfc7e08ab837735f` | Security, CSP & Client Hardening: PDF Invoice Download Embedded Script Execution | Resolved | High | `08_evidence_capture.png` |
+| **BUG-436** | `6af55919d249ca6fae73dd3d` | Security, CSP & Client Hardening: Rich Text Clipboard Injection Sanitization Hole | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-437** | `6af5591acfc7e08ab8377381` | Security, CSP & Client Hardening: Payment Card Input Missing Autocomplete Annotations | Resolved | Minor | `00_evidence_capture.png` |
+| **BUG-438** | `6af5591d0ef35ecedf85252c` | Security, CSP & Client Hardening: Permissions-Policy Camera Geolocation Ad IFrame Leak | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-439** | `6af5591e0ef35ecedf85254f` | Security, CSP & Client Hardening: Decrypted Asset Blob URL Memory Retention Leak | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-440** | `6af55922d249ca6fae73dd82` | Security, CSP & Client Hardening: Course Asset Path Traversal Sequence Vulnerability | Resolved | High | `03_evidence_capture.png` |
+| **BUG-441** | `6af55924cfc7e08ab83773c7` | Performance, DOM Reflows & Virtualization: Virtual List Row Height Synchronous Reflow | Resolved | High | `04_evidence_capture.png` |
+| **BUG-442** | `6af55925d249ca6fae73dda5` | Performance, DOM Reflows & Virtualization: ScrollLeft Read After Style Width Forced Reflow | Resolved | High | `05_evidence_capture.png` |
+| **BUG-443** | `6af55926cfc7e08ab83773ea` | Performance, DOM Reflows & Virtualization: Window Resize Event Listener Memory Retention Leak | Resolved | High | `06_evidence_capture.png` |
+| **BUG-444** | `6af55928d249ca6fae73ddf3` | Performance, DOM Reflows & Virtualization: Below The Fold Headshot Native Lazy Loading | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-445** | `6af5592acfc7e08ab837745d` | Performance, DOM Reflows & Virtualization: FontFace Font-Display Swap Invisible Text Block | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-446** | `6af5592bcfc7e08ab8377481` | Performance, DOM Reflows & Virtualization: Active Card Box Shadow Animation Rasterization Lag | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-447** | `6af5592ccfc7e08ab83774a3` | Performance, DOM Reflows & Virtualization: Live Search Input Debounce Throttling Omission | Resolved | High | `00_evidence_capture.png` |
+| **BUG-448** | `6af5592dd249ca6fae73de5c` | Performance, DOM Reflows & Virtualization: MutationObserver Subtree True Body Thrashing | Resolved | High | `01_evidence_capture.png` |
+| **BUG-449** | `6af55934d249ca6fae73de7f` | Performance, DOM Reflows & Virtualization: Moment.js Full Locale Pack Chunk Bloat | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-450** | `6af55935d249ca6fae73dea2` | Performance, DOM Reflows & Virtualization: TouchMove Passive Event Listener Compositor Block | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-451** | `6af55936cfc7e08ab83774c5` | Performance, DOM Reflows & Virtualization: Virtualized Dynamic Image Height Scroll Jitter | Resolved | High | `04_evidence_capture.png` |
+| **BUG-452** | `6af5593ad249ca6fae73dee7` | Performance, DOM Reflows & Virtualization: Animation Tick Date.now Precision Stutter | Resolved | Minor | `05_evidence_capture.png` |
+| **BUG-453** | `6af5593b0ef35ecedf8525ef` | Performance, DOM Reflows & Virtualization: Largest Contentful Paint Banner Preload Omission | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-454** | `6af5593ccfc7e08ab83774e8` | Performance, DOM Reflows & Virtualization: React Context Provider Inline Object Redundant Rerender | Resolved | High | `07_evidence_capture.png` |
+| **BUG-455** | `6af5593ed249ca6fae73df4f` | Performance, DOM Reflows & Virtualization: Canvas Render Loop High-Frequency Closure GC Pause | Resolved | Medium | `08_evidence_capture.png` |
+| **BUG-456** | `6af5593f0ef35ecedf852614` | Performance, DOM Reflows & Virtualization: Microtask Queue Chaining 10k Promise UI Lockup | Resolved | High | `09_evidence_capture.png` |
+| **BUG-457** | `6af55940cfc7e08ab837752d` | Performance, DOM Reflows & Virtualization: Analytics Synchronous Script Blocking DOMContentLoaded | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-458** | `6af55941cfc7e08ab837754f` | Performance, DOM Reflows & Virtualization: Large Comment List CSS Containment Omission | Resolved | Medium | `01_evidence_capture.png` |
+| **BUG-459** | `6af559430ef35ecedf852639` | Performance, DOM Reflows & Virtualization: Whiteboard Detached DOM Nodes Event Listener Leak | Resolved | High | `02_evidence_capture.png` |
+| **BUG-460** | `6af55946d249ca6fae73df94` | Performance, DOM Reflows & Virtualization: Critical Above The Fold CSS Render Blocking Delay | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-461** | `6af55947cfc7e08ab8377595` | Forms, Autofill & Pointer Interaction: Browser Autofill State Desync React Controlled Input | Resolved | High | `04_evidence_capture.png` |
+| **BUG-462** | `6af55958d249ca6fae73dfda` | Forms, Autofill & Pointer Interaction: Pointer Capture Release On PointerUp Omission | Resolved | High | `05_evidence_capture.png` |
+| **BUG-463** | `6af55959d249ca6fae73dffc` | Forms, Autofill & Pointer Interaction: Whiteboard Pinch Zoom Viewport Zoom Collision | Resolved | High | `06_evidence_capture.png` |
+| **BUG-464** | `6af5595b0ef35ecedf85265e` | Forms, Autofill & Pointer Interaction: Modal Dialog Keyboard Tab Focus Trap Cycle | Resolved | High | `07_evidence_capture.png` |
+| **BUG-465** | `6af5595e0ef35ecedf852683` | Forms, Autofill & Pointer Interaction: Payment Verification Double Tap Button Mutex | Resolved | Critical | `08_evidence_capture.png` |
+| **BUG-466** | `6af5595f0ef35ecedf8526a7` | Forms, Autofill & Pointer Interaction: Custom Accessible Radio Group Arrow Key Navigation | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-467** | `6af55961d249ca6fae73e041` | Forms, Autofill & Pointer Interaction: Soft Virtual Keyboard Submit Button Obscurity iOS | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-468** | `6af55962cfc7e08ab83775fe` | Forms, Autofill & Pointer Interaction: HTML5 DragAndDrop DragOver PreventDefault Omission | Resolved | High | `01_evidence_capture.png` |
+| **BUG-469** | `6af55965cfc7e08ab8377644` | Forms, Autofill & Pointer Interaction: Password Visibility Toggle Steals Input Focus | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-470** | `6af559670ef35ecedf8526cc` | Forms, Autofill & Pointer Interaction: Number Input Stepper Increment Floating Point Bug | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-471** | `6af55968cfc7e08ab8377666` | Forms, Autofill & Pointer Interaction: Form Native Reset Fails To Clear Rich Text Editor | Resolved | Medium | `04_evidence_capture.png` |
+| **BUG-472** | `6af5596a0ef35ecedf8526f0` | Forms, Autofill & Pointer Interaction: Touch Detector Slop Margin False Click Trigger | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-473** | `6af5596bd249ca6fae73e0aa` | Forms, Autofill & Pointer Interaction: Two-Finger Simultaneous Conflicting Tap Selection | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-474** | `6af5596d0ef35ecedf852714` | Forms, Autofill & Pointer Interaction: Custom Select Blur Event Closes On Scrollbar Click | Resolved | Medium | `07_evidence_capture.png` |
+| **BUG-475** | `6af5596ecfc7e08ab83776cf` | Forms, Autofill & Pointer Interaction: Custom Toggle Switch Accessibility Role And State | Resolved | High | `08_evidence_capture.png` |
+| **BUG-476** | `6af5596fd249ca6fae73e0ef` | Forms, Autofill & Pointer Interaction: Dirty Form Navigation BeforeUnload Confirmation | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-477** | `6af55970d249ca6fae73e112` | Forms, Autofill & Pointer Interaction: Profile Picture Drag Non-Image File Type Validation | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-478** | `6af559730ef35ecedf852739` | Forms, Autofill & Pointer Interaction: Stylus PointerCancel Ghost Stroke Cleanup | Resolved | Minor | `01_evidence_capture.png` |
+| **BUG-479** | `6af55978d249ca6fae73e158` | Forms, Autofill & Pointer Interaction: Textarea Character Counter Code Units Surrogate Bug | Resolved | Minor | `02_evidence_capture.png` |
+| **BUG-480** | `6af5597ccfc7e08ab8377738` | Forms, Autofill & Pointer Interaction: Modal Dialog Closing Focus Restoration Omission | Resolved | High | `03_evidence_capture.png` |
+| **BUG-481** | `6af5597dcfc7e08ab837775b` | State Management, Quotas & Storage Versioning: IndexedDB Version Migration Intermediate Schema Gap | Resolved | High | `04_evidence_capture.png` |
+| **BUG-482** | `6af55984cfc7e08ab837777e` | State Management, Quotas & Storage Versioning: LocalStorage Rehydration Corrupted JSON SyntaxError | Resolved | High | `05_evidence_capture.png` |
+| **BUG-483** | `6af559860ef35ecedf852790` | State Management, Quotas & Storage Versioning: Navigator Storage Estimate Insecure Context Guard | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-484** | `6af55987d249ca6fae73e19d` | State Management, Quotas & Storage Versioning: IndexedDB Auto-Commit Async Await Mid-Transaction | Resolved | High | `07_evidence_capture.png` |
+| **BUG-485** | `6af55989cfc7e08ab83777a1` | State Management, Quotas & Storage Versioning: Redux Reducer Direct Deep State Mutation | Resolved | High | `08_evidence_capture.png` |
+| **BUG-486** | `6af5598ad249ca6fae73e1e3` | State Management, Quotas & Storage Versioning: Multi-Tab Session Isolation Storage Key Conflict | Resolved | High | `09_evidence_capture.png` |
+| **BUG-487** | `6af5598c0ef35ecedf8527eb` | State Management, Quotas & Storage Versioning: LRU Offline Cache Timestamp Update Omission On Read | Resolved | Medium | `00_evidence_capture.png` |
+| **BUG-488** | `6af5598dd249ca6fae73e229` | State Management, Quotas & Storage Versioning: IndexedDB Unique Index ConstraintError Handler | Resolved | High | `01_evidence_capture.png` |
+| **BUG-489** | `6af5598f0ef35ecedf852810` | State Management, Quotas & Storage Versioning: BroadcastChannel State Sync Unload Component Unmount | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-490** | `6af55990cfc7e08ab83777c3` | State Management, Quotas & Storage Versioning: IndexedDB Cursor Synchronous Double Continue Error | Resolved | Medium | `03_evidence_capture.png` |
+| **BUG-491** | `6af55992cfc7e08ab8377809` | State Management, Quotas & Storage Versioning: Window Storage Event Echo Loop Re-Sync | Resolved | High | `04_evidence_capture.png` |
+| **BUG-492** | `6af55993d249ca6fae73e26e` | State Management, Quotas & Storage Versioning: Quiz State Machine Illegal Transition Exception | Resolved | Medium | `05_evidence_capture.png` |
+| **BUG-493** | `6af559940ef35ecedf852834` | State Management, Quotas & Storage Versioning: Persistent Storage Request Rejection Permission Handling | Resolved | Medium | `06_evidence_capture.png` |
+| **BUG-494** | `6af55996cfc7e08ab837784f` | State Management, Quotas & Storage Versioning: IndexedDB Circular Reference DataCloneError | Resolved | High | `07_evidence_capture.png` |
+| **BUG-495** | `6af55997d249ca6fae73e2b3` | State Management, Quotas & Storage Versioning: Redux Async Thunk Network Reject Global Crash | Resolved | High | `08_evidence_capture.png` |
+| **BUG-496** | `6af5599bcfc7e08ab8377872` | State Management, Quotas & Storage Versioning: Base64 Storage Inflation Memory Inefficiency | Resolved | Medium | `09_evidence_capture.png` |
+| **BUG-497** | `6af56241d249ca6fae73eff4` | State Management, Quotas & Storage Versioning: Optimistic UI Rollback On Network Server Error | Resolved | High | `00_evidence_capture.png` |
+| **BUG-498** | `6af56242d249ca6fae73f038` | State Management, Quotas & Storage Versioning: IndexedDB OnBlocked Connection Upgrade Deadlock | Resolved | High | `01_evidence_capture.png` |
+| **BUG-499** | `6af562440ef35ecedf8537f1` | State Management, Quotas & Storage Versioning: LocalStorage Mutex Lock Expiration Timeout | Resolved | Medium | `02_evidence_capture.png` |
+| **BUG-500** | `6af562450ef35ecedf853813` | State Management, Quotas & Storage Versioning: Date Prototype Loss JSON Deserialization Redux | Resolved | Medium | `03_evidence_capture.png` |
 
 ---
 
