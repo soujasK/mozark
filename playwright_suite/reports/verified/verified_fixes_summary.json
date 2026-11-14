@@ -1,6 +1,7 @@
 [
   {
     "id": "L2-BUG-2",
+    "bug": "BUG-79",
     "tc": "TC-107",
     "fix": "Route typo /support",
     "result": "PASSED",
@@ -8,24 +9,28 @@
   },
   {
     "id": "L2-BUG-3",
+    "bug": "BUG-80",
     "tc": "TC-108",
     "fix": "Public coupon API 200",
     "result": "PASSED"
   },
   {
     "id": "L2-BUG-7",
+    "bug": "BUG-84",
     "tc": "TC-113",
     "fix": "Order history route discrepancy",
     "result": "PASSED"
   },
   {
     "id": "L2-BUG-6",
+    "bug": "BUG-83",
     "tc": "TC-112",
     "fix": "Certificate gating verification",
     "result": "PASSED"
   },
   {
     "id": "L2-BUG-8",
+    "bug": "BUG-85",
     "tc": "TC-114",
     "fix": "Slot reservation concurrency mutex",
     "result": "PASSED"
@@ -38,26 +43,38 @@
   },
   {
     "id": "L2-BUG-1",
+    "bug": "BUG-78",
     "tc": "TC-109",
     "fix": "Coupon accumulator reset",
     "result": "PASSED"
   },
   {
     "id": "L2-BUG-4",
+    "bug": "BUG-81",
     "tc": "TC-110",
     "fix": "createOrder amount discount sync",
     "result": "PASSED"
   },
   {
     "id": "L2-BUG-5",
+    "bug": "BUG-82",
     "tc": "TC-111",
     "fix": "Quiz multi-select answer map",
     "result": "PASSED"
   },
   {
     "id": "L2-BUG-9",
+    "bug": "BUG-86",
     "tc": "TC-106",
     "fix": "Password regex complexity sync",
+    "result": "PASSED",
+    "proof": "playwright_suite/reports/verified\\verified_09_auth_password_rules.png"
+  },
+  {
+    "id": "L2-BUG-10",
+    "bug": "BUG-87",
+    "tc": "TC-115",
+    "fix": "Server-side Razorpay HMAC verification",
     "result": "PASSED"
   }
 ]
