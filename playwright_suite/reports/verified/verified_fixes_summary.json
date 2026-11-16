@@ -25,7 +25,7 @@
     "id": "L2-BUG-6",
     "bug": "BUG-83",
     "tc": "TC-112",
-    "fix": "Certificate gating verification",
+    "fix": "Certificate gating requires quiz pass",
     "result": "PASSED"
   },
   {
@@ -40,6 +40,13 @@
     "journey": "Course Catalog",
     "result": "PASSED",
     "proof": "playwright_suite/reports/verified\\verified_06_courses_catalog.png"
+  },
+  {
+    "id": "L2-BUG-24",
+    "bug": "BUG-101",
+    "tc": "TC-121",
+    "fix": "Escape RegExp special chars in search",
+    "result": "PASSED"
   },
   {
     "id": "L2-BUG-1",
@@ -75,6 +82,18 @@
     "bug": "BUG-87",
     "tc": "TC-115",
     "fix": "Server-side Razorpay HMAC verification",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-12",
+    "bug": "BUG-89",
+    "fix": "Wishlist removal by courseId instead of index",
+    "result": "PASSED"
+  },
+  {
+    "id": "L2-BUG-428 & L2-BUG-429",
+    "bug": "BUG-501 & BUG-502",
+    "fix": "Profile Cancel handler & Dashboard Details link",
     "result": "PASSED"
   }
 ]
