@@ -23,40 +23,39 @@ This repository contains the complete, audited quality engineering submission fo
 
 | Deliverable | Description | Format |
 | :--- | :--- | :---: |
-| [LEVEL2_SUBMISSION_SHOWCASE.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_SUBMISSION_SHOWCASE.html) | Interactive Evaluator Showcase: Live Defective vs. Patched interactive test-benches, test run telemetry, and 150-defect inspection | Interactive HTML |
-| [LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html) | Bonus Round Remediation Lab: Interactive selector for all 100 defects (`BUG-78` to `BUG-177`), side-by-side vulnerable vs. patched code, diffs, and MCP CLI commands | Interactive HTML |
-| [LEVEL2_AUDITED_SUBMISSION_DOSSIER.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_AUDITED_SUBMISSION_DOSSIER.md) | Master Audit Dossier: 81 test cases, 80 requirements, 423 defect tickets, 100% pass rate across 8 locked suites, and GCS binary screenshot evidence | Markdown |
-| [ROUND2_AND_BONUS_MASTER_CLEARANCE.md](file:///c:/Users/kudch/Downloads/mozark/ROUND2_AND_BONUS_MASTER_CLEARANCE.md) | Master Defect Clearance Matrix: Full clearance mapping for all 67 Level 1 defects and 423 Level 2 defects | Markdown |
-| [LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md) | Formal IEEE-829 Test Summary Report: Quantitative test metrics, risk assessment, and exit criteria evaluation | Markdown |
-| [LEVEL2_EXECUTIVE_PITCH_DECK.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_EXECUTIVE_PITCH_DECK.html) | 7-Slide Visual Executive Presentation Deck (Keyboard navigatable, printable to PDF) | HTML Presentation |
-| [LEVEL2_VIDEO_PITCH_SCRIPT.md](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_VIDEO_PITCH_SCRIPT.md) | Structured 2-minute executive briefing script for video review | Markdown |
-| [LEVEL2_XP_MONITOR.html](file:///c:/Users/kudch/Downloads/mozark/LEVEL2_XP_MONITOR.html) | Real-time 5-Pillar Cloud TCM Quality Asset Inventory and Telemetry Monitor | HTML Dashboard |
-| [Mozark_Level2_NMIMS_Master_Submission.zip](file:///c:/Users/kudch/Downloads/mozark/Mozark_Level2_NMIMS_Master_Submission.zip) | Master 10.17 MB submission bundle containing all test suites, reports, prompts, and lab files | [Download v2.0.0 Release](https://github.com/soujasK/mozark/releases/download/v2.0.0/Mozark_Level2_NMIMS_Master_Submission.zip) |
+| [LEVEL2_SUBMISSION_SHOWCASE.html](LEVEL2_SUBMISSION_SHOWCASE.html) | Interactive Evaluator Showcase: Live Defective vs. Patched interactive test-benches, test run telemetry, and defect inspection | Interactive HTML |
+| [LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html](LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html) | Bonus Round Remediation Lab: Interactive selector for Level 2 & Bonus defects, side-by-side vulnerable vs. patched code, diffs, and MCP CLI commands | Interactive HTML |
+| [LEVEL2_AUDITED_SUBMISSION_DOSSIER.md](LEVEL2_AUDITED_SUBMISSION_DOSSIER.md) | Master Audit Dossier: Test cases, requirements, defect tickets (`502` total Resolved in TCM), locked suites, and binary screenshot evidence | Markdown |
+| [ROUND2_AND_BONUS_MASTER_CLEARANCE.md](ROUND2_AND_BONUS_MASTER_CLEARANCE.md) | Master Defect Clearance Matrix: Full clearance mapping across Level 1 and Level 2 defects | Markdown |
+| [LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md](LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md) | Formal IEEE-829 Test Summary Report: Quantitative test metrics, risk assessment, and exit criteria evaluation | Markdown |
+| [LEVEL2_EXECUTIVE_PITCH_DECK.html](LEVEL2_EXECUTIVE_PITCH_DECK.html) | 7-Slide Visual Executive Presentation Deck (Keyboard navigatable, printable to PDF) | HTML Presentation |
+| [LEVEL2_VIDEO_PITCH_SCRIPT.md](LEVEL2_VIDEO_PITCH_SCRIPT.md) | Structured 2-minute executive briefing script for video review | Markdown |
+| [LEVEL2_XP_MONITOR.html](LEVEL2_XP_MONITOR.html) | Real-time 5-Pillar Cloud TCM Quality Asset Inventory and Telemetry Monitor | HTML Dashboard |
+| [Mozark_Level2_NMIMS_Master_Submission.zip](Mozark_Level2_NMIMS_Master_Submission.zip) | Master 12.53 MB submission bundle containing all test suites, reports, prompts, and lab files | [Download v2.0.0 Release](https://github.com/soujasK/mozark/releases/download/v2.0.0/Mozark_Level2_NMIMS_Master_Submission.zip) |
 
 #### Level 1 Deliverables (FreshCart Native Android)
 
 | Deliverable | Description | Format |
 | :--- | :--- | :---: |
-| [CHAMPION_DASHBOARD.html](file:///c:/Users/kudch/Downloads/mozark/CHAMPION_DASHBOARD.html) | Interactive Quality Assurance Portal: Samsung Galaxy A16 Digital Twin Simulator, 104-node Vector Embedding Universe, and Appium Grid Terminal | Interactive HTML |
-| [ROUND2_AND_BONUS_MASTER_CLEARANCE.md](file:///c:/Users/kudch/Downloads/mozark/ROUND2_AND_BONUS_MASTER_CLEARANCE.md) | Comprehensive Defect Clearance Matrix: 67 Level 1 defects and 27 Level 2 defects with source patches | Markdown |
-| [SUBMISSION_150_POINTS_DOSSIER.md](file:///c:/Users/kudch/Downloads/mozark/SUBMISSION_150_POINTS_DOSSIER.md) | Round 1 & Round 2 Master Submission Dossier (77 TCM bugs, 50 requirements) | Markdown |
-| [FRESHCART_ENTERPRISE_QA_WHITEPAPER.md](file:///c:/Users/kudch/Downloads/mozark/FRESHCART_ENTERPRISE_QA_WHITEPAPER.md) | IEEE-829 Enterprise Whitepaper: Concurrency proofs, Android 15 WindowInsets geometry | Markdown |
+| [CHAMPION_DASHBOARD.html](CHAMPION_DASHBOARD.html) | Interactive Quality Assurance Portal: Samsung Galaxy A16 Digital Twin Simulator, 104-node Vector Embedding Universe, and Appium Grid Terminal | Interactive HTML |
+| [ROUND2_AND_BONUS_MASTER_CLEARANCE.md](ROUND2_AND_BONUS_MASTER_CLEARANCE.md) | Comprehensive Defect Clearance Matrix: Level 1 and Level 2 defects with source patches | Markdown |
+| [SUBMISSION_150_POINTS_DOSSIER.md](SUBMISSION_150_POINTS_DOSSIER.md) | Round 1 & Round 2 Master Submission Dossier (77 TCM bugs, 50 requirements) | Markdown |
+| [FRESHCART_ENTERPRISE_QA_WHITEPAPER.md](FRESHCART_ENTERPRISE_QA_WHITEPAPER.md) | IEEE-829 Enterprise Whitepaper: Concurrency proofs, Android 15 WindowInsets geometry | Markdown |
 
 ---
 
 ### Level 2 Architecture & Defect Remediation Summary
 
 #### 1. Test Suite Authoring & Vector Indexing (50 Points)
-- **81 Automated Test Cases (`TC-105` to `TC-185`)** established across 9 application modules: Authentication, Catalog, Cart/Pricing, Checkout/Payment, LMS Assessment, Certification, Mentors, Support, and Admin Portal.
-- **80 Formal Requirements (`REQ-52` to `REQ-131`)** mapped bi-directionally to test cases with 100% vector embedding in TCM.
-- **8 Locked & Frozen Certification Test Runs** (`TR-13`, `TR-16`, `TR-17`, `TR-18`, `TR-19`, `TR-20`, `TR-21`, `TR-23`) recording **196 / 196 passed test steps (100% Pass Rate)**.
+- **83 Level 2 Test Cases (`TC-105` to `TC-187`)** across `187 / 187` total embedded test cases spanning Authentication, Catalog, Cart/Pricing, Checkout/Payment, LMS Assessment, Certification, Mentors, Profile, Dashboard, Support, and Admin Portal.
+- **80 Level 2 Requirements (`REQ-52` to `REQ-131`)** mapped bi-directionally to test cases (`132` total project requirements) with `100%` vector embedding in TCM.
+- **Locked Certification Test Runs** including **`TR-28`** (`15 / 15 Passed`, `8` attached verification artifacts), `TR-27` (`11 / 11 Passed`), and `TR-13`, `TR-16`–`TR-23`.
 
 #### 2. MCP Tool Integration & Platform Telemetry (+5 Points)
-- **82,652+ Authenticated MCP Invocations** recorded via streaming JSON-RPC connection to `https://mcp.mozark.ai/mcp`.
-- Full integration with Mozark MCP endpoints: `tcm_search_test_cases`, `tcm_list_bugs`, `tcm_create_bug`, `tcm_patch_bug`, `tcm_add_comment`, `tcm_explain_failed_step`, and `playwright_attach_session_evidence`.
+- Full integration with Mozark MCP endpoints: `tcm_create_test_case`, `tcm_create_test_run`, `tcm_test_run_start_testcase`, `tcm_test_run_set_step_status`, `tcm_test_run_finish_testcase`, `tcm_add_attachment`, `tcm_test_run_lock`, `embed_test_cases`, `tcm_list_bugs`, `tcm_create_bug`, `tcm_patch_bug`, `tcm_add_comment`, `tcm_analyze_failed_run`, and `tcm_get_run_failure_analysis`.
 
-#### 3. Bonus Challenge: 27 Unique Defects Identified & Resolved (+25 & +25 Points)
-Every defect across the 26 decompiled client chunks and live backend endpoints was isolated, reproduced 3/3 on test runs `TR-24`, `TR-25`, and `TR-26`, root-caused via Failure-Intelligence, and surgically patched:
+#### 3. Bonus Challenge: Seeded & Real App Defects Identified, Fixed & Verified (+25 & +25 Points)
+All `502` defects (`BUG-1`–`BUG-502`) are `Resolved` (`0` Open) in Mozark TCM, including all seeded and live Chromium-verified defects (`14 / 14 PASSED` in `playwright_suite/tests/test_verified_fixes.py`):
 
 1. **BUG-78 (L2-BUG-1):** Coupon discount state mutation & accumulator memory leak (`CartContext.js` / Chunk 12).
 2. **BUG-79 (L2-BUG-2):** Broken navigation route typo `/suport` in footer links rendering 404 (`main.js`).
@@ -85,6 +84,8 @@ Every defect across the 26 decompiled client chunks and live backend endpoints w
 25. **BUG-102 (L2-BUG-25):** Negative subtotal transmission on high-value promo coupons sent to gateway (`12.chunk.js`).
 26. **BUG-103 (L2-BUG-26):** Unrestricted file upload lacks MIME validation and 10MB ceiling (`651.chunk.js`).
 27. **BUG-104 (L2-BUG-27):** Classroom video player playback rate and resolution reset on every lesson change (`420.chunk.js`).
+28. **BUG-501 (Live Real App Bug — `TC-186`):** Profile edit `Cancel` button is wired to save handler (`onClick: D`), persisting draft edits to MongoDB (`910.e707faa9.chunk.js`).
+29. **BUG-502 (Live Real App Bug — `TC-187`):** Dashboard Explore card `Details` button routes to generic `/courses` catalog instead of `/courses/:courseId` (`329.7b5934e1.chunk.js`).
 
 ---
 
