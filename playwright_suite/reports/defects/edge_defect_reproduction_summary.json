@@ -1,0 +1,55 @@
+[
+  {
+    "id": "L2-BUG-503",
+    "bug": "BUG-503",
+    "tc": "TC-188",
+    "name": "Newsletter email vs emailAddress 400",
+    "status": "REPRODUCED",
+    "screenshot": "playwright_suite\\reports\\defects\\repro_15_newsletter_emailaddress_400.png"
+  },
+  {
+    "id": "L2-BUG-24",
+    "bug": "BUG-101",
+    "tc": "TC-121",
+    "name": "Search '[' triggers 500 Invalid RegExp",
+    "status": "REPRODUCED",
+    "status_code": 500
+  },
+  {
+    "id": "L2-BUG-1",
+    "bug": "BUG-78",
+    "tc": "TC-109",
+    "name": "Coupon discount stacks to Rs.0 on Remove+Apply",
+    "status": "REPRODUCED",
+    "screenshot": "playwright_suite\\reports\\defects\\repro_16_coupon_stack_zero.png"
+  },
+  {
+    "id": "L2-BUG-504",
+    "bug": "BUG-504",
+    "tc": "TC-189",
+    "name": "Support FAQ 70% vs LMS Quiz 60%",
+    "status": "REPRODUCED",
+    "api_pass_percent": 60
+  },
+  {
+    "id": "L2-BUG-428",
+    "bug": "BUG-501",
+    "tc": "TC-186",
+    "name": "Profile Cancel invokes save handler",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-429",
+    "bug": "BUG-502",
+    "tc": "TC-187",
+    "name": "Dashboard Explore Details routes to /courses",
+    "status": "REPRODUCED"
+  },
+  {
+    "id": "L2-BUG-12",
+    "bug": "BUG-89",
+    "tc": "TC-142",
+    "name": "Wishlist Remove sends index 0 instead of courseId",
+    "status": "REPRODUCED"
+  }
+]

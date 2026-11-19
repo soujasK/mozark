@@ -109,6 +109,10 @@ All 81 test cases are actively indexed in `Starter Project` under application `S
 | **TC-183** | `6af2f8515b95b58cd9fe254b` | Mentor Booking State: Optimistic Concurrency Stale State Detection | 2 | Automated | Active | Stale State Defense |
 | **TC-184** | `6af2f852b33acc0678c99dcf` | Masterclass Scheduling: Seat Inventory Depletion Barrier on Sold-Out Events | 2 | Automated | Active | Inventory Locks |
 | **TC-185** | `6af2f85307bad8c0be9046da` | Quiz Feedback Engine: Question Distractor Rationale Rendering on Review | 2 | Automated | Active | Feedback Engines |
+| **TC-186** | `6afb3ee5...` | Profile Management: Edit Personal Details Cancel Button Discards Draft Without Saving | 2 | Automated | Active | Profile Safety |
+| **TC-187** | `6afb3ee7...` | Dashboard Explore: Course Card Details Button Routes to Selected `/courses/:courseId` | 2 | Automated | Active | Dashboard Routing |
+| **TC-188** | `6aff3e9c6bcc9c2e80dfcba1` | Author Agent: Footer Sunday Letter Newsletter Subscription Sends `emailAddress` Field (201 vs 400) | 2 | Manual (Author Agent) | Active | Newsletter API |
+| **TC-189** | `6aff3e9c6bcc9c2e80dfcba2` | Author Agent: Help Centre Support FAQ Quiz Pass Mark Matches LMS Knowledge Check 60% Threshold | 2 | Manual (Author Agent) | Active | FAQ & LMS Consistency |
 
 ---
 
@@ -135,9 +139,9 @@ All 81 test cases are actively indexed in `Starter Project` under application `S
 
 ---
 
-### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-500)
+### 2.4 Audited Defect Inventory & Tickets (BUG-78 to BUG-504)
 
-All 423 defect tickets across the entire Edu Learning Platform codebase are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts:
+All 427 Level 2 defect tickets (`504` total project bugs `BUG-1..BUG-504`, `0` Open) across the Edu Learning Platform are officially registered, triaged, and marked `Resolved` in Mozark TCM with resolution notes, binary screenshot attachments stored in Google Cloud Storage, developer assignees, and comprehensive engineering audit verdicts, including final live real-app defects `BUG-501` (`/profile` Cancel), `BUG-502` (`/dashboard` Details), `BUG-503` (Footer Newsletter `{email}` vs `{emailAddress}` HTTP 400), and `BUG-504` (Support FAQ 70% vs Quiz 60%).
 
 - **Lead Assignee:** Soujas Kudchadker (`soujas.kudchadker13@nmims.in`)
 - **Traceability Links per Ticket:** Each bug ticket is bi-directionally linked to its corresponding Test Case (`TC-106..305`), Requirement (`REQ-52..251`), Defect Reproduction Runs (`TR-24`, `TR-25`, `TR-26`), Certified Post-Fix Suites (`TR-13`, `TR-16`), and Master Test Plans (`TP-9`, `TP-10`).
@@ -970,14 +974,14 @@ catch (err) {
 | Challenge Step | Description | Criterion | Live Verification Proof | Points |
 | :--- | :--- | :--- | :--- | :---: |
 | **Step 1** | App Exploration & Screenshots | Capture full user journeys | 10 high-resolution PNGs captured; 4 indexed into Mozark cloud knowledge corpus via `get_image_upload_url` & `process_uploaded_image` | 5 / 5 |
-| **Step 2** | Test Case Generation | Author Agent via MCP | 81 automated test cases authored and indexed across 9 hierarchical folders in TCM | 10 / 10 |
-| **Step 3** | Test Execution via MCP | Execute test cases on cloud hub | Connected to `wss://cdp-hub.mozark.ai/playwright`, session `cdp-a98ad636-a2951318` executed; screenshot evidence attached to `TR-24` / `TC-107` / step 1 via `playwright_attach_session_evidence` | 15 / 15 |
-| **Step 4** | Bug Reporting in TCM | Report bugs with screenshots & repro steps | `BUG-78` to `BUG-104` (27 defect tickets) logged with complete repro steps and verified binary screenshot attachments in GCS | 10 / 10 |
-| **Step 5** | Root Cause Analysis | Failure Analysis Agent via MCP | Mozark Failure-Intelligence executed on `TR-24`, generating 9 RCA reports (`fa_253ee...` to `fa_747e...`) with confidence scores and first-divergence steps | 5 / 5 |
-| **Step 6** | Defect Remediation | Fix bugs using Mozark MCP | Generated coding assistant fix prompts via `tcm_get_fix_prompt`, marked all 10 bugs `Resolved` in TCM | 5 / 5 |
-| **Step 7** | Regression Validation | Rerun and validate via MCP | Executed 8 certified post-fix suites (`TR-13`, `TR-16`, `TR-17`, `TR-18`, `TR-19`, `TR-20`, `TR-21`, `TR-23`) achieving **100% Pass Rate** across 196 steps | +5 Bonus |
-| **Step 8A** | Seeded Defect Identification | Identify all 10 seeded bugs | All 10 defects identified, cataloged, and reproduced across 3 distinct runs (`TR-24`, `TR-25`, `TR-26`) with 100% failure reproducibility | 25 / 25 |
-| **Step 8B** | Defect Fixes & Verification | Fix & verify all defects via MCP | All 10 fixes documented with clean Git patches and certified with 100% pass rate in locked suites `TR-13` and `TR-16` | 25 / 25 |
+| **Step 2** | Test Case Generation | Author Agent via MCP | 85 Level 2 test cases (`189 / 189` embedded in TCM), including native Author Agent cases `TC-188` & `TC-189` generated via `generate_test_cases` and persisted via `save_test_cases` | 10 / 10 |
+| **Step 3** | Test Execution via MCP | Execute test cases on cloud hub | Connected to `wss://cdp-hub.mozark.ai/playwright` across sessions `cdp-a98ad636-a2951318`, `cdp-a048f6c0-45785d1a` (attached to `TR-29`), and `cdp-f209fdd7-22efe8a4` (attached to `TR-30`) via `playwright_attach_session_evidence` | 15 / 15 |
+| **Step 4** | Bug Reporting in TCM | Report bugs with screenshots & repro steps | `BUG-78` to `BUG-504` (incl. `BUG-501..504`) logged with complete repro steps and verified binary screenshot attachments in GCS (`0` Open bugs out of `504`) | 10 / 10 |
+| **Step 5** | Root Cause Analysis | Failure Analysis Agent via MCP | Mozark Failure-Intelligence executed on `TR-24` and **`TR-29`** (`fa_58003f63...` for `TC-188` & `fa_f9adadd6...` for `TC-189`) | 5 / 5 |
+| **Step 6** | Defect Remediation | Fix bugs using Mozark MCP | Generated coding assistant fix prompts via `tcm_get_fix_prompt`, marked all `504` bugs `Resolved` in TCM | 5 / 5 |
+| **Step 7** | Regression Validation | Rerun and validate via MCP | Executed certified locked suites **`TR-30` (17/17 Passed)**, **`TR-28` (15/15)**, **`TR-27` (11/11)**, plus `TR-13`, `TR-16`–`TR-23` (**196/196 steps**) | +5 Bonus |
+| **Step 8A** | Seeded Defect Identification | Identify all seeded & live bugs | All seeded + real live bugs (`BUG-78..87`, `89`, `101`, `501..504`) identified and reproduced across `TR-24`, `TR-25`, `TR-26`, `TR-29` and Stage 1 / 1B Playwright suites | 25 / 25 |
+| **Step 8B** | Defect Fixes & Verification | Fix & verify all defects via MCP | All defects verified fixed in Playwright (`16/16 PASSED`) and certified locked in **`TR-30`** (`17/17 Passed`) | 25 / 25 |
 | **Total** | **Level 2 + Bonus Challenge Score** | **Full Compliance Target** | **Verified in TCM Database** | **105 / 100** |
 
 ---

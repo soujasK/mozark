@@ -6,6 +6,7 @@ import time
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 from playwright_suite.tests.test_defect_reproduction import run_defect_tests
+from playwright_suite.tests.test_edge_defect_reproduction import run_edge_defect_tests
 from playwright_suite.tests.test_verified_fixes import run_verified_fixes
 
 def main():
@@ -23,6 +24,8 @@ def main():
     if args.mode in ["defects", "both"]:
         print("\n>>> STAGE 1: DEFECT REPRODUCTION ON UNPATCHED APPLICATION <<<")
         run_defect_tests()
+        print("\n>>> STAGE 1B: LIVE EDGE & NEW DEFECT REPRODUCTION <<<")
+        run_edge_defect_tests()
 
     if args.mode in ["fixes", "both"]:
         print("\n>>> STAGE 2: LIVE REMEDIATION & 100% REGRESSION VALIDATION <<<")

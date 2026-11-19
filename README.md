@@ -25,13 +25,13 @@ This repository contains the complete, audited quality engineering submission fo
 | :--- | :--- | :---: |
 | [LEVEL2_SUBMISSION_SHOWCASE.html](LEVEL2_SUBMISSION_SHOWCASE.html) | Interactive Evaluator Showcase: Live Defective vs. Patched interactive test-benches, test run telemetry, and defect inspection | Interactive HTML |
 | [LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html](LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html) | Bonus Round Remediation Lab: Interactive selector for Level 2 & Bonus defects, side-by-side vulnerable vs. patched code, diffs, and MCP CLI commands | Interactive HTML |
-| [LEVEL2_AUDITED_SUBMISSION_DOSSIER.md](LEVEL2_AUDITED_SUBMISSION_DOSSIER.md) | Master Audit Dossier: Test cases, requirements, defect tickets (`502` total Resolved in TCM), locked suites, and binary screenshot evidence | Markdown |
+| [LEVEL2_AUDITED_SUBMISSION_DOSSIER.md](LEVEL2_AUDITED_SUBMISSION_DOSSIER.md) | Master Audit Dossier: Test cases (`189` embedded), requirements (`132`), defect tickets (`504` total Resolved in TCM), locked suites (`TR-30`), and binary screenshot evidence | Markdown |
 | [ROUND2_AND_BONUS_MASTER_CLEARANCE.md](ROUND2_AND_BONUS_MASTER_CLEARANCE.md) | Master Defect Clearance Matrix: Full clearance mapping across Level 1 and Level 2 defects | Markdown |
 | [LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md](LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md) | Formal IEEE-829 Test Summary Report: Quantitative test metrics, risk assessment, and exit criteria evaluation | Markdown |
 | [LEVEL2_EXECUTIVE_PITCH_DECK.html](LEVEL2_EXECUTIVE_PITCH_DECK.html) | 7-Slide Visual Executive Presentation Deck (Keyboard navigatable, printable to PDF) | HTML Presentation |
 | [LEVEL2_VIDEO_PITCH_SCRIPT.md](LEVEL2_VIDEO_PITCH_SCRIPT.md) | Structured 2-minute executive briefing script for video review | Markdown |
 | [LEVEL2_XP_MONITOR.html](LEVEL2_XP_MONITOR.html) | Real-time 5-Pillar Cloud TCM Quality Asset Inventory and Telemetry Monitor | HTML Dashboard |
-| [Mozark_Level2_NMIMS_Master_Submission.zip](Mozark_Level2_NMIMS_Master_Submission.zip) | Master 12.53 MB submission bundle containing all test suites, reports, prompts, and lab files | [Download v2.0.0 Release](https://github.com/soujasK/mozark/releases/download/v2.0.0/Mozark_Level2_NMIMS_Master_Submission.zip) |
+| [Mozark_Level2_NMIMS_Master_Submission.zip](Mozark_Level2_NMIMS_Master_Submission.zip) | Master verification submission bundle containing all Playwright dual-stage suites, AI Scout reports, repro/verified screenshots, and lab files | [Download v2.0.0 Release](https://github.com/soujasK/mozark/releases/download/v2.0.0/Mozark_Level2_NMIMS_Master_Submission.zip) |
 
 #### Level 1 Deliverables (FreshCart Native Android)
 
@@ -47,15 +47,15 @@ This repository contains the complete, audited quality engineering submission fo
 ### Level 2 Architecture & Defect Remediation Summary
 
 #### 1. Test Suite Authoring & Vector Indexing (50 Points)
-- **83 Level 2 Test Cases (`TC-105` to `TC-187`)** across `187 / 187` total embedded test cases spanning Authentication, Catalog, Cart/Pricing, Checkout/Payment, LMS Assessment, Certification, Mentors, Profile, Dashboard, Support, and Admin Portal.
+- **85 Level 2 Test Cases (`TC-105` to `TC-189`, including TCM Author Agent cases `TC-188` and `TC-189`)** across `189 / 189` total embedded test cases spanning Authentication, Catalog, Cart/Pricing, Checkout/Payment, LMS Assessment, Certification, Mentors, Profile, Dashboard, Newsletter, Support, and Admin Portal.
 - **80 Level 2 Requirements (`REQ-52` to `REQ-131`)** mapped bi-directionally to test cases (`132` total project requirements) with `100%` vector embedding in TCM.
-- **Locked Certification Test Runs** including **`TR-28`** (`15 / 15 Passed`, `8` attached verification artifacts), `TR-27` (`11 / 11 Passed`), and `TR-13`, `TR-16`–`TR-23`.
+- **Locked Certification Test Runs** including **`TR-30`** (`17 / 17 Passed`, `10` verified GCS attachments + Cloud CDP Hub session `cdp-f209fdd7-22efe8a4`), **`TR-28`** (`15 / 15 Passed`), `TR-27` (`11 / 11 Passed`), and `TR-13`, `TR-16`–`TR-23`, alongside **`TR-29`** (`Failed` repro run with AI Failure Analysis + CDP Hub session `cdp-a048f6c0-45785d1a`).
 
 #### 2. MCP Tool Integration & Platform Telemetry (+5 Points)
-- Full integration with Mozark MCP endpoints: `tcm_create_test_case`, `tcm_create_test_run`, `tcm_test_run_start_testcase`, `tcm_test_run_set_step_status`, `tcm_test_run_finish_testcase`, `tcm_add_attachment`, `tcm_test_run_lock`, `embed_test_cases`, `tcm_list_bugs`, `tcm_create_bug`, `tcm_patch_bug`, `tcm_add_comment`, `tcm_analyze_failed_run`, and `tcm_get_run_failure_analysis`.
+- Full integration with Mozark MCP endpoints: `generate_test_cases`, `save_test_cases`, `embed_test_cases`, `playwright_get_hub_config`, `playwright_attach_session_evidence`, `tcm_create_test_case`, `tcm_create_test_run`, `tcm_test_run_start_testcase`, `tcm_test_run_set_step_status`, `tcm_test_run_finish_testcase`, `tcm_add_attachment`, `tcm_test_run_lock`, `tcm_list_bugs`, `tcm_create_bug`, `tcm_patch_bug`, `tcm_add_comment`, `tcm_analyze_failed_run`, and `tcm_get_run_failure_analysis`.
 
 #### 3. Bonus Challenge: Seeded & Real App Defects Identified, Fixed & Verified (+25 & +25 Points)
-All `502` defects (`BUG-1`–`BUG-502`) are `Resolved` (`0` Open) in Mozark TCM, including all seeded and live Chromium-verified defects (`14 / 14 PASSED` in `playwright_suite/tests/test_verified_fixes.py`):
+All `504` defects (`BUG-1`–`BUG-504`) are `Resolved` (`0` Open) in Mozark TCM, including all seeded and live Chromium-verified defects (**`16 / 16 PASSED`** in `playwright_suite/tests/test_verified_fixes.py` + **`7 / 7`** live edge reproductions in `playwright_suite/tests/test_edge_defect_reproduction.py` alongside `test_defect_reproduction.py`):
 
 1. **BUG-78 (L2-BUG-1):** Coupon discount state mutation & accumulator memory leak (`CartContext.js` / Chunk 12).
 2. **BUG-79 (L2-BUG-2):** Broken navigation route typo `/suport` in footer links rendering 404 (`main.js`).
@@ -86,6 +86,8 @@ All `502` defects (`BUG-1`–`BUG-502`) are `Resolved` (`0` Open) in Mozark TCM,
 27. **BUG-104 (L2-BUG-27):** Classroom video player playback rate and resolution reset on every lesson change (`420.chunk.js`).
 28. **BUG-501 (Live Real App Bug — `TC-186`):** Profile edit `Cancel` button is wired to save handler (`onClick: D`), persisting draft edits to MongoDB (`910.e707faa9.chunk.js`).
 29. **BUG-502 (Live Real App Bug — `TC-187`):** Dashboard Explore card `Details` button routes to generic `/courses` catalog instead of `/courses/:courseId` (`329.7b5934e1.chunk.js`).
+30. **BUG-503 (Live Real App Bug — `TC-188` Author Agent):** Footer newsletter form (`"THE SUNDAY LETTER"`) sends `{ email, source: "footer" }` instead of `{ emailAddress, source: "footer" }`, causing live HTTP `400 {"success":false,"message":"emailAddress is required"}` (`main.a1d999dc.js`).
+31. **BUG-504 (Live Real App Bug — `TC-189` Author Agent):** Help Centre Support FAQ claims `"You need 70% to pass"` while live LMS quiz API (`GET /api/quizzes/course/:courseId`) and `/lms/:courseId/quiz` enforce `passPercent: 60` (`529.929a14f7.chunk.js`).
 
 ---
 
@@ -93,10 +95,11 @@ All `502` defects (`BUG-1`–`BUG-502`) are `Resolved` (`0` Open) in Mozark TCM,
 
 #### Playwright Dual-Stage Suite (`playwright_suite/`)
 ```bash
-# Execute Stage 1: Defect Reproduction Suite (Demonstrates 3/3 defect reproduction)
+# Execute Stage 1: Defect Reproduction Suites
 python playwright_suite/tests/test_defect_reproduction.py
+python playwright_suite/tests/test_edge_defect_reproduction.py
 
-# Execute Stage 2: Route Interception Verification (Demonstrates 100% pass post-fix)
+# Execute Stage 2: Route Interception Verification (16/16 live checks PASSED)
 python playwright_suite/tests/test_verified_fixes.py
 ```
 

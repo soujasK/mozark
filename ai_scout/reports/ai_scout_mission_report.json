@@ -2,8 +2,8 @@
   "mission": "Mozark Autonomous AI Scout Exploration",
   "target": "https://testing.dev.mozark.ai",
   "candidate": "Soujas Kudchadker (NMIMS)",
-  "timestamp": "2026-11-10 20:23:00",
-  "elapsedSeconds": 11.15,
+  "timestamp": "2026-11-20 00:18:31",
+  "elapsedSeconds": 22.22,
   "routesDiscovered": [
     "/",
     "/auth",
@@ -18,14 +18,8 @@
   ],
   "elementsInspected": 0,
   "totalNetworkCalls": 191,
-  "totalAnomaliesDiscovered": 3,
+  "totalAnomaliesDiscovered": 2,
   "anomalies": [
-    {
-      "type": "BROKEN_ROUTE",
-      "route": "/suport",
-      "finding": "Navigation route /suport renders 404 catch-all page",
-      "proof": "ai_scout/reports\\scout_route__suport.png"
-    },
     {
       "type": "AUTH_BARRIER_ON_PUBLIC_API",
       "endpoint": "/api/coupons/validate",

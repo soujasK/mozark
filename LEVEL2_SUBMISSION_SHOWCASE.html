@@ -76,10 +76,10 @@
                 <h1 class="title">Mozark Level 2 &amp; Bonus Challenge — Master Submission Showcase</h1>
                 <p class="subtitle">Candidate: <strong>Soujas Kudchadker</strong> (NMIMS) | Org: <strong>SoujasK_NMIMS</strong> (<code>a57bcf7b-de33-48c0-b696-e42e811d4a44</code>) | Project: <strong>Starter Project</strong></p>
                 <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                    <a href="LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html" target="_blank" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(15, 23, 42, 0.8)); color: #fb7185; padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 700; border: 1px solid #f43f5e;"> Bonus Defect Remediation Lab (+50 Pts)</a>
-                    <a href="LEVEL2_EXECUTIVE_PITCH_DECK.html" target="_blank" style="background: #1e293b; color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);"> Executive Pitch Deck (6 Slides)</a>
-                    <a href="LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md" target="_blank" style="background: #1e293b; color: #a78bfa; padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);"> IEEE-829 Test Summary Report</a>
-                    <a href="LEVEL2_VIDEO_PITCH_SCRIPT.md" target="_blank" style="background: #1e293b; color: #34d399; padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);">️ 2-Min Video Pitch Script</a>
+                    <a href="LEVEL2_BONUS_DEFECT_REMEDIATION_LAB.html" target="_blank" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(15, 23, 42, 0.8)); color: #fb7185; padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 700; border: 1px solid #f43f5e;">Bonus Defect Remediation Lab (+50 Pts)</a>
+                    <a href="LEVEL2_EXECUTIVE_PITCH_DECK.html" target="_blank" style="background: #1e293b; color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);">Executive Pitch Deck (6 Slides)</a>
+                    <a href="LEVEL2_IEEE829_TEST_SUMMARY_REPORT.md" target="_blank" style="background: #1e293b; color: #a78bfa; padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);">IEEE-829 Test Summary Report</a>
+                    <a href="LEVEL2_VIDEO_PITCH_SCRIPT.md" target="_blank" style="background: #1e293b; color: #34d399; padding: 5px 12px; border-radius: 6px; font-size: 12px; text-decoration: none; font-weight: 600; border: 1px solid var(--border);">2-Min Video Pitch Script</a>
                 </div>
             </div>
             <div class="score-pill">
@@ -103,21 +103,21 @@
             <div class="stat-card">
                 <div class="stat-label">Playwright Regression</div>
                 <div class="stat-value" style="color: var(--accent-green);">100% Pass</div>
-                <div class="stat-sub">10/10 In-Browser Tests Verified</div>
+                <div class="stat-sub">16/16 Live Chromium Fixes Verified</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Seeded Defects Resolved</div>
-                <div class="stat-value" style="color: var(--accent-green);">10 / 10</div>
-                <div class="stat-sub">3/3 Repro Proof + GCS Evidence</div>
+                <div class="stat-label">TCM Defects Resolved</div>
+                <div class="stat-value" style="color: var(--accent-green);">504 / 504</div>
+                <div class="stat-sub">0 Open · incl. BUG-501 to BUG-504</div>
             </div>
         </div>
 
         <!-- Enterprise TCM Quality Assets Grid -->
         <div class="stats-grid" style="margin-bottom: 24px;">
             <div class="stat-card">
-                <div class="stat-label">TCM Folder Structure</div>
-                <div class="stat-value" style="font-size: 20px; color: #38bdf8;">9 Hierarchical Folders</div>
-                <div class="stat-sub">81 Automated Cases (TC-105..185)</div>
+                <div class="stat-label">TCM Test Case Corpus</div>
+                <div class="stat-value" style="font-size: 20px; color: #38bdf8;">189 / 189 Embedded</div>
+                <div class="stat-sub">85 Level 2 Cases (TC-105..189 incl. Author Agent)</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Requirements Matrix</div>
@@ -131,8 +131,8 @@
             </div>
             <div class="stat-card">
                 <div class="stat-label">Master Certified Runs</div>
-                <div class="stat-value" style="font-size: 20px; color: #4ade80;">TR-13, 16, 17, 18, 19, 20, 21, 23</div>
-                <div class="stat-sub">196/196 Steps Passed (100% Locked)</div>
+                <div class="stat-value" style="font-size: 20px; color: #4ade80;">TR-13..23, 27, 28, 30</div>
+                <div class="stat-sub">TR-30 Locked (17/17 Passed) + CDP Hub</div>
             </div>
         </div>
 
@@ -245,6 +245,38 @@
                         <td>100% Pass (30/30 Steps)</td>
                         <td><strong>Locked &amp; Frozen</strong> in TCM</td>
                     </tr>
+                    <tr>
+                        <td><strong>TR-27</strong></td>
+                        <td>Live Seeded Defect Verification</td>
+                        <td>Chromium Route Interception Suite</td>
+                        <td><span class="badge badge-resolved">Completed</span></td>
+                        <td>100% Pass (11/11 Cases)</td>
+                        <td><strong>Locked &amp; Frozen</strong> in TCM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TR-28</strong></td>
+                        <td>Seeded &amp; Real App Verification (BUG-501, BUG-502)</td>
+                        <td>Chromium Route Interception Suite</td>
+                        <td><span class="badge badge-resolved">Completed</span></td>
+                        <td>100% Pass (15/15 Cases)</td>
+                        <td><strong>Locked &amp; Frozen</strong> in TCM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TR-29</strong></td>
+                        <td>Live Edge Repro &amp; AI Failure Analysis (BUG-503, BUG-504)</td>
+                        <td>Mozark Cloud CDP Hub (`cdp-a048f6c0`)</td>
+                        <td><span class="badge badge-critical">Failed</span></td>
+                        <td>0% (2 Divergences)</td>
+                        <td>2 AI RCAs (`fa_5800...`, `fa_f9ad...`) · CDP Evidence Attached</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TR-30</strong></td>
+                        <td>Final Master + Author-Agent + CDP Hub Certification</td>
+                        <td>Mozark Cloud CDP Hub (`cdp-f209fdd7`) + Chromium</td>
+                        <td><span class="badge badge-resolved">Completed</span></td>
+                        <td>100% Pass (17/17 Cases)</td>
+                        <td><strong>Locked &amp; Frozen</strong> · 10 Attachments · CDP Hub Evidence</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -272,15 +304,15 @@
                     <tr>
                         <td><strong>Stage 1: Defect Reproduction</strong></td>
                         <td><code>https://testing.dev.mozark.ai/</code> (Unpatched Live App)</td>
-                        <td>~4.5s</td>
-                        <td><span class="badge badge-critical">10 / 10 Failures Confirmed</span></td>
+                        <td>Live Run</td>
+                        <td><span class="badge badge-critical">Stage 1 + Stage 1B (10 + 7) Reproduced</span></td>
                         <td><code>playwright_suite/reports/defects/repro_*.png</code></td>
                     </tr>
                     <tr>
                         <td><strong>Stage 2: Live In-Browser Fixes</strong></td>
                         <td><code>https://testing.dev.mozark.ai/</code> with Route Interception</td>
-                        <td>~5.7s</td>
-                        <td><span class="badge badge-resolved">10 / 10 Tests Passed (100%)</span></td>
+                        <td>Live Run</td>
+                        <td><span class="badge badge-resolved">16 / 16 Tests Passed (100%)</span></td>
                         <td><code>playwright_suite/reports/verified/verified_*.png</code></td>
                     </tr>
                 </tbody>
